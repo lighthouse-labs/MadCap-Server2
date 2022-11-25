@@ -1,9 +1,2 @@
-const express = require("express")
-
-
-
-const app = express();
-
-app.get("/", (req, res) => {
-  res.send("test test");
-})
+const PORT = process.env.PORT || 8001;
+const ENV = require("./environment");
