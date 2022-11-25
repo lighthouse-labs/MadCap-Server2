@@ -1,5 +1,4 @@
 // load environment data from environment.js
-
 require('../environment')
 
 // other dependencies
