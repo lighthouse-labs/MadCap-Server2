@@ -1,5 +1,5 @@
 // load environment data from environment.js
-require('../environment')
+require('../environment');
 
 // other dependencies
 const fs = require('fs');

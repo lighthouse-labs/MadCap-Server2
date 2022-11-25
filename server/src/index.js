@@ -1,5 +1,6 @@
 // load .env data into process.env
-require('dotenv').config();
+// require('dotenv').config();
+require('./environment');
 // const helmet = require("helmet");
 // const cors = require("cors");
 
