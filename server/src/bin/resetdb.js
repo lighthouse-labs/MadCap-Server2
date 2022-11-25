@@ -1,5 +1,6 @@
-// load .env data into process.env
-require('dotenv').config();
+// load environment data from environment.js
+
+require('../environment')
 
 // other dependencies
 const fs = require('fs');
