@@ -12,8 +12,6 @@ pool
 
 module.exports = pool;
 
-
-
 // // PG database client/connection setup
 // const { Pool } = require('pg');
 
