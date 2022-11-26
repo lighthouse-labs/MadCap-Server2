@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { Fragment } from 'react';
 import TextField from '@mui/material/TextField';
 
 export default function UserName(props) {
@@ -24,14 +25,21 @@ export default function UserName(props) {
   });
 
   return (
-    <div>
+    <Fragment>
       <UserTextField label="ENTER YOUR NAME" id="enter-username"
         sx={{
           fontSize: '55px',
           m: 1,
           width: 380,
+          '& .MuiInputBase-input': {
+            caretColor: 'transparent',
+            caretHeight: 2,
+            fontSize: 40,
+            py: 0,
+            px: 2
+          }
         }}
       />
-    </div>
+    </Fragment>
   );
 }

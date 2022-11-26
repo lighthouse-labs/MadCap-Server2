@@ -8,9 +8,9 @@ import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
-import { autoPlay } from 'react-swipeable-views-utils';
+// import { autoPlay } from 'react-swipeable-views-utils';
 
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
+// const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
   {
@@ -31,7 +31,7 @@ const images = [
   },
 ];
 
-function AvatarSelect() {
+export default function ActionAvatar() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = images.length;
@@ -50,21 +50,21 @@ function AvatarSelect() {
 
   return (
     <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <img alt="tri" src=""/>
+      <img alt="tri" src="" />
       <Paper
         square
         elevation={0}
         sx={{
           display: 'flex',
           alignItems: 'center',
-          height: 20,
+          height: 5,
           pl: 2,
           bgcolor: 'background.default',
         }}
       >
         {/* <Typography>{images[activeStep].label}</Typography> */}
       </Paper>
-      <AutoPlaySwipeableViews
+      <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
         onChangeIndex={handleStepChange}
@@ -76,7 +76,7 @@ function AvatarSelect() {
               <Box
                 component="img"
                 sx={{
-                  height: 255,
+                  height: 240,
                   display: 'block',
                   maxWidth: 400,
                   overflow: 'hidden',
@@ -88,7 +88,7 @@ function AvatarSelect() {
             ) : null}
           </div>
         ))}
-      </AutoPlaySwipeableViews>
+      </SwipeableViews>
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -99,7 +99,6 @@ function AvatarSelect() {
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
             {theme.direction === 'rtl' ? (
               <KeyboardArrowLeft />
             ) : (
@@ -114,12 +113,9 @@ function AvatarSelect() {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
           </Button>
         }
       />
     </Box>
   );
 }
-
-export default AvatarSelect;
