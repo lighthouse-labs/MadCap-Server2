@@ -2,12 +2,14 @@ import React from "react";
 
 import './App.css';
 
-import Welcome from "./Welcome/Welcome";
+// import Welcome from "./Welcome/Welcome";
 
 function App() {
   return (
     <div className="App">
-      <Welcome />
+      {/* Welcome is default */}
+      {/* <Welcome /> */}
+      
     </div>
   );
 }
