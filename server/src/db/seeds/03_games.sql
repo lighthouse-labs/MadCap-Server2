@@ -1,7 +1,7 @@
-INSERT INTO games (name, url, seed)
+INSERT INTO games (url, seed)
 VALUES
-('Radish Eaters', 'g45th', 14325),
-('Movie Goers', 'e45r6', 12567);
+('g45th', 14325),
+('e45r6', 12567);
 
 INSERT INTO categories_sets (game_id, category_id)
 VALUES
