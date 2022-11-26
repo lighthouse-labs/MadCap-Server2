@@ -32,30 +32,6 @@ const catgeoriesRoutes = require('./routes/categories-api');
 
 app.use('/api/categories', catgeoriesRoutes);
 
-const { getRandomQuestions } = require('./db/queries/categories')
-
-app.get('/api/categories/:category_id/questions', (req, res) => {
-  const { game_id } = req.query;
-  const {category_id} = req.params
-  getRandomQuestions(category_id, game_id)
-  .then(questions => {
-    res.json(questions);
-  });
-});
-
-app.get('/api/categories/:category_id/questions/:question_number', (req, res) => {
-  const { game_id } = req.query;
-  const {category_id, question_number} = req.params
-  getRandomQuestions(category_id, game_id)
-  .then(questions => {
-    const question = questions[question_number - 1];
-    res.json(question);
-  })
-  .catch(err => console.error(err));
-});
-
-
-
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
