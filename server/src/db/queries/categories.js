@@ -7,4 +7,19 @@ const getCategories = () => {
     });
 };
 
-module.exports = { getCategories };
+const getRandomQuestions = (category_id, game_seed) => {
+  return db.query(`
+  SELECT SETSEED($1)`, [1.0 / game_seed])
+  .then(() => db.query(`
+  SELECT *
+  FROM subcategories
+  WHERE category_id = $1
+  ORDER BY RANDOM()
+  `, [category_id]))
+  .then(data => {
+    console.log(data.rows);
+    return data.rows
+  })
+}
+
+module.exports = { getCategories, getRandomQuestions };
