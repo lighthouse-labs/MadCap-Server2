@@ -30,7 +30,7 @@ export default function ActionWelcome() {
           justifyContent: "center",
           alignItems: "center",
           minWidth: 406,
-          height: 365,
+          height: 340,
           width: '70%'
         }}>
         <ActionAvatar />

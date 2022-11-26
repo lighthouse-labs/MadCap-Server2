@@ -6,14 +6,15 @@
   align-items: center;
 }
 
-h1 {
+.main-title {
   margin: 0;
   font-weight: 900;
   font-style: italic;
-  font-size: 80px;
+  font-size: 83px;
+  margin-bottom: 12px;
 }
 
-.tri--avatar {
+.tri-avatar {
   display: flex;
   justify-content: center;
     align-items: center;

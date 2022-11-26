@@ -12,7 +12,7 @@ export default function ActionButton(props) {
           width: 380,
           height: 65,
           fontSize: 30,
-          mb: 10
+          mb: 3.5
         }}
       >{props.message}</Button>
     </Fragment>

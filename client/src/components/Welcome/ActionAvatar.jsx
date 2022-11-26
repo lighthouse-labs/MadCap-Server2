@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 // import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
@@ -15,35 +15,35 @@ import SwipeableViews from 'react-swipeable-views';
 const images = [
   {
     label: '1',
-    imgPath: './avatars/avatar-temp-8.jpg'
+    imgPath: './avatars/avatar-temp-8.png'
   },
   {
     label: '2',
-    imgPath: './avatars/avatar-temp-7.jpg'
+    imgPath: './avatars/avatar-temp-7.png'
   },
   {
     label: '3',
-    imgPath: './avatars/avatar-temp-6.jpg'
+    imgPath: './avatars/avatar-temp-6.png'
   },
   {
     label: '4',
-    imgPath: './avatars/avatar-temp-5.jpg'
+    imgPath: './avatars/avatar-temp-5.png'
   },
   {
     label: '5',
-    imgPath: './avatars/avatar-temp-4.jpg'
+    imgPath: './avatars/avatar-temp-4.png'
   },
   {
     label: '6',
-    imgPath: './avatars/avatar-temp-3.jpg'
+    imgPath: './avatars/avatar-temp-3.png'
   },
   {
     label: '7',
-    imgPath: './avatars/avatar-temp-2.jpg'
+    imgPath: './avatars/avatar-temp-2.png'
   },
   {
     label: '8',
-    imgPath: './avatars/avatar-temp-1.jpg'
+    imgPath: './avatars/avatar-temp-1.png'
   }
 ];
 
@@ -66,8 +66,8 @@ export default function ActionAvatar() {
 
   return (
     <Box sx={{ maxWidth: 400, maxHeight: 210, flexGrow: 1 }}>
-      <Paper
-        square
+      {/* <Paper */}
+        {/* square
         elevation={0}
         sx={{
           display: 'flex',
@@ -75,39 +75,39 @@ export default function ActionAvatar() {
           height: 20,
           bgcolor: 'background.default'
         }}
-      >
+      > */}
         {/* <Typography>{images[activeStep].label}</Typography> */}
-      </Paper>
-      <div className="tri--avatar">
+      {/* </Paper> */}
+      <div className="tri-avatar">
         <img alt="tri" src="./tri-border.png"
         />
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {images.map((step, index) => (
-          <div key={step.label} style={{
-            display: 'flex',
-            justifyContent: 'center',
-          }}
-          >
-            {Math.abs(activeStep - index) <= 2 ? (
-              <Box
-                component="img"
-                sx={{
-                  overflow: 'hidden',
-                  maxWidth: 120,
-                  width: '100%',
-                }}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
-        ))}
-      </SwipeableViews>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {images.map((step, index) => (
+            <div key={step.label} style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+            >
+              {Math.abs(activeStep - index) <= 2 ? (
+                <Box
+                  component="img"
+                  sx={{
+                    overflow: 'hidden',
+                    maxWidth: 120,
+                    width: '100%',
+                  }}
+                  src={step.imgPath}
+                  alt={step.label}
+                />
+              ) : null}
+            </div>
+          ))}
+        </SwipeableViews>
       </div>
       <MobileStepper
         sx={{
