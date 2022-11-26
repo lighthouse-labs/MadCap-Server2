@@ -21,4 +21,25 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:category_id/questions', (req, res) => {
+  const { game_id } = req.query;
+  const {category_id} = req.params
+  userQueries.getRandomQuestions(category_id, game_id)
+  .then(questions => {
+    res.json(questions);
+  });
+});
+
+router.get('/:category_id/questions/:question_number', (req, res) => {
+  const { game_id } = req.query;
+  const {category_id, question_number} = req.params
+  userQueries.getRandomQuestions(category_id, game_id)
+  .then(questions => {
+    const question = questions[question_number - 1];
+    res.json(question);
+  })
+  .catch(err => console.error(err));
+});
+
+
 module.exports = router;
