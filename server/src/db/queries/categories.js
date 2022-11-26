@@ -7,18 +7,27 @@ const getCategories = () => {
     });
 };
 
-const getRandomQuestion = (category_id) => {
+const getRandomQuestions = (category_id, game_seed) => {
   return db.query(`
+  SELECT SETSEED($1)`, [1.0 / game_seed])
+  .then(() => db.query(`
   SELECT *
   FROM subcategories
   WHERE category_id = $1
   ORDER BY RANDOM()
-  LIMIT 1;
-  `, [category_id]).then(data => {
+  `, [category_id]))
+  .then(data => {
     console.log(data.rows);
-    return data.rows[0]
+    return data.rows
   })
 }
-getRandomQuestion(1);
 
-module.exports = { getCategories, getRandomQuestion };
+const getRandomQuestion = (category_id, game_seed, question_number) => {
+  return getRandomQuestions(category_id, game_seed)
+  .then(questions => {
+    return questions([question_number - 1]) 
+  })
+}
+getRandomQuestions(1, 10006);
+
+module.exports = { getCategories, getRandomQuestions, getRandomQuestion };
