@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 
 export default function HowToPlay() {
   return (
-    <Container style={{padding: 0}}
+    <Container style={{margin: 0, padding: 0}}
       sx={{
         display: "flex",
         flexDirection: "column",

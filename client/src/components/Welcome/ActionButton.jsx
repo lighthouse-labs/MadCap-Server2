@@ -10,9 +10,9 @@ export default function ActionButton(props) {
       <Button variant="contained" color="success" size="large"
         sx={{
           width: 380,
-          height: 100,
+          height: 65,
           fontSize: 30,
-          mb: 1
+          mb: 3.5
         }}
       >{props.message}</Button>
     </Fragment>

@@ -7,7 +7,7 @@ import './Welcome.css';
 export default function Welcome(props) {
   return (
     <div className="welcome-main">
-      <h1>MadCap</h1>
+      <h1 className="main-title">MadCap</h1>
       <ActionWelcome />
       <HowToPlay />
     </div>
