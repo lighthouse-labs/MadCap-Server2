@@ -31,12 +31,13 @@ export default function UserName(props) {
           fontSize: '55px',
           m: 1,
           width: 380,
+          my: 1.5,
           '& .MuiInputBase-input': {
             caretColor: 'transparent',
             caretHeight: 2,
             fontSize: 40,
             py: 0,
-            px: 2
+            height: 53
           }
         }}
       />

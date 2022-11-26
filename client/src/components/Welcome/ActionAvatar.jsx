@@ -15,20 +15,36 @@ import SwipeableViews from 'react-swipeable-views';
 const images = [
   {
     label: '1',
-    imgPath: '..../public/avatars/avatar-temp-1.png'
+    imgPath: './avatars/avatar-temp-8.jpg'
   },
   {
     label: '2',
-    imgPath: '..../public/avatars/avatar-temp-2.jpg'
+    imgPath: './avatars/avatar-temp-7.jpg'
   },
   {
     label: '3',
-    imgPath: '..../public/avatars/avatar-temp-3.jpg'
+    imgPath: './avatars/avatar-temp-6.jpg'
   },
   {
     label: '4',
-    imgPath: '..../public/avatars/avatar-temp-4.jpg'
+    imgPath: './avatars/avatar-temp-5.jpg'
   },
+  {
+    label: '5',
+    imgPath: './avatars/avatar-temp-4.jpg'
+  },
+  {
+    label: '6',
+    imgPath: './avatars/avatar-temp-3.jpg'
+  },
+  {
+    label: '7',
+    imgPath: './avatars/avatar-temp-2.jpg'
+  },
+  {
+    label: '8',
+    imgPath: './avatars/avatar-temp-1.jpg'
+  }
 ];
 
 export default function ActionAvatar() {
@@ -49,21 +65,22 @@ export default function ActionAvatar() {
   };
 
   return (
-    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-      <img alt="tri" src="" />
+    <Box sx={{ maxWidth: 400, maxHeight: 210, flexGrow: 1 }}>
       <Paper
         square
         elevation={0}
         sx={{
           display: 'flex',
           alignItems: 'center',
-          height: 5,
-          pl: 2,
-          bgcolor: 'background.default',
+          height: 20,
+          bgcolor: 'background.default'
         }}
       >
         {/* <Typography>{images[activeStep].label}</Typography> */}
       </Paper>
+      <div className="tri--avatar">
+        <img alt="tri" src="./tri-border.png"
+        />
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
@@ -71,15 +88,17 @@ export default function ActionAvatar() {
         enableMouseEvents
       >
         {images.map((step, index) => (
-          <div key={step.label}>
+          <div key={step.label} style={{
+            display: 'flex',
+            justifyContent: 'center',
+          }}
+          >
             {Math.abs(activeStep - index) <= 2 ? (
               <Box
                 component="img"
                 sx={{
-                  height: 240,
-                  display: 'block',
-                  maxWidth: 400,
                   overflow: 'hidden',
+                  maxWidth: 120,
                   width: '100%',
                 }}
                 src={step.imgPath}
@@ -89,7 +108,11 @@ export default function ActionAvatar() {
           </div>
         ))}
       </SwipeableViews>
+      </div>
       <MobileStepper
+        sx={{
+          justifyContent: 'center'
+        }}
         steps={maxSteps}
         position="static"
         activeStep={activeStep}

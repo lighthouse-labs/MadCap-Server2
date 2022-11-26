@@ -24,13 +24,13 @@ export default function ActionWelcome() {
           boxShadow: 1,
           borderRadius: 2,
           my: 1,
-          p: 2,
+          px: 2,
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           minWidth: 406,
-          height: 480,
+          height: 365,
           width: '70%'
         }}>
         <ActionAvatar />
