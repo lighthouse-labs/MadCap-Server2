@@ -1,0 +1,29 @@
+.welcome-main {
+  margin: 1em;
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-title {
+  margin: 0;
+  font-weight: 900;
+  font-style: italic;
+  font-size: 83px;
+  margin-bottom: 12px;
+}
+
+.tri-avatar {
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+
+[alt="tri"] {
+  height: 220px;
+  /* max-width: 300px; */
+  position: absolute;
+  /* z-index: 100; */
+  padding-bottom: 33px;
+}
