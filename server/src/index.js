@@ -26,19 +26,14 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 
 const catgeoriesRoutes = require('./routes/categories-api');
+const gamesRoutes = require('./routes/games-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 app.use('/api/categories', catgeoriesRoutes);
-
-app.get('/games/:game_id/questions', (req, res) => {
-  const game_id = req.params.game_id;
-  getRandomQuestionsFromGame(game_id)
-  .then(questions => res.json(questions))
-  .catch(error => res.json({ error }))
-})
+app.use('/api/games', gamesRoutes);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
