@@ -22,12 +22,16 @@ PGPORT=5432
 
 ## Seeding
 
+
 Run a the development server with `npm start` in the Host environment. We are only using vagrant for `psql` this week.
 
 Both of these achieve the same result.
 
 Use the npm run `npm run db:reset` command each time there is a change to the database schema or seeds.
 
+*** login to correct db AND user! :))) ***
+for access in terminal
+`psql -d mydb -U myuser`
 
 ## Run The Server
 

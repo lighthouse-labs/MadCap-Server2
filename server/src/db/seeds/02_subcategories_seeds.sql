@@ -28,4 +28,16 @@ VALUES
 ('First Person Shooters', 5),
 ('Side Scrollers', 5),
 ('Consoles', 5),
-('Video Game Protagonists', 5);
+('Video Game Protagonists', 5),
+
+('Anything in the Universe', 6),
+
+('Trees', 7),
+('Flowers', 7),
+('Any Plant', 7),
+
+('Genres', 8),
+('Lead Singers', 8),
+('Musical Instruments', 8),
+('The 80''s', 8),
+('The 90''s', 8);

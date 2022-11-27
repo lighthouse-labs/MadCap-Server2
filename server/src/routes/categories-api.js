@@ -21,6 +21,11 @@ router.get('/', (req, res) => {
     });
 });
 
+//// *** can we pls change any use of 'questions' or ***
+////    '/questions'   TO   '/subcategories'??
+//// :))) 
+////  thx
+
 router.get('/:category_id/questions', (req, res) => {
   const { game_id } = req.query;
   const {category_id} = req.params

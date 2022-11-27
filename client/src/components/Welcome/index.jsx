@@ -1,8 +1,8 @@
 // import { useState } from 'react';
-import ActionWelcome from './ActionWelcome';
+import ActionWelcome from './WelcomeBox';
 import HowToPlay from './HowToPlay';
 
-import './Welcome.css';
+import './styles.css';
 
 export default function Welcome(props) {
   return (
