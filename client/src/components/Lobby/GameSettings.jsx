@@ -9,9 +9,11 @@ export default function GameSettings(props) {
   return (
     <Fragment>
       <Box sx={{
+        backgroundColor: '#f0f5ff',
         display: 'flex',
         flexDirection: 'column',
-        px: '10px'
+        px: '10px',
+        height: '360px'
       }}>
         <div className="settings-header">
           <h2>Game Settings</h2>

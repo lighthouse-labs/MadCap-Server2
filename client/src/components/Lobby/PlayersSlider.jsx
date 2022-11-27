@@ -72,7 +72,7 @@ const StyledSlider = styled(SliderUnstyled)(
     margin-left: -6px;
     margin-top: -6px;
     box-sizing: border-box;
-    border-radius: 50%;
+    border-radius: 10%;
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
@@ -126,19 +126,19 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function TimerSlider() {
+export default function PlayersSlider() {
   return (
       <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
-        <header><h4>set timer - seconds</h4></header>
+        <header><h4>set max players</h4></header>
         <StyledSlider
-          aria-label="Seconds"
-          defaultValue={60}
+          aria-label="Players"
+          defaultValue={4}
           getAriaValueText={valuetext}
           valueLabelDisplay="auto"
-          step={10}
+          step={1}
           marks
           min={0}
-          max={120}
+          max={8}
         />
       </Box>
   );

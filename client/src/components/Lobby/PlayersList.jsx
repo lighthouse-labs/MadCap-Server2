@@ -7,7 +7,7 @@ export default function PlayersList() {
     <Fragment>
       <Box className="players-box">
         <Paper elevation={3} sx={{
-          height: 300,
+          height: 600,
           p: '15px'
         }}>
           <ul style={{

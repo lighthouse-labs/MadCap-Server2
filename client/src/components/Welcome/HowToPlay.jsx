@@ -15,9 +15,9 @@ export default function HowToPlay() {
         my: 1
       }}>
       <Box sx={{
+        backgroundColor: 'aliceblue',
         width: '100%',
         height: 350,
-        backgroundColor: 'aliceblue',
         display: 'flex',
         justifyContent: 'space-between',
         mt: 5,

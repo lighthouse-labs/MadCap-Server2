@@ -27,7 +27,6 @@ export default function Lobby(props) {
       <Box sx={{
         px: 2,
         display: "flex",
-        // justifyContent: "space-around",
         minWidth: 485,
         maxWidth: 600,
         width: '70%'
