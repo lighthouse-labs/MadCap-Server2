@@ -8,6 +8,10 @@ module.exports = (app) => {
     socket.on("ping", (id) => {
       app.io.emit("pong");
       console.log("pinged");
+      console.log(socket.id)
+    });
+    socket.on("message", (message) => {
+      console.log(message);
     });
     socket.on("disconnect", () => {
       console.log("A user disconnected");
