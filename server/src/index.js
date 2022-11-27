@@ -7,6 +7,7 @@ require('./environment');
 // Web server config
 const express = require('express');
 const morgan = require('morgan');
+const { getRandomQuestionsFromGame } = require('./db/queries/categories');
 
 const PORT = process.env.PORT || 8001;
 const app = express();
@@ -25,12 +26,14 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 
 const catgeoriesRoutes = require('./routes/categories-api');
+const gamesRoutes = require('./routes/games-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 app.use('/api/categories', catgeoriesRoutes);
+app.use('/api/games', gamesRoutes);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
