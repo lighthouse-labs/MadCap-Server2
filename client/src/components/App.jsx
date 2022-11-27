@@ -1,16 +1,16 @@
-import React from "react";
+// import { useState } from "react";
 
 import './App.css';
 
-import Welcome from "./Welcome";
-// import Lobby from "./Lobby";
+// import Welcome from "./Welcome";
+import Lobby from "./Lobby";
 
 function App() {
   return (
     <div className="App">
       {/* Welcome is default */}
-      <Welcome />
-      {/* <Lobby /> */}
+      {/* <Welcome /> */}
+      <Lobby />
     </div>
   );
 }

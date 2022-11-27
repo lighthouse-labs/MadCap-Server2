@@ -1,0 +1,11 @@
+.lobby-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lobby-header {
+  min-width: 406px;
+    max-width: 750px;
+    width: 70%;
+}

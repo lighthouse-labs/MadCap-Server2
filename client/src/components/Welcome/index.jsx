@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import ActionWelcome from './WelcomeBox';
 import HowToPlay from './HowToPlay';
 

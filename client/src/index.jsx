@@ -19,6 +19,14 @@ root.render(
   </React.StrictMode>
 );
 
+
+// *** currently, StrictMode is causing:
+// "Warning: Using UNSAFE_componentWillReceiveProps..."
+// which I believe is due to the current (new) version of
+// "react-swipeable-views": "^0.14.0"
+// this is a normal error, apprently. We can confirm
+
+
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
