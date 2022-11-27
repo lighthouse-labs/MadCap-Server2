@@ -1,6 +1,6 @@
 // load .env data into process.env
 // require('dotenv').config();
-require('./environment');
+require("./environment");
 // const helmet = require("helmet");
 // const cors = require("cors");
 
@@ -12,15 +12,14 @@ const { getRandomQuestionsFromGame } = require('./db/queries/categories');
 const PORT = process.env.PORT || 8001;
 const app = express();
 
-
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -35,6 +34,19 @@ const gamesRoutes = require('./routes/games-api');
 app.use('/api/categories', catgeoriesRoutes);
 app.use('/api/games', gamesRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+//creates socket servers
+const http = require("http").createServer(app);
+app.io = require("socket.io")(http);
+
+//lets sockets connect
+http.listen(PORT, () => {
+  console.log(`listening on *:${PORT}`);
 });
+
+//runs socket logic
+require("./routes/sockets")(app);
+
+// app.listen(PORT, () => {
+//   console.log(`Example app listening on port ${PORT}`);
+
+// });
