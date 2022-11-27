@@ -55,6 +55,13 @@ http.listen(PORT, () => {
 
 io.on("connection", (socket) => {
   console.log('A user connected');
+  socket.on('ping', id  => {
+    socket.emit('pong')
+    console.log("pinged");
+  });
+  socket.on('disconnect', () => {
+    console.log("bye")
+  })
   // app.set("socket", socket);
 });
 

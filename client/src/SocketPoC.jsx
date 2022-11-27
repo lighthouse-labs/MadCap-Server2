@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 const SERVER = "http://127.0.0.1:8001";
 const socket = io(SERVER, {
+    transports: ['websocket'],
 });
 
 function App() {
