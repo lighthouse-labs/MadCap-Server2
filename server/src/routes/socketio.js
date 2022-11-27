@@ -11,7 +11,9 @@ const express = require('express');
 const router  = express.Router();
 
 router.get('/', function(req, res) {
-  res.sendFile('/home/ndk/lighthouse/MadCap/server/src/routes/temptestfile.html')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  const socket = req.app.get("socket");
+  socket.emit("ping")
 });
 
 //Whenever someone connects this gets executed

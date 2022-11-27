@@ -9,6 +9,7 @@ const express = require('express');
 const morgan = require('morgan');
 
 
+
 const PORT = process.env.PORT || 8001;
 const app = express();
 
@@ -36,23 +37,32 @@ const sockettestRoutes = require('./routes/socketio')
 app.use('/api/categories', catgeoriesRoutes);
 app.use('/socket', sockettestRoutes);
 
-const socketIo = require("socket.io");
-const http = require('http')
-const server = http.createServer(app);
-const io = socketIo(server);
+
+//sockets
+const http = require("http").createServer(app);
+const io = require("socket.io")(http)
+
+app.use((req, res, next) => {
+
+  next();
+})
+
+http.listen(PORT, () => {
+  console.log(`listening on *:${PORT}`);
+});
 
 
-//Whenever someone connects this gets executed
-io.on('connection', function(socket) {
+
+io.on("connection", (socket) => {
   console.log('A user connected');
-
-  //Whenever someone disconnects this piece of code executed
-  socket.on('disconnect', function () {
-     console.log('A user disconnected');
-  });
+  // app.set("socket", socket);
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
 
-});
+
+// app.listen(PORT, () => {
+//   console.log(`Example app listening on port ${PORT}`);
+
+// });
+
+
