@@ -29,7 +29,7 @@ const getRandomQuestionsFromGame = (game_id) => {
   .then((seed) => db.query(`
   SELECT SETSEED($1)`, [1.0 / seed]))
   .then(() => db.query(`
-  SELECT games.*, categories.title, subcategories.subcategory FROM categories_sets
+  SELECT categories.title AS category, subcategories.subcategory FROM categories_sets
   JOIN games ON game_id = games.id
   JOIN categories ON categories_sets.category_id = categories.id
   JOIN subcategories ON subcategories.category_id = categories.id
@@ -37,11 +37,10 @@ const getRandomQuestionsFromGame = (game_id) => {
   ORDER BY RANDOM()
   `, [game_id])
   )
-  .then(data => console.log(data.rows))
-  .catch(err => console.error(err.message))
+  .then((data) => data.rows)
 };
 
 
 getRandomQuestionsFromGame(2);
 
-module.exports = { getCategories, getRandomQuestions };
+module.exports = { getCategories, getRandomQuestions, getRandomQuestionsFromGame };
