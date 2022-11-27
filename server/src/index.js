@@ -27,7 +27,6 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 
 const catgeoriesRoutes = require('./routes/categories-api');
-const sockettestRoutes = require('./routes/socketio')
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -35,35 +34,20 @@ const sockettestRoutes = require('./routes/socketio')
 
 
 app.use('/api/categories', catgeoriesRoutes);
-app.use('/socket', sockettestRoutes);
 
 
 //sockets
 const http = require("http").createServer(app);
-const io = require("socket.io")(http)
+app.io = require("socket.io")(http)
 
-app.use((req, res, next) => {
-
-  next();
-})
 
 http.listen(PORT, () => {
   console.log(`listening on *:${PORT}`);
 });
 
+require('./routes/sockets')(app)
 
 
-io.on("connection", (socket) => {
-  console.log('A user connected');
-  socket.on('ping', id  => {
-    socket.emit('pong')
-    console.log("pinged");
-  });
-  socket.on('disconnect', () => {
-    console.log("bye")
-  })
-  // app.set("socket", socket);
-});
 
 
 
