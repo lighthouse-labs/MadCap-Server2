@@ -9,7 +9,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 // import { autoPlay } from 'react-swipeable-views-utils';
-
 // const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
@@ -67,7 +66,7 @@ export default function ActionAvatar() {
   return (
     <Box sx={{ maxWidth: 400, maxHeight: 210, flexGrow: 1 }}>
       {/* <Paper */}
-        {/* square
+      {/* square
         elevation={0}
         sx={{
           display: 'flex',
@@ -76,7 +75,7 @@ export default function ActionAvatar() {
           bgcolor: 'background.default'
         }}
       > */}
-        {/* <Typography>{images[activeStep].label}</Typography> */}
+      {/* <Typography>{images[activeStep].label}</Typography> */}
       {/* </Paper> */}
       <div className="tri-avatar">
         <img alt="tri" src="./tri-border.png"
@@ -130,7 +129,10 @@ export default function ActionAvatar() {
           </Button>
         }
         backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <Button size="small"
+            onClick={handleBack}
+            disabled={activeStep === 0}
+          >
             {theme.direction === 'rtl' ? (
               <KeyboardArrowRight />
             ) : (

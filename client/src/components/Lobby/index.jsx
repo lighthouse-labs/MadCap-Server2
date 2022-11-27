@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import SelectCategories from "./SelectCategories";
 
-import './Lobby.css';
+import './styles.css';
 
 export default function Lobby(props) {
 
@@ -17,12 +17,13 @@ export default function Lobby(props) {
     })
   }, []);
   
-  //first request is always null, fix .get() above 
+  //first request is always null, fix .get() above? 
   console.log("~~~~~~ in Lobby get", cats)
 
   return (
     <div className="lobby-main">
       {cats && <SelectCategories categories={cats}/>}
+      
     </div>
   );
 };
