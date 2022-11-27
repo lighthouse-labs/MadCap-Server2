@@ -10,7 +10,7 @@ module.exports = (app) => {
       console.log("pinged");
       console.log(socket.id)
     });
-    socket.on("message", (message) => {
+    socket.on("send-message", (message) => {
       console.log(message);
     });
     socket.on("disconnect", () => {
