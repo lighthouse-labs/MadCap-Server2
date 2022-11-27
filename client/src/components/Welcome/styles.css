@@ -26,6 +26,7 @@
 }
 
 .how-to h2 {
-  margin-left: 5px;
+  /* margin-left: 5px; */
+  margin: 5px, 0, 5px, 0;
   padding: 12px;
 }

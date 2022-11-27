@@ -11,9 +11,12 @@ export default function GameSettings(props) {
       <Box sx={{
         display: 'flex',
         flexDirection: 'column',
-        pl: '10px'
+        px: '10px'
       }}>
-        <CategoriesBox cats={props.cats}/>
+        <div className="settings-header">
+          <h2>Game Settings</h2>
+        </div>
+        <CategoriesBox cats={props.cats} />
         <OptionsBox />
       </Box>
     </Fragment>

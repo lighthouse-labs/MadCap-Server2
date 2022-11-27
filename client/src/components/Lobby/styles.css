@@ -5,7 +5,13 @@
 }
 
 .lobby-header {
-  min-width: 406px;
-    max-width: 750px;
-    width: 70%;
+  /* min-width: 406px; */
+  min-width: 437px;
+  max-width: 750px;
+  width: 70%;
+}
+
+.settings-header h2 {
+  margin-top: 0;
+  padding-left: 10px;
 }

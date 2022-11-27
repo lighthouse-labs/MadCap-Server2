@@ -25,21 +25,24 @@ export default function Lobby(props) {
   return (
     <div className="lobby-main">
       <Box sx={{
+        px: 2,
         display: "flex",
-        justifyContent: "space-around",
-        minWidth: 406,
-        maxWidth: 750,
+        // justifyContent: "space-around",
+        minWidth: 485,
+        maxWidth: 600,
         width: '70%'
       }}>
-        <h2 className="lobby-header">Lobby</h2>
+        <div className="lobby-header">
+          <h1>Lobby</h1>
+        </div>
       </Box>
       <Box sx={{
         my: 1,
-        px: 2,
+        px: 1,
         display: "flex",
-        justifyContent: "space-around",
-        minWidth: 406,
-        maxWidth: 750,
+        justifyContent: "space-between",
+        minWidth: 485,
+        maxWidth: 600,
         height: 340,
         width: '70%'
       }}>
