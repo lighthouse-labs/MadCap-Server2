@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 
 export default function HowToPlay() {
   return (
-    <Container style={{margin: 0, padding: 0}}
+    <Container style={{ margin: 0, padding: 0, maxWidth: 750 }}
       sx={{
         display: "flex",
         flexDirection: "column",
@@ -17,40 +17,40 @@ export default function HowToPlay() {
       <Box sx={{
         width: '100%',
         height: 350,
+        backgroundColor: 'aliceblue',
         display: 'flex',
         justifyContent: 'space-between',
         mt: 5,
         mb: 2
       }}>
-        <div className="rules-description">
+        <div className="how-to how-to-description">
           <h2>How To Play</h2>
+
         </div>
-        <Paper elevation={3}
-          sx={{
-            p: 1
-          }}
-        >
-          <p>how to play...the game...</p>
-          <p>visual examples..........</p>
-          <p>will...go here.....coool.</p>
+        <Paper elevation={3} sx={{ p: 1 }}>
+          <p>how .........to play...the game.........</p>
+          <p>visual ...............examples..........</p>
+          <p>will................go.. here.....coool.</p>
         </Paper>
       </Box>
       <Box sx={{
         width: '100%',
         height: 300,
+        backgroundColor: '#f0f2ff',
         display: 'flex',
         justifyContent: 'space-between'
       }}>
-        <div className="about-description">
+        <div className="how-to about-description">
           <h2>About</h2>
+
         </div>
         <Paper elevation={3}
           sx={{
             p: 1
           }}
         >
-          <p>how to play...the game...</p>
-          <p>visual examples..........</p>
+          <p>about ...the game...</p>
+          <p>fun facts..........</p>
           <p>will...go here.....coool.</p>
         </Paper>
       </Box>
