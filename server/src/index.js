@@ -32,11 +32,25 @@ const sockettestRoutes = require('./routes/socketio')
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
+
 app.use('/api/categories', catgeoriesRoutes);
 app.use('/socket', sockettestRoutes);
 
+const socketIo = require("socket.io");
+const http = require('http')
+const server = http.createServer(app);
+const io = socketIo(server);
 
 
+//Whenever someone connects this gets executed
+io.on('connection', function(socket) {
+  console.log('A user connected');
+
+  //Whenever someone disconnects this piece of code executed
+  socket.on('disconnect', function () {
+     console.log('A user disconnected');
+  });
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
