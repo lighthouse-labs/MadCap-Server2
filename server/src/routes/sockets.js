@@ -1,8 +1,6 @@
 /*
  * SocketIo connection logic
  */
-const http = require("http")
-const io = require("socket.io")
 
 module.exports = (app) => {
   app.io.on("connection", (socket) => {
@@ -12,8 +10,7 @@ module.exports = (app) => {
       console.log("pinged");
     });
     socket.on("disconnect", () => {
-      console.log("bye");
+      console.log("A user disconnected");
     });
-    // app.set("socket", socket);
   });
 };
