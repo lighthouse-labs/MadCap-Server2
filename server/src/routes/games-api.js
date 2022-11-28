@@ -17,4 +17,10 @@ router.get('/:game_id/subcategories/:subcategory_number', (req, res) => {
   .catch(error => res.json({ error }))
 });
 
+router.post('/', (req, res) => {
+  const { url, category_ids } = req.body();
+  userQueries.createNewGame(url, category_ids)
+  .catch(error => res.json({ error }))
+})
+
 module.exports = router
