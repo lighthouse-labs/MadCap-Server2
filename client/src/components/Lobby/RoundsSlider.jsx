@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
@@ -73,7 +73,7 @@ const StyledSlider = styled(SliderUnstyled)(
     margin-left: -6px;
     margin-top: -6px;
     box-sizing: border-box;
-    border-radius: 10%;
+    border-radius: 50%;
     outline: 0;
     border: 3px solid currentColor;
     background-color: #fff;
@@ -123,32 +123,54 @@ const StyledSlider = styled(SliderUnstyled)(
 `,
 );
 
+// const marks = [
+//   {
+//     value: 0,
+//     label: '0s',
+//   },
+//   {
+//     value: 30,
+//     label: '30s',
+//   },
+//   {
+//     value: 60,
+//     label: '60s',
+//   },
+//   {
+//     value: 90,
+//     label: '90s',
+//   },
+//   {
+//     value: 120,
+//     label: '120s',
+//   },
+// ];
 
-export default function PlayersSlider() {
+
+export default function TimerSlider() {
   // timerSlider sets state
-  const [value, setValue] = useState(5);
-
+  const [value, setValue] = useState(3);
+  
   const changeValue = (e, val) => {
-    setValue(val);
-  };
-  // const getText = (value) => {
-  //   return `${value}°C`;
-  // }
+    setValue(val)
+  }
+  const getText = (value) => {
+    return `${value}s`;
+  }
   return (
-    <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
-      <header><h4>set max players</h4></header>
-      <StyledSlider
-        min={0}
-        max={10}
-        step={1}
-        // defaultValue={5}
-        aria-label="Players"
-        valueLabelDisplay="auto"
-        marks
-        onChange={changeValue}
-        value={value}
-      // getAriaValueText={getText}
-      />
-    </Box>
+      <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
+        <header><h4>set rounds</h4></header>
+        <StyledSlider
+          min={0}
+          max={6}
+          step={1}
+          // defaultValue={3}
+          onChange={changeValue}
+          valueLabelDisplay="on"
+          value={value}
+          marks
+          getAriaValueText={getText}
+        />
+      </Box>
   );
 }

@@ -6,15 +6,13 @@ import UserName from './UserName';
 import ActionButton from "./ActionButton";
 
 export default function WelcomeBox(props) {
+ 
+
   // const MAKE = "MAKE";
   // const JOIN = "JOIN";
-  
   // if no link use MAKE (default state)
   // if there is a custom link use JOIN
 
-  // const handleClick = () => {
-  //   console.log('cliiiiick');
-  // }
 
   return (
     <Fragment>
@@ -35,8 +33,12 @@ export default function WelcomeBox(props) {
           width: '70%'
         }}>
         <Avatar />
-        <UserName />
-        <ActionButton onClick={props.onClick} message="Make New Game" />
+        <UserName
+          handleName={props.handleName}
+          name={props.name} />
+        <ActionButton
+          onClick={props.onClick} 
+          message="Make New Game" />
         {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
       </Box>
     </Fragment>

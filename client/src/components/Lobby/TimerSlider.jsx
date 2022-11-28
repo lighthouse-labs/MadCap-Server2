@@ -149,7 +149,7 @@ const StyledSlider = styled(SliderUnstyled)(
 
 export default function TimerSlider() {
   // timerSlider sets state
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(60);
   
   const changeValue = (e, val) => {
     setValue(val)
@@ -161,11 +161,10 @@ export default function TimerSlider() {
       <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
         <header><h4>set timer - seconds</h4></header>
         <StyledSlider
-        style={{ width: 300 }}
           min={0}
           max={120}
           step={10}
-          defaultValue={60}
+          // defaultValue={60}
           onChange={changeValue}
           valueLabelDisplay="on"
           value={value}
