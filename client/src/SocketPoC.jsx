@@ -10,7 +10,7 @@ function SocketPoC() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastPong, setLastPong] = useState(null);
   const [lastMessage, setLastMessage] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     socket.on("connect", () => {
