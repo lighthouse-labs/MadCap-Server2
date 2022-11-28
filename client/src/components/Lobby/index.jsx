@@ -6,28 +6,25 @@ import PlayersList from './PlayersList';
 
 import './styles.css';
 
-export default function Lobby(props) {
+export default function Lobby() {
+  const [categories, setCategories] = useState(null);
 
-  const [cats, setCats] = useState(null);
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
-        setCats(res.data.categories);
+        setCategories(res.data.categories);
       })
       .catch(err => {
         console.log(err.message);
       });
   }, []);
 
-  //first request is always null, fix .get() above? 
-  console.log("~~~~~~ in Lobby/index: .get()", cats);
-
   return (
     <div className="lobby-main">
       <Box sx={{
-        px: 2,
+        px: 2.5,
         display: "flex",
-        minWidth: 485,
+        minWidth: 500,
         maxWidth: 600,
         width: '70%'
       }}>
@@ -40,13 +37,13 @@ export default function Lobby(props) {
         px: 1,
         display: "flex",
         justifyContent: "space-between",
-        minWidth: 485,
+        minWidth: 500,
         maxWidth: 600,
         height: 340,
         width: '70%'
       }}>
         <PlayersList />
-        <GameSettings cats={cats} />
+        <GameSettings categories={categories} />
       </Box>
     </div>
   );

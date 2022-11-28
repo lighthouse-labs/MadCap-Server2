@@ -6,20 +6,20 @@ import useVisualMode from "../hooks/useVisualMode";
 import './App.css';
 
 export default function App() {
+
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
   // const GAME = "GAME";
   const { mode, transition } = useVisualMode(WELCOME);
 
-
   return (
     <div className="App">
       {/* Welcome is default */}
       {mode === WELCOME && (
-        <Welcome onClick={() => transition(LOBBY)} 
+        <Welcome onClick={() => transition(LOBBY)}
         />
       )}
-      {mode === LOBBY && ( <Lobby /> )}
+      {mode === LOBBY && (<Lobby />)}
     </div>
   );
 }

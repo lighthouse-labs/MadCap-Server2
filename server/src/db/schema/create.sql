@@ -36,12 +36,12 @@ CREATE TABLE used_subcategories (
   subcategory_id INTEGER REFERENCES subcategories(id) ON DELETE CASCADE
 );
 
--- //              STRETCH, STORE RESULTS ETC...
+//              STRETCH, STORE RESULTS ETC...
 
--- CREATE TABLE users (
---   id SERIAL PRIMARY KEY NOT NULL,
---   name VARCHAR(255) NOT NULL,
---   score SMALLINT DEFAULT 0,
---   color VARCHAR(255),
---   game_id INTEGER REFERENCES games(id) ON DELETE CASCADE,
--- ); 
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  score SMALLINT DEFAULT 0,
+  color VARCHAR(255),
+  game_id INTEGER REFERENCES games(id) ON DELETE CASCADE,
+); 

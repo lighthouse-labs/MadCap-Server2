@@ -12,13 +12,17 @@ export default function GameSettings(props) {
         backgroundColor: '#f0f5ff',
         display: 'flex',
         flexDirection: 'column',
-        px: '10px',
-        height: '420px;'
+        ml: 1,
+        pl: '2px',
+        width: '320px',
+        minHeight: '440px',
+        height: 'fit-content',
+        pb: '3px'
       }}>
         <div className="settings-header">
           <h2>Game Settings</h2>
         </div>
-        <CategoriesBox cats={props.cats} />
+        <CategoriesBox categories={props.categories} />
         <OptionsBox />
       </Box>
     </Fragment>
