@@ -16,8 +16,10 @@ const getRandomSubcategories = (game_id) => {
   .then((data) => data.rows)
 };
 
-const createNewGame = (category_ids) => {
-  return db.query('INSERT INTO games (url, seed)')
+const createNewGame = (url, category_id) => {
+  return db.query(`
+  INSERT INTO games (url, seed)
+  VALUES ($1), FLOOR(RANDOM() * 20000 + 1)`, [url])
 }
 
 module.exports = { getRandomSubcategories }
