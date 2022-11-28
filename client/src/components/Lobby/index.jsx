@@ -6,7 +6,7 @@ import PlayersList from './PlayersList';
 
 import './styles.css';
 
-export default function Lobby() {
+export default function Lobby(props) {
   const [categories, setCategories] = useState(null);
 
   useEffect(() => {
@@ -24,8 +24,10 @@ export default function Lobby() {
       <Box sx={{
         px: 2.5,
         display: "flex",
-        minWidth: 500,
-        maxWidth: 600,
+        // minWidth: 500,
+        // maxWidth: 600,
+        minWidth: 530,
+        maxWidth: 610,
         width: '70%'
       }}>
         <div className="lobby-header">
@@ -37,12 +39,12 @@ export default function Lobby() {
         px: 1,
         display: "flex",
         justifyContent: "space-between",
-        minWidth: 500,
-        maxWidth: 600,
+        minWidth: 530,
+        maxWidth: 610,
         height: 340,
         width: '70%'
       }}>
-        <PlayersList />
+        <PlayersList name={props.name}/>
         <GameSettings categories={categories} />
       </Box>
     </div>

@@ -17,7 +17,9 @@ import Typography from '@mui/material/Typography';
 
 const players = ['player1', 'rufus', 'shelby', 'theorss'];
 
-export default function PlayersList() {
+export default function PlayersList(props) {
+
+  console.log("~~~~~ i playerslist", props.name)
 
   //const playerList = props.players.map(p => <li>{p}<li>)
 
@@ -32,8 +34,6 @@ export default function PlayersList() {
     px: 0,
     // backgroundColor: theme.palette.background.paper,
   }));
-
-
   // const [secondary, setSecondary] = useState(false);
 
   return (
@@ -47,7 +47,7 @@ export default function PlayersList() {
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,
-            '& .MuiListItem-root': { px: 0 }            
+            '& .MuiListItem-root': { px: 0 }
           }}
           >
             <Grid item xs={12} md={6}>
@@ -56,6 +56,18 @@ export default function PlayersList() {
               </Typography>
               <CustomStyle >
                 <List dense={true} >
+
+                  <ListItem>
+                    <ListItemAvatar>
+                  <Avatar sx={{}}>
+                  </Avatar>
+                    </ListItemAvatar>
+                  <Typography sx={{fontSize: "12px"}}>
+                    Host:&nbsp; 
+                  </Typography>
+                    <ListItemText primary={props.name}/>
+                  </ListItem>
+
                   {playerList(
                     <ListItem >
                       <ListItemAvatar >
@@ -65,7 +77,7 @@ export default function PlayersList() {
                       </ListItemAvatar>
                       <ListItemText
                         primary="playername"
-                        // secondary={secondary ? '75 points' : null}
+                      // secondary={secondary ? '75 points' : null}
                       />
                     </ListItem>,
                   )}
@@ -85,15 +97,6 @@ export default function PlayersList() {
               label="show stats?"
             />
           </FormGroup> */}
-          {/* <ul style={{
-            "listStyleType": "none", 
-            "paddingLeft": "0"}}>
-            <li>Hostdummy</li>
-            <li>Player2</li>
-            <li>Player3</li>
-            <li>Player4</li>
-            <li>Player5</li>
-          </ul> */}
         </Paper>
       </Box>
     </Fragment>

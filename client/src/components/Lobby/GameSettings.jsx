@@ -7,6 +7,7 @@ import StartButton from './StartButton';
 
 export default function GameSettings(props) {
 
+    const temp = "waiting..."
   return (
     <div className="game-settings-main">
       <Box sx={{
@@ -39,7 +40,7 @@ export default function GameSettings(props) {
         pb: '10px'
       }}>
       <LinkBox />
-      <StartButton />
+      <StartButton message={temp}/>
       </Box>
     </div>
   );

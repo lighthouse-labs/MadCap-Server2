@@ -3,12 +3,12 @@ import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 
 export default function UserName(props) {
-  // set the Name!!!
-  // const [value, setValue] = useState(null);
+  // const [name, setName] = useState("");
 
-  // const setName = (e, val) => {
-  //   setValue(val);
-  // };
+  // const handleName = (e) => {
+  //   setName(e.target.value)
+  //   console.log(name)
+  // }
 
   const UserTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -35,8 +35,9 @@ export default function UserName(props) {
       label="ENTER YOUR NAME"
       id="enter-username"
       autoComplete="off"
-      // onChange={setName}
-      // value={value}
+      onChange={props.handleName}
+      value={props.name}
+      autoFocus={true}
       sx={{
         fontSize: '55px',
         m: 1,

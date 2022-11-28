@@ -7,7 +7,10 @@ export default function Welcome(props) {
   return (
     <div className="welcome-main">
       <h1 className="main-title">MadCap</h1>
-      <WelcomeBox onClick={props.onClick}/>
+      <WelcomeBox 
+      name={props.name}
+      handleName={props.handleName}
+      onClick={props.onClick}/>
       <HowToPlay />
     </div>
   );

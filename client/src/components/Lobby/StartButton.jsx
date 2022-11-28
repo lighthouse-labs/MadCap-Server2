@@ -11,7 +11,7 @@ export default function ActionButton(props) {
           height: 65,
           fontSize: 30
         }}
-      >Waiting/Start</Button>
+      >{props.message}</Button>
     </Fragment>
   );
 }
