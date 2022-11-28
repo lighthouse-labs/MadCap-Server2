@@ -1,4 +1,5 @@
-const db = require('../connection')
+const db = require('../connection');
+const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
 
 
 const getRandomSubcategories = (game_id) => {
@@ -17,30 +18,6 @@ const getRandomSubcategories = (game_id) => {
   )
   .then((data) => data.rows)
 };
-
-const generateAddGameCategoriesQuery = (category_ids, game_id) => {
-  let categoriesQuery = `
-  INSERT INTO categories_sets (game_id, category_id)
-  VALUES`;
-  const categoriesList = [game_id];
-
-  for (let index in category_ids) {
-    const intIndex = parseInt(index);
-    const id = category_ids[index];
-    categoriesQuery += `
-    ($1, $${intIndex + 2})`;
-     if (intIndex < (category_ids.length - 1)) {
-       (categoriesQuery += `,`);
-     }
-    categoriesList.push(id);
-  }
-
-  categoriesQuery += `
-  RETURNING *`
-
-  return {categoriesQuery, categoriesList}
-
-}
 
 const createNewGame = (url, category_ids) => {
   
