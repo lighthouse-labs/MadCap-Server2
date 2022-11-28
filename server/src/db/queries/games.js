@@ -53,12 +53,19 @@ const updateGameDetails = (game_id, category_ids, settings) => {
     const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
     db.query(categoriesQuery, categoriesList)
     .then((data) => {
-      console.log(data.rows)
+      return data;
     })
   });
 
 };
 
-createNewGame("urt56");
+const deleteGame = (game_id) => {
+  return db.query(`
+  DELETE FROM games
+  WHERE id = $1
+  RETURNING *
+  `, [game_id])
+  .then((data) => data.rows[0])
+}
 
-module.exports = { getRandomSubcategories, createNewGame, updateGameDetails }
+module.exports = { getRandomSubcategories, createNewGame, updateGameDetails, deleteGame }

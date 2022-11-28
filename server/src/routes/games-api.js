@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
   .catch(error => {
     console.error(error);
     res.json({ error })
-  })
-})
+  });
+});
 
 module.exports = router
