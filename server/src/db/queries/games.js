@@ -1,4 +1,6 @@
 const db = require('../connection')
+
+
 const getRandomSubcategories = (game_id) => {
 
   return db.query(`SELECT seed FROM games WHERE id=$1`, [game_id])
@@ -16,7 +18,32 @@ const getRandomSubcategories = (game_id) => {
   .then((data) => data.rows)
 };
 
-const createNewGame = (url, category_id) => {
+const generateAddGameCategoriesQuery = (category_ids, game_id) => {
+  let categoriesQuery = `
+  INSERT INTO categories_sets (game_id, category_id)
+  VALUES`;
+  const categoriesList = [game_id];
+
+  for (let index in category_ids) {
+    const intIndex = parseInt(index);
+    const id = category_ids[index];
+    categoriesQuery += `
+    ($1, $${intIndex + 2})`;
+     if (intIndex < (category_ids.length - 1)) {
+       (categoriesQuery += `,`);
+     }
+    categoriesList.push(id);
+  }
+
+  categoriesQuery += `
+  RETURNING *`
+
+  return {categoriesQuery, categoriesList}
+
+}
+
+const createNewGame = (url, category_ids) => {
+  
   return db.query(`
   INSERT INTO games (url, seed)
   VALUES ($1, FLOOR(RANDOM() * 20000 + 1))
@@ -27,18 +54,12 @@ const createNewGame = (url, category_id) => {
     return data.rows[0];
   })
   .then(({ id: game_id }) => {
-    db.query(`
-    INSERT INTO categories_sets (game_id, category_id)
-    VALUES
-    ($1, $2)
-    RETURNING *
-    `, [game_id, category_id])
+    const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
+    db.query(categoriesQuery, categoriesList)
     .then((data) => {
-      console.log(data.rows[0])
+      console.log(data.rows)
     })
   });
-}
+};
 
-createNewGame('agtry', 3);
-
-module.exports = { getRandomSubcategories }
+module.exports = { getRandomSubcategories, createNewGame }
