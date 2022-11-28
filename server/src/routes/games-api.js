@@ -21,16 +21,24 @@ router.get('/:game_id/subcategories/:subcategory_number', (req, res) => {
  * Takes in an object ex. 
  * {
  *  url: 1r4t6y,
- *  categories: [1, 3]
+ *  categories: [1, 3],
+ *  settings: {
+ *   timer: 60,
+ *   max_players: 4
+ *  }
  * }
  * 
  * returns nothing
  */
 
 router.post('/', (req, res) => {
-  const { url, category_ids: categories } = req.body();
-  userQueries.createNewGame(url, categories)
-  .catch(error => res.json({ error }))
+  const { url, categories, settings } = req.body;
+  userQueries.createNewGame(url, categories, settings);
+  res.send('Success!')
+  .catch(error => {
+    console.error(error);
+    res.json({ error })
+  })
 })
 
 module.exports = router
