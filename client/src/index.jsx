@@ -10,13 +10,13 @@ import './index.css';
 
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import SocketPoC from "./SocketPoC"
+// import SocketPoC from "./SocketPoC"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
-    <SocketPoC />
+    {/* <SocketPoC /> */}
   </React.StrictMode>
 );
 

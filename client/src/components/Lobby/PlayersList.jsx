@@ -19,8 +19,6 @@ const players = ['player1', 'rufus', 'shelby', 'theorss'];
 
 export default function PlayersList(props) {
 
-  console.log("~~~~~ i playerslist", props.name)
-
   //const playerList = props.players.map(p => <li>{p}<li>)
 
   function playerList(element) {
