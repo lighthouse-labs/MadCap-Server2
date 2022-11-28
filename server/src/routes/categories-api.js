@@ -12,7 +12,7 @@ const userQueries = require('../db/queries/categories');
 router.get('/', (req, res) => {
   userQueries.getCategories()
     .then(categories => {
-      res.json({ categories });
+      res.json(categories);
     })
     .catch(err => {
       res
