@@ -7,7 +7,6 @@ require("./environment");
 // Web server config
 const express = require('express');
 const morgan = require('morgan');
-const { getRandomQuestionsFromGame } = require('./db/queries/categories');
 
 const PORT = process.env.PORT || 8001;
 const app = express();

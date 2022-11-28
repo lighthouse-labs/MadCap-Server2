@@ -1,18 +1,25 @@
-import React from "react";
-
-import './App.css';
-
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 
-function App() {
+import useVisualMode from "../hooks/useVisualMode";
+
+import './App.css';
+
+export default function App() {
+  const WELCOME = "WELCOME";
+  const LOBBY = "LOBBY";
+  // const GAME = "GAME";
+  const { mode, transition } = useVisualMode(WELCOME);
+
+
   return (
     <div className="App">
       {/* Welcome is default */}
-      <Welcome />
-      <Lobby />
+      {mode === WELCOME && (
+        <Welcome onClick={() => transition(LOBBY)} 
+        />
+      )}
+      {mode === LOBBY && ( <Lobby /> )}
     </div>
   );
 }
-
-export default App;

@@ -24,7 +24,7 @@ export default function SelectCategories(props) {
   // console.log("~~~~~~~~~~ ", MenuProps);
   const theme = useTheme();
   const [categoryName, setCategoryName] = useState([]);
-  
+
   const getStyles = (name, categoryName, theme) => {
     return {
       fontWeight:
@@ -45,42 +45,41 @@ export default function SelectCategories(props) {
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-chip-label">
-          Categories
-        </InputLabel>
-        <Select
-          labelId="demo-multiple-chip-label"
-          id="demo-multiple-chip"
-          multiple
-          value={categoryName}
-          onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value}
-                  sx={{
-                  }}
-                />
-              ))}
-            </Box>
-          )}
-          MenuProps={MenuProps}
-        >
-          {props.categories.map((cat) => (
-            <MenuItem
-              key={cat.id}
-              value={cat.title}
-              style={getStyles(cat.title, categoryName, theme)}
-            >
-              {cat.title}
-              
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl sx={{ m: 1, width: 300 }}
+      className="select-categories">
+      <InputLabel id="demo-multiple-chip-label">
+        Categories
+      </InputLabel>
+      <Select
+        labelId="demo-multiple-chip-label"
+        id="demo-multiple-chip"
+        multiple
+        value={categoryName}
+        onChange={handleChange}
+        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+        renderValue={(selected) => (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+            {selected.map((value) => (
+              <Chip key={value} label={value}
+                sx={{
+                }}
+              />
+            ))}
+          </Box>
+        )}
+        MenuProps={MenuProps}
+      >
+        {props.categories.map((cat) => (
+          <MenuItem
+            key={cat.id}
+            value={cat.title}
+            style={getStyles(cat.title, categoryName, theme)}
+          >
+            {cat.title}
+
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }

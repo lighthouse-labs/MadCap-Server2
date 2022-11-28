@@ -5,19 +5,18 @@ import Avatar from './Avatar';
 import UserName from './UserName';
 import ActionButton from "./ActionButton";
 
-export default function ActionWelcome() {
-  return (
-    // const MAKE = "MAKE";
-    // const JOIN = "JOIN";
-    // const START = "START";
+export default function WelcomeBox(props) {
+  // const MAKE = "MAKE";
+  // const JOIN = "JOIN";
+  
+  // if no link use MAKE (default state)
+  // if there is a custom link use JOIN
 
-    // const [btnState, setBtnState] = useState("");
-    // make visualMode hook
-    // setBtnState(MAKE)
-    
-    // if no link use MAKE (default state)
-    // if there is a custom link use JOIN
-    // for host to start game, use START
+  // const handleClick = () => {
+  //   console.log('cliiiiick');
+  // }
+
+  return (
     <Fragment>
       <Box
         sx={{
@@ -37,7 +36,7 @@ export default function ActionWelcome() {
         }}>
         <Avatar />
         <UserName />
-        {<ActionButton message="Make New Game" />}
+        <ActionButton onClick={props.onClick} message="Make New Game" />
         {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
       </Box>
     </Fragment>

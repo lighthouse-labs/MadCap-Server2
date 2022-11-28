@@ -1,0 +1,23 @@
+.lobby-main {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lobby-header {
+  /* min-width: 406px; */
+  min-width: 437px;
+  max-width: 750px;
+  width: 70%;
+}
+
+.lobby-header h1 {
+  margin-bottom: 15px;
+}
+
+.settings-header h2 {
+  margin-top: 0;
+  padding-left: 10px;
+  padding-top: 12px;
+}
