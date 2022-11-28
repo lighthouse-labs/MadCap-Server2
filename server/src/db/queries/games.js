@@ -48,4 +48,23 @@ const createNewGame = (url, category_ids, settings) => {
   });
 };
 
-module.exports = { getRandomSubcategories, createNewGame }
+const updateGameDetails = (game_id, category_ids, settings) => {
+  const {timer, max_players} = settings
+  return db.query(`
+  UPDATE games
+  SET timer = $2,
+      max_players = $3
+  WHERE id = $1
+  RETURNING *
+  `, [game_id, timer, max_players])
+  .then(() => {
+    const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
+    db.query(categoriesQuery, categoriesList)
+    .then((data) => {
+      console.log(data.rows)
+    })
+  });
+
+};
+
+module.exports = { getRandomSubcategories, createNewGame, updateGameDetails }
