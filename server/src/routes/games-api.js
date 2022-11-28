@@ -54,7 +54,17 @@ router.put('/:id', (req, res) => {
   .then (() => res.send('Success!'))
   .catch(error => {
     console.error(error);
-    res.json({ error })
+    res.json({ error });
+  });
+});
+
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  userQueries.updateGameDetails(id)
+  .then((game) => res.json(game))
+  .catch(error => {
+    console.error(error);
+    res.json({ error });
   });
 });
 
