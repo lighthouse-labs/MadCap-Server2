@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
-
+import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
 
 import './App.css';
@@ -32,6 +32,7 @@ export default function App() {
         />
       )}
       {mode === LOBBY && (<Lobby name={name}/>)}
+      <Game />
     </div>
   );
 }
