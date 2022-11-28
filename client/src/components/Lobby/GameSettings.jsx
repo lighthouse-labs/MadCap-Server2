@@ -1,21 +1,22 @@
-import { Fragment } from "react";
 import Box from '@mui/material/Box';
 
 import OptionsBox from "./OptionsBox";
 import CategoriesBox from "./CategoriesBox";
+import LinkBox from "./LinkBox";
+import StartButton from './StartButton';
 
 export default function GameSettings(props) {
 
   return (
-    <Fragment>
+    <div className="game-settings-main">
       <Box sx={{
         backgroundColor: '#f0f5ff',
         display: 'flex',
         flexDirection: 'column',
-        ml: 1,
+        ml: '6px',
         pl: '2px',
         width: '320px',
-        minHeight: '440px',
+        minHeight: '430px',
         height: 'fit-content',
         pb: '3px'
       }}>
@@ -25,6 +26,21 @@ export default function GameSettings(props) {
         <CategoriesBox categories={props.categories} />
         <OptionsBox />
       </Box>
-    </Fragment>
+      <Box sx={{
+        backgroundColor: '#f0f5ff',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        mt: '10px',
+        ml: '6px',
+        width: '320px',
+        // minHeight: '200px',
+        height: 'fit-content',
+        pb: '10px'
+      }}>
+      <LinkBox />
+      <StartButton />
+      </Box>
+    </div>
   );
 }

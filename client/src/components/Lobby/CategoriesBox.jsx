@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Box from '@mui/material/Box';
 
 import SelectCategories from './SelectCategories';
@@ -5,10 +6,10 @@ import SelectCategories from './SelectCategories';
 export default function CategoriesBox(props) {
   const { categories } = props;
   return (
-    <div className="category-box">
+    <Fragment>
       <Box>
        <SelectCategories categories={categories} />
       </Box>
-    </div>
+    </Fragment>
   );
 }
