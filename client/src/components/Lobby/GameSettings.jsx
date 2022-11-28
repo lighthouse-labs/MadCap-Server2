@@ -1,3 +1,4 @@
+
 import Box from '@mui/material/Box';
 
 import OptionsBox from "./OptionsBox";
@@ -7,7 +8,11 @@ import StartButton from './StartButton';
 
 export default function GameSettings(props) {
 
-    const temp = "waiting..."
+    // const playerCount = num;
+    // const waitToStart = () => {
+    //   // if "waiting..."
+    // }
+
   return (
     <div className="game-settings-main">
       <Box sx={{
@@ -40,7 +45,7 @@ export default function GameSettings(props) {
         pb: '10px'
       }}>
       <LinkBox />
-      <StartButton message={temp}/>
+      <StartButton />
       </Box>
     </div>
   );
