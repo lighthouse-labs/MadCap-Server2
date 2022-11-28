@@ -41,10 +41,10 @@ router.post('/', (req, res) => {
   })
 })
 
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
   const { id } = req.params;
-  const { url, categories, settings } = req.body;
-  userQueries.createNewGame(url, categories, settings)
+  const { categories, settings } = req.body;
+  userQueries.updateGameDetails(id, categories, settings)
   .then (() => res.send('Success!'))
   .catch(error => {
     console.error(error);
