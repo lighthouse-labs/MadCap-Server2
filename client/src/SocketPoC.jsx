@@ -24,7 +24,8 @@ function SocketPoC() {
     socket.on("pong", () => {
       setLastPong(new Date().toISOString());
     });
-    socket.on("send-message", (message) => {
+    socket.on("message", (message) => {
+      console.log("here")
       setLastMessage(message);
     });
 
