@@ -7,7 +7,7 @@ const getCategories = () => {
     });
 };
 
-const getRandomQuestions = (category_id, game_seed) => {
+const getRandomSubcategories = (category_id, game_seed) => {
   return db.query(`
   SELECT SETSEED($1)`, [1.0 / game_seed])
   .then(() => db.query(`
@@ -22,4 +22,4 @@ const getRandomQuestions = (category_id, game_seed) => {
   })
 }
 
-module.exports = { getCategories, getRandomQuestions };
+module.exports = { getCategories, getRandomSubcategories };

@@ -26,22 +26,22 @@ router.get('/', (req, res) => {
 //// :))) 
 ////  thx
 
-router.get('/:category_id/questions', (req, res) => {
+router.get('/:category_id/subcategories', (req, res) => {
   const { game_id } = req.query;
   const {category_id} = req.params
-  userQueries.getRandomQuestions(category_id, game_id)
-  .then(questions => {
-    res.json(questions);
+  userQueries.getRandomSubcategories(category_id, game_id)
+  .then(subcategories => {
+    res.json(subcategories);
   });
 });
 
-router.get('/:category_id/questions/:question_number', (req, res) => {
+router.get('/:category_id/subcategories/:subcategory_number', (req, res) => {
   const { game_id } = req.query;
-  const {category_id, question_number} = req.params
-  userQueries.getRandomQuestions(category_id, game_id)
-  .then(questions => {
-    const question = questions[question_number - 1];
-    res.json(question);
+  const {category_id, subcategory_number} = req.params
+  userQueries.getRandomSubcategories(category_id, game_id)
+  .then(subcategories => {
+    const subcategory = subcategories[subcategory_number - 1];
+    res.json(subcategory);
   })
   .catch(err => console.error(err));
 });
