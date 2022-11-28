@@ -18,9 +18,25 @@ router.get('/:game_id/subcategories/:subcategory_number', (req, res) => {
 });
 
 /**
- * Takes in an object ex. 
+ * Takes an object in its body
+ * { url: 1r4t6y }
+ * 
+ * returns the new object
+ */
+
+router.post('/', (req, res) => {
+  const { url } = req.body;
+  userQueries.createNewGame(url)
+  .then ((game) => res.json(game))
+  .catch(error => {
+    console.error(error);
+    res.status(500).json({ error })
+  })
+})
+
+/**
+ * Takes an object in it's body
  * {
- *  url: 1r4t6y,
  *  categories: [1, 3],
  *  settings: {
  *   timer: 60,
@@ -31,9 +47,10 @@ router.get('/:game_id/subcategories/:subcategory_number', (req, res) => {
  * returns nothing
  */
 
-router.post('/', (req, res) => {
-  const { url, categories, settings } = req.body;
-  userQueries.createNewGame(url, categories, settings)
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const { categories, settings } = req.body;
+  userQueries.updateGameDetails(id, categories, settings)
   .then (() => res.send('Success!'))
   .catch(error => {
     console.error(error);

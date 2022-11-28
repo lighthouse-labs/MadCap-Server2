@@ -28,24 +28,37 @@ const getRandomSubcategories = (game_id) => {
  * }} settings
  * @returns 
  */
-const createNewGame = (url, category_ids, settings) => {
-  const {timer, max_players} = settings;
+const createNewGame = (url) => {
   return db.query(`
-  INSERT INTO games (url, seed, timer, max_players)
-  VALUES ($1, FLOOR(RANDOM() * 20000 + 1), $2, $3)
+  INSERT INTO games(url, seed)
+  VALUES ($1, FLOOR(RANDOM() * 20000 + 1))
   RETURNING *
-  `, [url, timer, max_players])
+  `, [url])
   .then((data) => {
-    console.log(data.rows[0]);
+    console.log(data.rows)
     return data.rows[0];
-  })
-  .then(({ id: game_id }) => {
+  });
+};
+
+const updateGameDetails = (game_id, category_ids, settings) => {
+  const {timer, max_players} = settings
+  return db.query(`
+  UPDATE games
+  SET timer = $2,
+      max_players = $3
+  WHERE id = $1
+  RETURNING *
+  `, [game_id, timer, max_players])
+  .then(() => {
     const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
     db.query(categoriesQuery, categoriesList)
     .then((data) => {
       console.log(data.rows)
     })
   });
+
 };
 
-module.exports = { getRandomSubcategories, createNewGame }
+createNewGame("urt56");
+
+module.exports = { getRandomSubcategories, createNewGame, updateGameDetails }
