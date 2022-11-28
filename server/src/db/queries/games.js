@@ -1,5 +1,5 @@
 const db = require('../connection')
-const getRandomSubcategoriesFromGame = (game_id) => {
+const getRandomSubcategories = (game_id) => {
 
   return db.query(`SELECT seed FROM games WHERE id=$1`, [game_id])
   .then((data) => data.rows[0].seed)
@@ -16,4 +16,4 @@ const getRandomSubcategoriesFromGame = (game_id) => {
   .then((data) => data.rows)
 };
 
-module.exports = { getRandomSubcategoriesFromGame }
+module.exports = { getRandomSubcategories }
