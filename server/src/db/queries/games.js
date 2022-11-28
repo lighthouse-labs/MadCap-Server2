@@ -1,5 +1,8 @@
-const db = require('../connection')
-const getRandomQuestionsFromGame = (game_id) => {
+const db = require('../connection');
+const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
+
+
+const getRandomSubcategories = (game_id) => {
 
   return db.query(`SELECT seed FROM games WHERE id=$1`, [game_id])
   .then((data) => data.rows[0].seed)
@@ -15,5 +18,34 @@ const getRandomQuestionsFromGame = (game_id) => {
   )
   .then((data) => data.rows)
 };
+/**
+ * 
+ * @param {string} url 
+ * @param {array of ints} category_ids 
+ * @param {{
+ *  timer: int (in seconds),
+ *  max_players: int
+ * }} settings
+ * @returns 
+ */
+const createNewGame = (url, category_ids, settings) => {
+  const {timer, max_players} = settings;
+  return db.query(`
+  INSERT INTO games (url, seed, timer, max_players)
+  VALUES ($1, FLOOR(RANDOM() * 20000 + 1), $2, $3)
+  RETURNING *
+  `, [url, timer, max_players])
+  .then((data) => {
+    console.log(data.rows[0]);
+    return data.rows[0];
+  })
+  .then(({ id: game_id }) => {
+    const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
+    db.query(categoriesQuery, categoriesList)
+    .then((data) => {
+      console.log(data.rows)
+    })
+  });
+};
 
-module.exports = { getRandomQuestionsFromGame }
+module.exports = { getRandomSubcategories, createNewGame }
