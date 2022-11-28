@@ -12,7 +12,7 @@ export default function Lobby(props) {
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
-        setCategories(res.data.categories);
+        setCategories(res.data);
       })
       .catch(err => {
         console.log(err.message);
