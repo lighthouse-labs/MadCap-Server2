@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
@@ -122,24 +123,32 @@ const StyledSlider = styled(SliderUnstyled)(
 `,
 );
 
-function valuetext(value) {
-  return `${value}°C`;
-}
 
 export default function PlayersSlider() {
+  // timerSlider sets state
+  const [value, setValue] = useState(0);
+
+  const changeValue = (e, val) => {
+    setValue(val);
+  };
+  // const getText = (value) => {
+  //   return `${value}°C`;
+  // }
   return (
-      <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
-        <header><h4>set max players</h4></header>
-        <StyledSlider
-          aria-label="Players"
-          defaultValue={4}
-          getAriaValueText={valuetext}
-          valueLabelDisplay="auto"
-          step={1}
-          marks
-          min={0}
-          max={8}
-        />
-      </Box>
+    <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
+      <header><h4>set max players</h4></header>
+      <StyledSlider
+        min={0}
+        max={8}
+        defaultValue={4}
+        step={1}
+        aria-label="Players"
+        valueLabelDisplay="auto"
+        marks
+        onChange={changeValue}
+        value={value}
+      // getAriaValueText={getText}
+      />
+    </Box>
   );
 }

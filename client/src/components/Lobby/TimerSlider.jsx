@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { styled, alpha, Box } from '@mui/system';
 import SliderUnstyled, { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 
@@ -122,23 +123,54 @@ const StyledSlider = styled(SliderUnstyled)(
 `,
 );
 
-function valuetext(value) {
-  return `${value}°C`;
-}
+// const marks = [
+//   {
+//     value: 0,
+//     label: '0s',
+//   },
+//   {
+//     value: 30,
+//     label: '30s',
+//   },
+//   {
+//     value: 60,
+//     label: '60s',
+//   },
+//   {
+//     value: 90,
+//     label: '90s',
+//   },
+//   {
+//     value: 120,
+//     label: '120s',
+//   },
+// ];
+
 
 export default function TimerSlider() {
+  // timerSlider sets state
+  const [value, setValue] = useState(0);
+  
+  const changeValue = (e, val) => {
+    setValue(val)
+  }
+  const getText = (value) => {
+    return `${value}s`;
+  }
   return (
       <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
         <header><h4>set timer - seconds</h4></header>
         <StyledSlider
-          aria-label="Seconds"
-          defaultValue={60}
-          getAriaValueText={valuetext}
-          valueLabelDisplay="auto"
-          step={10}
-          marks
+        style={{ width: 300 }}
           min={0}
           max={120}
+          step={10}
+          defaultValue={60}
+          onChange={changeValue}
+          valueLabelDisplay="on"
+          value={value}
+          marks
+          getAriaValueText={getText}
         />
       </Box>
   );

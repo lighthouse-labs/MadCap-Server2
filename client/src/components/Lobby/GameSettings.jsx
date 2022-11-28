@@ -13,7 +13,7 @@ export default function GameSettings(props) {
         display: 'flex',
         flexDirection: 'column',
         px: '10px',
-        height: '360px'
+        height: '420px;'
       }}>
         <div className="settings-header">
           <h2>Game Settings</h2>

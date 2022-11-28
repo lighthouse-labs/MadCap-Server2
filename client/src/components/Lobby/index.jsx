@@ -20,7 +20,7 @@ export default function Lobby(props) {
   }, []);
 
   //first request is always null, fix .get() above? 
-  console.log("~~~~~~ in Lobby get", cats);
+  console.log("~~~~~~ in Lobby/index: .get()", cats);
 
   return (
     <div className="lobby-main">

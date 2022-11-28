@@ -11,8 +11,8 @@ export default function PlayersList() {
           p: '15px'
         }}>
           <ul style={{
-            "list-style-type": "none", 
-            "padding-left": "0"}}>
+            "listStyleType": "none", 
+            "paddingLeft": "0"}}>
             <li>Hostdummy</li>
             <li>Player1</li>
             <li>Player2</li>
