@@ -19,7 +19,26 @@ const getRandomSubcategories = (game_id) => {
 const createNewGame = (url, category_id) => {
   return db.query(`
   INSERT INTO games (url, seed)
-  VALUES ($1), FLOOR(RANDOM() * 20000 + 1)`, [url])
+  VALUES ($1, FLOOR(RANDOM() * 20000 + 1))
+  RETURNING *
+  `, [url])
+  .then((data) => {
+    console.log(data.rows[0]);
+    return data.rows[0];
+  })
+  .then(({ id: game_id }) => {
+    db.query(`
+    INSERT INTO categories_sets (game_id, category_id)
+    VALUES
+    ($1, $2)
+    RETURNING *
+    `, [game_id, category_id])
+    .then((data) => {
+      console.log(data.rows[0])
+    })
+  });
 }
+
+createNewGame('agtry', 3);
 
 module.exports = { getRandomSubcategories }
