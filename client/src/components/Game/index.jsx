@@ -1,5 +1,6 @@
 import Entry from "./Entry";
 import AnswerList from "./AnswerList";
+import ChatList from "./ChatList";
 
 import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
@@ -33,6 +34,18 @@ const defaultAlp = [
     id: 25,
   },
 ];
+const dummychat = [
+  {
+    type: "chat",
+    user: "dummychatuser",
+    message: "dummychatmessage",
+  },
+  {
+    type: "capture",
+    user: "dummychatuser",
+    message: "A",
+  },
+];
 const dummyuser = {
   name: "Dummy",
   url: "madcap.com/322klj4",
@@ -44,12 +57,12 @@ const dummyuser = {
 export default function Game(props) {
   const [state, setState] = useState({
     answers: defaultAlp,
+    chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
   });
 
   const setAnswer = (message, stort) => {
-    console.log(message.colour)
     //sets the details of the letter in game
     const answers = stort.answers.map((answer) => {
       if (answer.letter === message.message[0]) {
@@ -62,6 +75,17 @@ export default function Game(props) {
       return answer;
     });
     return answers;
+  };
+  //this was done in a really dumb way, but works. should probably fix
+  const confirmUsed = (message, gameState) => {
+    const answers = gameState.answers.map((answer) => {
+      if (answer.letter === message.message[0] && answer.answer) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return answers.includes(true);
   };
 
   const stateRef = useRef(state);
@@ -87,13 +111,22 @@ export default function Game(props) {
     });
 
     socket.on("message", (message) => {
-      let answerset = setAnswer(message, stateRef.current);
-
-      setState((prev) => ({
-        ...prev,
-        answers: answerset,
-        lastMessage: message.message,
-      }));
+      if (
+        message.type === "capture" &&
+        !confirmUsed(message, stateRef.current)
+      ) {
+        let answerSet = setAnswer(message, stateRef.current);
+        let chatSet = [
+          ...stateRef.current.chats,
+          { type: "capture", user: message.user, message: message.message[0] },
+        ];
+        setState((prev) => ({
+          ...prev,
+          answers: answerSet,
+          chats: chatSet,
+          lastMessage: message.message,
+        }));
+      }
 
       // console.log(stateRef.current)
     });
@@ -110,6 +143,8 @@ export default function Game(props) {
       message: message,
       room: dummyuser.url,
       colour: dummyuser.colour,
+      user: dummyuser.name,
+      type: "capture",
     };
     socket.emit("send-message", messageObject);
   };
@@ -117,6 +152,7 @@ export default function Game(props) {
   return (
     <div className="welcome-main">
       <AnswerList answers={state.answers} />
+      <ChatList chats={state.chats} />
       <Entry
         sendMessage={sendMessage}
         isConnected={state.isConnected}

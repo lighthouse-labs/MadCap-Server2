@@ -9,7 +9,6 @@ export default function Entry(props) {
   //   socket.emit("send-message", "hello");
   // };
   const send = () => {
-    console.log(message);
     props.sendMessage(message);
   };
 
