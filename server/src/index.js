@@ -26,13 +26,14 @@ app.use(express.static("public"));
 
 const catgeoriesRoutes = require('./routes/categories-api');
 const gamesRoutes = require('./routes/games-api');
-
+const userRoutes = require('./routes/users-api')
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 
 app.use('/api/categories', catgeoriesRoutes);
 app.use('/api/games', gamesRoutes);
+app.use('/api/users', userRoutes);
 
 //creates socket servers
 const http = require("http").createServer(app);

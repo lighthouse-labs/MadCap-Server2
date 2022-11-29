@@ -46,7 +46,7 @@ const getRandomSubcategories = (game_id) => {
  * @param {string} url 
  * @param {array of ints} category_ids 
  * @param {{
- *  timer: int (in seconds),
+ *  timer: int (int seconds),
  *  max_players: int
  * }} settings
  * @returns 
@@ -58,7 +58,6 @@ const createNewGame = (url) => {
   RETURNING *
   `, [url])
   .then((data) => {
-    console.log(data.rows)
     return data.rows[0];
   });
 };
@@ -76,7 +75,7 @@ const updateGameDetails = (game_id, category_ids, settings) => {
     const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
     db.query(categoriesQuery, categoriesList)
     .then((data) => {
-      return data;
+      return data.rows;
     })
   });
 
