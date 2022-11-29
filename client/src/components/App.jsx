@@ -18,6 +18,7 @@ export default function App() {
   // const GAME = "GAME";
   const { mode, transition } = useVisualMode(WELCOME);
 
+  const [color, setColor] = useState(null)
   const [avatar, setAvatar] = useState(null);
   const [name, setName] = useState("");
 
@@ -26,7 +27,10 @@ export default function App() {
   };
 
   const handleMakeGame = () => {
-    axios.post("/api/games", { url })
+    Promise.all([
+      axios.post("/api/games", { url }),
+      axios.post(`/api/games/${url}/users`, { name, color, avatar_url: avatar })
+    ])
     .then(() => {
       transition(LOBBY)
     })
@@ -38,7 +42,7 @@ export default function App() {
       {/* Welcome is default */}
       {mode === WELCOME && (
         <Welcome
-          avatar={avatar}
+          setColor={setColor}
           setAvatar={setAvatar}
           name={name}
           handleName={handleName}

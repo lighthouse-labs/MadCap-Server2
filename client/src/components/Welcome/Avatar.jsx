@@ -14,35 +14,43 @@ import SwipeableViews from 'react-swipeable-views';
 const images = [
   {
     label: '1',
-    imgPath: './avatars/avatar-temp-8.png'
+    imgPath: './avatars/avatar-temp-8.png',
+    color: 'orange'
   },
   {
     label: '2',
-    imgPath: './avatars/avatar-temp-7.png'
+    imgPath: './avatars/avatar-temp-7.png',
+    color: 'yellow',
   },
   {
     label: '3',
-    imgPath: './avatars/avatar-temp-6.png'
+    imgPath: './avatars/avatar-temp-6.png',
+    color: 'orange',
   },
   {
     label: '4',
-    imgPath: './avatars/avatar-temp-5.png'
+    imgPath: './avatars/avatar-temp-5.png',
+    color: 'blue',
   },
   {
     label: '5',
-    imgPath: './avatars/avatar-temp-4.png'
+    imgPath: './avatars/avatar-temp-4.png',
+    color: 'blue',
   },
   {
     label: '6',
-    imgPath: './avatars/avatar-temp-3.png'
+    imgPath: './avatars/avatar-temp-3.png',
+    color: 'orange',
   },
   {
     label: '7',
-    imgPath: './avatars/avatar-temp-2.png'
+    imgPath: './avatars/avatar-temp-2.png',
+    color: 'yellow',
   },
   {
     label: '8',
-    imgPath: './avatars/avatar-temp-1.png'
+    imgPath: './avatars/avatar-temp-1.png',
+    color: 'orange',
   }
 ];
 
@@ -53,7 +61,7 @@ export default function ActionAvatar(props) {
 
   useEffect(() => {
     props.setAvatar(images[activeStep].imgPath)
-    console.log(images[activeStep].imgPath)
+    props.setColor(images[activeStep].color)
   }, [activeStep])
 
   const handleNext = () => {

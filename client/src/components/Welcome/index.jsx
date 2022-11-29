@@ -26,7 +26,7 @@ export default function Welcome(props) {
   <div className="welcome-main">
     <h1 className="main-title">MadCap</h1>
     <WelcomeBox
-      avatar={props.avatar}
+      setColor={props.setColor}
       setAvatar={props.setAvatar}
       name={props.name}
       handleName={props.handleName}
