@@ -1,17 +1,19 @@
 // import { useState } from 'react';
+// import axios from 'axios';
+
 // import Welcome from "./Welcome";
 // import Lobby from "./Lobby";
-import Game from "./Game"
+import Game from "./Game";
 // import useVisualMode from "../hooks/useVisualMode";
 
 import './App.css';
-// import axios from 'axios';
 
 export default function App() {
   // const WELCOME = "WELCOME";
   // const LOBBY = "LOBBY";
   // const GAME = "GAME";
-  // const { mode, transition } = useVisualMode(WELCOME);
+                                //change to WELCOME
+  // const { mode, transition } = useVisualMode(GAME);
   // const [name, setName] = useState("");
 
   // const [avatar, setAvatar] = useState(null);
@@ -29,8 +31,12 @@ export default function App() {
   //     name: 'shelly',
   //     color: 'purple'
   //   })
-  //   .then(() => transition(LOBBY))
-  //   .catch(err => console.log(err));
+  //     .then(() => transition(LOBBY))
+  //     .catch(err => console.log(err));
+  // }
+
+  // function handleStart() {
+  //   transition(GAME);
   // }
 
   return (
@@ -43,9 +49,14 @@ export default function App() {
           handleName={handleName}
           handleJoin={handleJoin}
         />
-      )}
-      {mode === LOBBY && (<Lobby name={name}/>)} */}
-      <Game />
+      )} */}
+      {/* {mode === LOBBY && (
+        <Lobby
+          name={name} handleStart={handleStart}
+        />
+      )} */}
+      {/* mode === GAME && */}
+      { (<Game />)}
     </div>
   );
 }

@@ -44,7 +44,9 @@ export default function Lobby(props) {
           width: '100%'
         }}>
         <PlayersList name={props.name} />
-        <GameSettings categories={categories} />
+        <GameSettings
+          categories={categories} handleStart={props.handleStart}
+        />
       </Box>
     </div>
   );

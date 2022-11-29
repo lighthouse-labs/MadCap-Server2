@@ -1,11 +1,11 @@
 import { Fragment } from 'react';
 import Button from '@mui/material/Button';
 
-export default function ActionButton(props) {
+export default function StartButton(props) {
 
   return (
     <Fragment>
-      <Button onClick={props.onClick} variant="contained" color="success" size="large"
+      <Button onClick={props.handleStart} variant="contained" color="success" size="large"
         sx={{
           width: '93%',
           height: 65,

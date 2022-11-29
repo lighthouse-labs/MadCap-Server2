@@ -44,7 +44,7 @@ export default function GameSettings(props) {
           pb: '10px'
         }}>
         <LinkBox />
-        <StartButton />
+        <StartButton handleStart={props.handleStart}/>
       </Box>
     </div>
   );
