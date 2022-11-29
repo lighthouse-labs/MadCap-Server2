@@ -28,7 +28,6 @@ export default function App() {
   const handleMakeGame = () => {
     axios.post("/api/games", { url })
     .then(() => {
-      console.log(url);
       transition(LOBBY)
     })
     .catch((err) => console.error(err));

@@ -13,7 +13,6 @@ export default function Lobby(props) {
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
-        console.log(`Lobby: ${props.url}`)
         setCategories(res.data);
       })
       .catch(err => {
