@@ -11,7 +11,7 @@ export default function LinkBox(props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setUrl(`/${props.url}`);
+    setUrl(`${props.url}`);
   }, []);
 
   const handleCopy = () => {

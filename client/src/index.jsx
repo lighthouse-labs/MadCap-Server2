@@ -20,6 +20,15 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader: () => {}
+  },
+  {
+    path: "/:game_url",
+    element: <App mode="LOBBY" />,
+    loader: (({ request }) => {
+      const url = new URL(request.url)
+      return { url };
+    })
   }
 ])
 

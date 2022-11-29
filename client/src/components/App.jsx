@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useLoaderData } from 'react-router';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game"
@@ -9,18 +10,22 @@ import { generateRandomString } from '../helpers/helpers';
 
 import './App.css';
 
-export default function App() {
+export default function App(props) {
 
   const url = useRef(generateRandomString()).current;
 
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
   // const GAME = "GAME";
-  const { mode, transition } = useVisualMode(WELCOME);
+  const { mode, transition } = useVisualMode(props.mode || WELCOME);
 
   const [color, setColor] = useState(null)
   const [avatar, setAvatar] = useState(null);
   const [name, setName] = useState("");
+
+  let loader_url;
+
+ loader_url = useLoaderData().url;
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -44,7 +49,7 @@ export default function App() {
       {mode === LOBBY && (
         <Lobby
           name={name}
-          url={url}
+          url={loader_url || url}
         />)}
       <Game />
     </div>
