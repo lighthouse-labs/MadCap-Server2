@@ -27,9 +27,9 @@ const getGameCategories = (game_url) => {
   .then((game_list) => game_list.map(game_obj => game_obj.category))
 }
 
-const getRandomSubcategories = (game_id) => {
+const getRandomSubcategories = (game_url) => {
 
-  return db.query(`SELECT seed FROM games WHERE id=$1`, [game_id])
+  return db.query(`SELECT seed FROM games WHERE url=$1`, [game_url])
   .then((data) => data.rows[0].seed)
   .then((seed) => db.query(`SELECT SETSEED($1)`, [1.0 / seed]))
   .then(() => db.query(`
@@ -37,9 +37,9 @@ const getRandomSubcategories = (game_id) => {
   JOIN games ON game_id = games.id
   JOIN categories ON categories_sets.category_id = categories.id
   JOIN subcategories ON subcategories.category_id = categories.id
-  WHERE game_id = $1
+  WHERE games.url = $1
   ORDER BY RANDOM()
-  `, [game_id])
+  `, [game_url])
   )
   .then((data) => data.rows)
 };
