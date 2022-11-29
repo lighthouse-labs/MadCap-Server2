@@ -18,7 +18,8 @@ export default function AnswerList(props) {
         width: '100%',
         'grid-template-columns': '93% 0%',
         'list-style-type': 'none',
-        'padding-left': '10px'
+        'padding-left': '10px',
+        'margin-top': 0, 'margin-bottom': '5px'
       }}
     >{answers}</ul>
   );

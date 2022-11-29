@@ -11,20 +11,32 @@
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
-  width: 93%;
+  width: 98%;
+  height: 45px;
+  margin-top: 3px;
 }
 
 .game-board-main {
+  background-color: #f0f2ff;
   width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .alpha1 h2 {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
 }
 .alpha2 h2 {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.status-box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .Red {

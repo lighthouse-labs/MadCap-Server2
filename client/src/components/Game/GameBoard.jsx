@@ -4,7 +4,6 @@ import AnswerList from './AnswerList';
 
 export default function GameBoard(props) {
 
-
   return (
     <div className="game-board-main">
       <Box sx={{width: '100%'}}>
@@ -14,6 +13,7 @@ export default function GameBoard(props) {
         </div>
         <AnswerList answers={props.answers} />
       </Box>
+      
     </div>
   );
 }

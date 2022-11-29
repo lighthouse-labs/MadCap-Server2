@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
-//Temporary fix?
+import Box from "@mui/material/Box";
 
+//Temporary fix?
 export default function Entry(props) {
   const [message, setMessage] = useState("");
 
@@ -9,16 +10,17 @@ export default function Entry(props) {
   //   socket.emit("send-message", "hello");
   // };
   const send = () => {
-    console.log(message);
+    // console.log(message);
     props.sendMessage(message);
   };
 
   return (
-    <div>
-      <p>Connected: {"" + props.isConnected}</p>
-      <p>last message:{props.lastMessage || "-"}</p>
-      <div className="messages-input">
-        <input
+    <Box className="entry-box" sx={{width: '100%'}}>
+      {/* <p>Connected: {"" + props.isConnected}</p>
+      <p>last message:{props.lastMessage || "-"}</p> */}
+      <div className="messages-input" style={{display: 'flex',
+    'flex-direction': 'row', 'justify-content': 'flex-end'}}>
+        <input style={{width: '100%'}}
           type="text"
           onChange={(event) => {
             setMessage(event.target.value);
@@ -27,6 +29,6 @@ export default function Entry(props) {
         />
         <button onClick={send}>Send</button>
       </div>
-    </div>
+    </Box>
   );
 }

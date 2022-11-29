@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 
 import Container from "@mui/material/Container";
+import Box from "@mui/material/Box"
 
-import Entry from "./Entry";
 import GameBoard from "./GameBoard";
+import StatusBox from "./StatusBox";
 
 import "./styles.css";
 
@@ -14,7 +15,7 @@ const socket = io(SERVER, {
   transports: ["websocket"],
 });
 //
-const romanAlph = [
+const romanAlpha = [
   {
     id: 1,
     letter: "A",
@@ -176,7 +177,7 @@ const romanAlph = [
 
 export default function Game(props) {
   const [state, setState] = useState({
-    answers: romanAlph,
+    answers: romanAlpha,
     isConnected: socket.connected,
     lastMessage: null,
   });
@@ -241,7 +242,11 @@ export default function Game(props) {
 
   return (
     <div className="game-main">
-      <Container
+        <Box>
+        <h1>CLOCKHERE!</h1>
+        <h1>CLOCKHERE!</h1>
+      </Box>
+      <Container className="game-container"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -249,14 +254,13 @@ export default function Game(props) {
           alignItems: "flex-start",
           maxWidth: 435,
           height: 'fit-content',
-          width: '100%'
+          width: '100%',
+          px: 0
         }}>
         <GameBoard answers={state.answers}/>
-        <Entry
-          sendMessage={sendMessage}
+        <StatusBox sendMessage={sendMessage}
           isConnected={state.isConnected}
-          lastMessage={state.lastMessage}
-        />
+          lastMessage={state.lastMessage}/>
       </Container>
     </div>
   );
