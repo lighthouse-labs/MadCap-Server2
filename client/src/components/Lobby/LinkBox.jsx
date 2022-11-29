@@ -11,7 +11,7 @@ export default function LinkBox() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setUrl(`madcap.com/${generateRandomString()}`);
+    setUrl(`/${generateRandomString()}`);
   }, []);
 
   const handleCopy = () => {

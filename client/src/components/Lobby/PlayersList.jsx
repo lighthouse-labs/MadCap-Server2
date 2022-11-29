@@ -8,9 +8,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
-// import FormGroup from '@mui/material/FormGroup';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
@@ -36,10 +33,10 @@ export default function PlayersList(props) {
 
   return (
     <Fragment>
-      <Box className="players-box">
+      <Box className="players-box" sx={{height: 'fit-content'}}>
         <Paper elevation={3} sx={{
-          height: 600,
-          p: '15px'
+          p: '15px',
+          '& .MuiPaper-root': {minHeight: '700px'}
         }}>
 
           <Box sx={{
@@ -49,7 +46,7 @@ export default function PlayersList(props) {
           }}
           >
             <Grid item xs={12} md={6}>
-              <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+              <Typography sx={{ mt: 0, mb: 2 }} variant="h6" component="div">
                 Players
               </Typography>
               <CustomStyle >
@@ -65,7 +62,7 @@ export default function PlayersList(props) {
                       </Avatar>
                     </ListItemAvatar>
                     <Typography sx={{ fontSize: "12px" }}>
-                      Host:&nbsp;
+                      Host
                     </Typography>
                     <ListItemText primary={props.name} />
                   </ListItem>
@@ -78,7 +75,7 @@ export default function PlayersList(props) {
                     }}>
                       <ListItemAvatar >
                         <Avatar sx={{}}>
-
+                        
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText
@@ -92,17 +89,6 @@ export default function PlayersList(props) {
             </Grid>
 
           </Box>
-          {/* <FormGroup row>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={secondary}
-                  onChange={(event) => setSecondary(event.target.checked)}
-                />
-              }
-              label="show stats?"
-            />
-          </FormGroup> */}
         </Paper>
       </Box>
     </Fragment>
