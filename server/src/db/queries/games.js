@@ -64,16 +64,17 @@ const createNewGame = (url) => {
   });
 };
 
-const updateGameDetails = (game_id, category_ids, settings) => {
+const updateGameDetails = (game_url, category_ids, settings) => {
   const {timer, max_players} = settings
   return db.query(`
   UPDATE games
   SET timer = $2,
       max_players = $3
-  WHERE id = $1
+  WHERE url = $1
   RETURNING *
-  `, [game_id, timer, max_players])
-  .then(() => {
+  `, [game_url, timer, max_players])
+  .then((data) => data.rows[0].id)
+  .then((game_id) => {
     const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
     db.query(categoriesQuery, categoriesList)
     .then((data) => {
@@ -83,12 +84,12 @@ const updateGameDetails = (game_id, category_ids, settings) => {
 
 };
 
-const deleteGame = (game_id) => {
+const deleteGame = (game_url) => {
   return db.query(`
   DELETE FROM games
-  WHERE id = $1
+  WHERE url = $1
   RETURNING *
-  `, [game_id])
+  `, [game_url])
   .then((data) => data.rows[0])
 }
 

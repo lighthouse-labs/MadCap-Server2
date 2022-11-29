@@ -120,10 +120,10 @@ router.post('/:game_url/users', (req, res) => {
  * returns nothing
  */
 
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
+router.put('/:game_url', (req, res) => {
+  const { game_url } = req.params;
   const { categories, settings } = req.body;
-  gameQueries.updateGameDetails(id, categories, settings)
+  gameQueries.updateGameDetails(game_url, categories, settings)
   .then (() => res.send('Success!'))
   .catch(error => {
     console.error(error);
@@ -141,7 +141,7 @@ router.put('/:id', (req, res) => {
  * returns the user with the updated score
  */
 
-router.patch('/:game_id/users/:user_id', (req, res) => {
+router.patch('/:game_url/users/:user_id', (req, res) => {
   const { user_id } = req.params
   const { score } = req.body 
   setUserScore(user_id, score)
@@ -152,9 +152,9 @@ router.patch('/:game_id/users/:user_id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  gameQueries.deleteGame(id)
+router.delete('/:game_url', (req, res) => {
+  const { game_url } = req.params;
+  gameQueries.deleteGame(game_url)
   .then((game) => res.json(game))
   .catch(error => {
     console.error(error);
