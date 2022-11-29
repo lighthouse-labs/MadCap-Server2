@@ -1,6 +1,29 @@
 const db = require('../connection');
 const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
 
+const getMainGame = (game_id) => {
+  return db.query(`
+  SELECT * FROM games
+  WHERE id = $1`, [game_id])
+  .then((data) => data.rows[0])
+}
+
+const getGameUsers = (game_id) => {
+  return db.query(`
+  SELECT * FROM users
+  WHERE game_id = $1`, [game_id])
+  .then((data) => data.rows[0])
+}
+
+const getGameCategories = (game_id) => {
+  return db.query(`
+  SELECT categories.title AS category
+  FROM categories_sets
+  JOIN categories ON category_id = categories.id
+  WHERE game_id = $1`, [game_id])
+  .then((data) => data.rows)
+  .then((game_list) => game_list.map(game_obj => game_obj.category_id))
+}
 
 const getRandomSubcategories = (game_id) => {
 
