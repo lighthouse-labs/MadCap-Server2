@@ -1,15 +1,16 @@
 .lobby-main {
-  margin: 1em;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .lobby-header {
-  margin-top: 90px;
+  margin-top: 1em;
   /* min-width: 406px; */
-  min-width: 437px;
-  max-width: 750px;
+  /* min-width: 437px;
+  max-width: 750px; */
   width: 70%;
 }
 
@@ -18,7 +19,8 @@
 }
 
 .settings-header h2 {
-  margin-top: 0;
+  margin-top: 5px;
+  margin-bottom: 10px;
   padding-left: 10px;
   padding-top: 12px;
 }

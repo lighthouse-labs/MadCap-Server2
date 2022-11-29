@@ -4,13 +4,12 @@ import Paper from '@mui/material/Paper';
 
 export default function HowToPlay() {
   return (
-    <Container style={{ margin: 0, padding: 0, maxWidth: 750 }}
+    <Container style={{ margin: 0, padding: 0, maxWidth: 500 }}
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        minWidth: 406,
-        width: '70%',
+        width: '97%',
         height: '100%',
         my: 1
       }}>

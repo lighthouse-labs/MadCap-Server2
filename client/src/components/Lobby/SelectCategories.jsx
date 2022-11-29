@@ -11,19 +11,19 @@ import Chip from '@mui/material/Chip';
 
 export default function SelectCategories(props) {
   const { categories } = props;
-  
+
   const [categoryName, setCategoryName] = useState([]);
   const theme = useTheme();
-  
+
   const getStyles = (name, categoryName, theme) => {
     return {
       fontWeight:
-      categoryName.indexOf(name) === -1
-      ? theme.typography.fontWeightRegular
-      : theme.typography.fontWeightMedium,
+        categoryName.indexOf(name) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
     };
   };
-  
+
   const handleChange = (event) => {
     const {
       target: { value },
@@ -31,35 +31,41 @@ export default function SelectCategories(props) {
     setCategoryName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
-      );
-    };
+    );
+  };
 
-    const ITEM_HEIGHT = 88;
-    const ITEM_PADDING_TOP = 8;
-    const MenuProps = {
-      PaperProps: {
-        style: {
-          maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-          width: 250,
-        },
+  const ITEM_HEIGHT = 88;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
       },
-    };
+    },
+  };
 
   return (
-    <FormControl sx={{ m: 1, width: 300 }}
+    <FormControl sx={{ m: 1, width: '93%' }}
       className="select-categories">
-      <InputLabel id="demo-multiple-chip-label">
+      <InputLabel id="multiple-chip-label">
         Categories
       </InputLabel>
       <Select
-        labelId="demo-multiple-chip-label"
-        id="demo-multiple-chip"
+        labelId="multiple-chip-label"
+        id="multiple-chip"
         multiple
         value={categoryName}
         onChange={handleChange}
-        input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+        input={<OutlinedInput id="select-multiple-chip" label="Chip"
+        />}
         renderValue={(selected) => (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+          <Box sx={{
+            display: 'flex', flexWrap: 'wrap',
+            gap: 0, '& .MuiChip-root':
+              { fontSize: '10px' }
+          }}
+          >
             {selected.map((value) => (
               <Chip key={value} label={value}
                 sx={{
@@ -80,7 +86,7 @@ export default function SelectCategories(props) {
           </MenuItem>
         ))}
       </Select>
-      
+
     </FormControl>
   );
 }

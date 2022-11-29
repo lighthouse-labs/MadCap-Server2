@@ -11,7 +11,7 @@ export default function LinkBox() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setUrl(`madcap.com/${generateRandomString()}`);
+    setUrl(`/${generateRandomString()}`);
   }, []);
 
   const handleCopy = () => {
@@ -33,7 +33,7 @@ export default function LinkBox() {
         component="form"
         sx={{
           // ml: '6px',
-          '& > :not(style)': { m: 1, width: '300px' }
+          '& > :not(style)': { m: 1, width: '93%' }
         }}
         noValidate
         autoComplete="off"
