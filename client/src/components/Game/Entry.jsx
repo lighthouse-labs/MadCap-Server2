@@ -8,10 +8,10 @@ export default function Entry(props) {
   // const sendMessage = () => {
   //   socket.emit("send-message", "hello");
   // };
-  const send = () =>{
-    console.log(message)
-    props.sendMessage(message)
-  }
+  const send = () => {
+    console.log(message);
+    props.sendMessage(message);
+  };
 
   return (
     <div>
