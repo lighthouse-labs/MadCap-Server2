@@ -10,7 +10,7 @@ export default function GameSettings(props) {
 
     // const playerCount = num;
     // const waitToStart = () => {
-    //   // if "waiting..."
+    //   if "waiting..."
     // }
 
   return (

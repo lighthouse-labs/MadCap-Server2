@@ -25,10 +25,7 @@ export default function Lobby(props) {
       <Box sx={{
         px: 2.5,
         display: "flex",
-        // minWidth: 500,
-        // maxWidth: 600,
-        // minWidth: 447,
-        // maxWidth: 610,
+        maxWidth: 435,
         width: '100%'
       }}>
         <div className="lobby-header">
@@ -40,9 +37,8 @@ export default function Lobby(props) {
         px: 1,
         display: "flex",
         justifyContent: "space-between",
-        // minWidth: 447,
-        // maxWidth: 610,
-        height: 340,
+        maxWidth: 435,
+        height: 'fit-content',
         width: '100%'
       }}>
         <PlayersList name={props.name}/>

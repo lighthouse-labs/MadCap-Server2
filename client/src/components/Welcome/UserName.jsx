@@ -41,7 +41,8 @@ export default function UserName(props) {
       sx={{
         fontSize: '55px',
         m: 1,
-        width: 380,
+        width: '100%',
+        maxWidth: '350px',
         my: 1.5,
         '& .MuiInputBase-input': {
           caretColor: 'transparent',

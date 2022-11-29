@@ -1,4 +1,4 @@
-import { Fragment, cloneElement } from 'react';
+import { Fragment } from 'react';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -10,35 +10,48 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import CircleIcon from '@mui/icons-material/Circle';
 
-
-const players = ['player1', 'rufus', 'shelby', 'theorss'];
 
 export default function PlayersList(props) {
 
-  //const playerList = props.players.map(p => <li>{p}<li>)
+ //  dummy memory!
+  const players = [
+    {
+      color: 'blue', label: 8, imgPath: './avatars/avatar-temp-8.png', name: 'lorepuse'}, 
+      {color: 'green', label: 7, imgPath: './avatars/avatar-temp-7.png', name: 'doongle'}, 
+      {color: 'yellow', label: 6, imgPath: './avatars/avatar-temp-6.png', name: 'finglebat'}, 
+      {color: 'orange', label: 5, imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash'},
+      {color: 'orange', label: 4, imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.'}
+  ];
 
-  function playerList(element) {
-    return players.map((value) =>
-      cloneElement(element, {
-        key: value,
-      }),
-    );
-  }
+  const listItems = players.map((player) =>
+  (
+    <ListItem sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start'
+    }}>
+      <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <Avatar src={player.imgPath} alt={player.label} sx={{maxWidth: '70%', height: 'auto'}}>
+
+        </Avatar>
+        <CircleIcon sx={{ pl: 1, color: player.color }} />
+      </ListItemAvatar>
+      <ListItemText primary={player.name} 
+      sx={{'.MuiTypography-root': {fontSize: "12px", pl: 1}}}/>
+    </ListItem>
+  ));
+
   const CustomStyle = styled('div')(({ theme }) => ({
-    px: 0,
+    px: 0
     // backgroundColor: theme.palette.background.paper,
   }));
-  // const [secondary, setSecondary] = useState(false);
 
   return (
     <Fragment>
-      <Box className="players-box" sx={{height: 'fit-content'}}>
-        <Paper elevation={3} sx={{
-          p: '15px',
-          '& .MuiPaper-root': {minHeight: '700px'}
-        }}>
-
+      <Box className="players-box" sx={{ height: 'fit-content' }}>
+        <Paper style={{ height: '640px', width: '100%' }} elevation={3} sx={{ p: '15px', }}>
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,
@@ -49,48 +62,32 @@ export default function PlayersList(props) {
               <Typography sx={{ mt: 0, mb: 2 }} variant="h6" component="div">
                 Players
               </Typography>
+
               <CustomStyle >
                 <List dense={true} >
-
                   <ListItem sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start'
                   }}>
-                    <ListItemAvatar >
+                    <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar sx={{}}>
                       </Avatar>
+                      <Typography sx={{ fontSize: "12px", pl: 1 }}>
+                        Host
+                      </Typography>
                     </ListItemAvatar>
-                    <Typography sx={{ fontSize: "12px" }}>
-                      Host
-                    </Typography>
                     <ListItemText primary={props.name} />
                   </ListItem>
-
-                  {playerList(
-                    <ListItem sx={{
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'flex-start'
-                    }}>
-                      <ListItemAvatar >
-                        <Avatar sx={{}}>
-                        
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText
-                        primary="playername"
-                      // secondary={secondary ? '75 points' : null}
-                      />
-                    </ListItem>,
-                  )}
+                </List>
+                <List>
+                    {listItems}
                 </List>
               </CustomStyle>
             </Grid>
-
           </Box>
         </Paper>
       </Box>
     </Fragment>
   );
-}
+};
