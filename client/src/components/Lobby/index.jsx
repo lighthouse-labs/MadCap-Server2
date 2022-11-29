@@ -27,9 +27,9 @@ export default function Lobby(props) {
         display: "flex",
         // minWidth: 500,
         // maxWidth: 600,
-        minWidth: 447,
-        maxWidth: 610,
-        width: '70%'
+        // minWidth: 447,
+        // maxWidth: 610,
+        width: '100%'
       }}>
         <div className="lobby-header">
           <h1>Lobby</h1>
@@ -40,10 +40,10 @@ export default function Lobby(props) {
         px: 1,
         display: "flex",
         justifyContent: "space-between",
-        minWidth: 447,
-        maxWidth: 610,
+        // minWidth: 447,
+        // maxWidth: 610,
         height: 340,
-        width: '70%'
+        width: '100%'
       }}>
         <PlayersList name={props.name}/>
         <GameSettings categories={categories} />

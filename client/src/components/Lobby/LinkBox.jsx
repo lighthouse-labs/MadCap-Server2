@@ -33,7 +33,7 @@ export default function LinkBox() {
         component="form"
         sx={{
           // ml: '6px',
-          '& > :not(style)': { m: 1, width: '300px' }
+          '& > :not(style)': { m: 1, width: '93%' }
         }}
         noValidate
         autoComplete="off"

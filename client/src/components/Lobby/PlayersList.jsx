@@ -55,19 +55,27 @@ export default function PlayersList(props) {
               <CustomStyle >
                 <List dense={true} >
 
-                  <ListItem>
-                    <ListItemAvatar>
-                  <Avatar sx={{}}>
-                  </Avatar>
+                  <ListItem sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start'
+                  }}>
+                    <ListItemAvatar >
+                      <Avatar sx={{}}>
+                      </Avatar>
                     </ListItemAvatar>
-                  <Typography sx={{fontSize: "12px"}}>
-                    Host:&nbsp; 
-                  </Typography>
-                    <ListItemText primary={props.name}/>
+                    <Typography sx={{ fontSize: "12px" }}>
+                      Host:&nbsp;
+                    </Typography>
+                    <ListItemText primary={props.name} />
                   </ListItem>
 
                   {playerList(
-                    <ListItem >
+                    <ListItem sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'flex-start'
+                    }}>
                       <ListItemAvatar >
                         <Avatar sx={{}}>
 

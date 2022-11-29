@@ -21,8 +21,9 @@ export default function GameSettings(props) {
         flexDirection: 'column',
         ml: '6px',
         pl: '2px',
-        width: '320px',
-        minHeight: '430px',
+        width:'100%',
+        // width: '320px',
+        // minHeight: '430px',
         height: 'fit-content',
         pb: '3px'
       }}>
@@ -39,7 +40,8 @@ export default function GameSettings(props) {
         alignItems: 'center',
         mt: '10px',
         ml: '6px',
-        width: '320px',
+        // width: '320px',
+        width: '100%',
         // minHeight: '200px',
         height: 'fit-content',
         pb: '10px'

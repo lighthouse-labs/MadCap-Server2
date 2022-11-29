@@ -46,7 +46,7 @@ export default function SelectCategories(props) {
     };
 
   return (
-    <FormControl sx={{ m: 1, width: 300 }}
+    <FormControl sx={{ m: 1, width: '93%' }}
       className="select-categories">
       <InputLabel id="demo-multiple-chip-label">
         Categories
