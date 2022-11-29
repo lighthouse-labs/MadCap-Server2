@@ -83,6 +83,16 @@ router.post('/', (req, res) => {
   })
 })
 
+/**
+ * Takes an object in its body
+ * {
+ *  name: Fred
+ *  color: blue
+ * }
+ * 
+ * returns the new user object
+ */
+
 router.post('/:id/users', (req, res) => {
   const { id: game_id } = req.params;
   const { name, color } = req.body;
@@ -95,7 +105,8 @@ router.post('/:id/users', (req, res) => {
 });
 
 /**
- * Takes an object in it's body
+ * Takes an object in it's body. 
+ * Example: 
  * {
  *  categories: [1, 3],
  *  settings: {
@@ -117,6 +128,16 @@ router.put('/:id', (req, res) => {
     res.json({ error });
   });
 });
+
+/**
+ * Takes an object in its body
+ * Example:
+ * { 
+ *  score: 20
+ * }
+ * 
+ * returns the user with the updated score
+ */
 
 router.patch('/:game_id/users/:user_id', (req, res) => {
   const { user_id } = req.params
