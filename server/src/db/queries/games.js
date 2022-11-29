@@ -10,7 +10,7 @@ const getMainGame = (game_id) => {
 
 const getGameUsers = (game_id) => {
   return db.query(`
-  SELECT id, name, score, color FROM users
+  SELECT id, name, score, color, avatar_url FROM users
   WHERE game_id = $1`, [game_id])
   .then((data) => data.rows)
 }
