@@ -118,15 +118,16 @@ router.put('/:id', (req, res) => {
   });
 });
 
-router.patch('/:id/users') {
-  const { user_id, score } = req.body 
+router.patch('/:game_id/users/:user_id', (req, res) => {
+  const { user_id } = req.params
+  const { score } = req.body 
   setUserScore(user_id, score)
   .then((user) => res.json(user))
   .catch((error) => {
     console.error(error);
     res.json({ error });
-  })
-}
+  });
+});
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;

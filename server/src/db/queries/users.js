@@ -29,7 +29,7 @@ const setUserScore = (user_id, score) => {
   WHERE id = $1
   RETURNING *
   `, [user_id, score])
-  .then((data) => data.rows);
+  .then((data) => data.rows[0]);
 };
 
 module.exports = { getTopUsers, createUser, setUserScore }
