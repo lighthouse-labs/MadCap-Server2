@@ -42,6 +42,7 @@ export default function App() {
       {/* Welcome is default */}
       {mode === WELCOME && (
         <Welcome
+          url={url}
           setColor={setColor}
           setAvatar={setAvatar}
           name={name}

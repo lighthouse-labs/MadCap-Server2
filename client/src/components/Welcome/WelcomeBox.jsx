@@ -1,9 +1,11 @@
-import { Fragment } from "react";
+import { Fragment, useRef, useState } from "react";
 import Box from '@mui/material/Box';
 
 import Avatar from './Avatar';
 import UserName from './UserName';
 import ActionButton from "./ActionButton";
+import axios from "axios";
+import { generateRandomString } from "../../helpers/helpers";
 
 export default function WelcomeBox(props) {
  
@@ -12,6 +14,23 @@ export default function WelcomeBox(props) {
   // const JOIN = "JOIN";
   // if no link use MAKE (default state)
   // if there is a custom link use JOIN
+
+  const [avatar_url, setAvatar_url] = useState();
+  const [color, setColor] = useState();
+  const [name, setName] = useState()
+
+
+  const createGame = (avatar_url, color) => {
+    Promise.all([
+      axios.post("/api/games", { url: props.url }),
+      axios.post(`/api/games/${url}/users`, { name, color, avatar_url})
+    ])
+    .then(() => {
+      props.onClick
+    })
+    .catch((err) => console.error(err));
+
+  } 
 
 
   return (
@@ -32,8 +51,8 @@ export default function WelcomeBox(props) {
           width: '97%'
         }}>
         <Avatar
-          setAvatar={props.setAvatar}
-          setColor={props.setColor}  
+          setAvatar={setAvatar_url}
+          setColor={setColor}  
         />
         <UserName
           handleName={props.handleName}
