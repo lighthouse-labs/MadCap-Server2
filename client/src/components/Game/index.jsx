@@ -14,25 +14,32 @@ const defaultAlp = [
     letter: "a",
     answer: "",
     captureColour: "",
-    id:1
+    id: 1,
   },
   {
     letter: "b",
-    id: 2
+    id: 2,
   },
   {
     letter: "c",
-    id:3
+    id: 3,
   },
   {
     letter: "d",
-    id:4
+    id: 4,
   },
   {
     letter: "z",
-    id:25
+    id: 25,
   },
 ];
+const dummyuser = {
+  name: "Dummy",
+  url: "madcap.com/322klj4",
+  colour: "Green",
+  avatar: 1,
+  score: 10,
+};
 
 export default function Game(props) {
   const [state, setState] = useState({
@@ -42,13 +49,14 @@ export default function Game(props) {
   });
 
   const setAnswer = (message, stort) => {
+    console.log(message.colour)
     //sets the details of the letter in game
     const answers = stort.answers.map((answer) => {
-      if (answer.letter === message[0]) {
+      if (answer.letter === message.message[0]) {
         return {
-          letter: answer.letter,
-          answer: message,
-          captureColour: "Red",
+          ...answer,
+          answer: message.message,
+          captureColour: message.colour,
         };
       }
       return answer;
@@ -64,6 +72,7 @@ export default function Game(props) {
 
   useEffect(() => {
     socket.on("connect", () => {
+      socket.emit("set-room", dummyuser.url);
       setState({
         ...stateRef.current,
         isConnected: true,
@@ -83,7 +92,7 @@ export default function Game(props) {
       setState((prev) => ({
         ...prev,
         answers: answerset,
-        lastMessage: message,
+        lastMessage: message.message,
       }));
 
       // console.log(stateRef.current)
@@ -97,7 +106,12 @@ export default function Game(props) {
   }, []);
 
   const sendMessage = (message) => {
-    socket.emit("send-message", message);
+    const messageObject = {
+      message: message,
+      room: dummyuser.url,
+      colour: dummyuser.colour,
+    };
+    socket.emit("send-message", messageObject);
   };
 
   return (

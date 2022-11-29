@@ -11,10 +11,17 @@ module.exports = (app) => {
       console.log(socket.id)
     });
     socket.on('send-message', message => {
-        app.io.emit('message', message);
+        app.io.in(message.room).emit('message', message);
     });
     socket.on("disconnect", () => {
       console.log("A user disconnected");
     });
+    socket.on("set-room", (room) => {
+      console.log(socket.id, "joined room", room)
+      socket.join(room)
+      console.log(socket.rooms)
+    });
   });
 };
+
+
