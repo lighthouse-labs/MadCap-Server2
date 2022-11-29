@@ -32,7 +32,7 @@ export default function App() {
         />
       )}
       {mode === LOBBY && (<Lobby name={name}/>)}
-      <Game />
+      {/* <Game /> */}
     </div>
   );
 }
