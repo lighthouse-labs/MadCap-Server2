@@ -3,16 +3,16 @@ const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
 
 const getMainGame = (game_id) => {
   return db.query(`
-  SELECT * FROM games
+  SELECT id, url, timer, max_players FROM games
   WHERE id = $1`, [game_id])
   .then((data) => data.rows[0])
 }
 
 const getGameUsers = (game_id) => {
   return db.query(`
-  SELECT * FROM users
+  SELECT id, name, score, color FROM users
   WHERE game_id = $1`, [game_id])
-  .then((data) => data.rows[0])
+  .then((data) => data.rows)
 }
 
 const getGameCategories = (game_id) => {
@@ -22,7 +22,7 @@ const getGameCategories = (game_id) => {
   JOIN categories ON category_id = categories.id
   WHERE game_id = $1`, [game_id])
   .then((data) => data.rows)
-  .then((game_list) => game_list.map(game_obj => game_obj.category_id))
+  .then((game_list) => game_list.map(game_obj => game_obj.category))
 }
 
 const getRandomSubcategories = (game_id) => {
@@ -91,4 +91,4 @@ const deleteGame = (game_id) => {
   .then((data) => data.rows[0])
 }
 
-module.exports = { getRandomSubcategories, createNewGame, updateGameDetails, deleteGame }
+module.exports = { getMainGame, getGameUsers, getGameCategories, getRandomSubcategories, createNewGame, updateGameDetails, deleteGame }

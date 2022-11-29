@@ -2,6 +2,35 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require ('../db/queries/games');
 
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  const { getMainGame, getGameUsers, getGameCategories } = userQueries;
+  const promiseList = 
+    [
+      getMainGame,
+      getGameUsers,
+      getGameCategories
+    ]
+    .map((query) => query(id));
+  
+  Promise.all(promiseList)
+  .then(([mainGame, gameUsers, gameCategories]) => (
+    {
+      ...mainGame,
+      users: gameUsers,
+      categories: gameCategories
+    }
+  ))
+  .then((gameObject => {
+    res.json(gameObject)
+  }))
+  .catch((error) => {
+    console.error(error);
+    res.json({ error })
+  })
+
+})
+
 router.get('/:game_id/subcategories', (req, res) => {
   const game_id = req.params.game_id;
   userQueries.getRandomSubcategories(game_id)
