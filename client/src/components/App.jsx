@@ -13,22 +13,21 @@ export default function App() {
   // const GAME = "GAME";
   const { mode, transition } = useVisualMode(WELCOME);
 
-   // const [avatar, setAvatar] = useState(null);
-   const [name, setName] = useState("");
+  // const [avatar, setAvatar] = useState(null);
+  const [name, setName] = useState("");
 
-   const handleName = (e) => {
-     setName(e.target.value);
-     console.log(name);
-   };
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
 
   return (
     <div className="App">
       {/* Welcome is default */}
       {mode === WELCOME && (
-        <Welcome 
-        name={name}
-        handleName={handleName}
-        onClick={() => transition(LOBBY)}
+        <Welcome
+          name={name}
+          handleName={handleName}
+          onClick={() => transition(LOBBY)}
         />
       )}
       {mode === LOBBY && (<Lobby name={name}/>)}

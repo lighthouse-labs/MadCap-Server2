@@ -1,6 +1,29 @@
 const db = require('../connection');
 const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
 
+const getMainGame = (game_id) => {
+  return db.query(`
+  SELECT id, url, timer, max_players FROM games
+  WHERE id = $1`, [game_id])
+  .then((data) => data.rows[0])
+}
+
+const getGameUsers = (game_id) => {
+  return db.query(`
+  SELECT id, name, score, color FROM users
+  WHERE game_id = $1`, [game_id])
+  .then((data) => data.rows)
+}
+
+const getGameCategories = (game_id) => {
+  return db.query(`
+  SELECT categories.title AS category
+  FROM categories_sets
+  JOIN categories ON category_id = categories.id
+  WHERE game_id = $1`, [game_id])
+  .then((data) => data.rows)
+  .then((game_list) => game_list.map(game_obj => game_obj.category))
+}
 
 const getRandomSubcategories = (game_id) => {
 
@@ -23,29 +46,48 @@ const getRandomSubcategories = (game_id) => {
  * @param {string} url 
  * @param {array of ints} category_ids 
  * @param {{
- *  timer: int (in seconds),
+ *  timer: int (int seconds),
  *  max_players: int
  * }} settings
  * @returns 
  */
-const createNewGame = (url, category_ids, settings) => {
-  const {timer, max_players} = settings;
+const createNewGame = (url) => {
   return db.query(`
-  INSERT INTO games (url, seed, timer, max_players)
-  VALUES ($1, FLOOR(RANDOM() * 20000 + 1), $2, $3)
+  INSERT INTO games(url, seed)
+  VALUES ($1, FLOOR(RANDOM() * 20000 + 1))
   RETURNING *
-  `, [url, timer, max_players])
+  `, [url])
   .then((data) => {
-    console.log(data.rows[0]);
     return data.rows[0];
-  })
-  .then(({ id: game_id }) => {
-    const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
-    db.query(categoriesQuery, categoriesList)
-    .then((data) => {
-      console.log(data.rows)
-    })
   });
 };
 
-module.exports = { getRandomSubcategories, createNewGame }
+const updateGameDetails = (game_id, category_ids, settings) => {
+  const {timer, max_players} = settings
+  return db.query(`
+  UPDATE games
+  SET timer = $2,
+      max_players = $3
+  WHERE id = $1
+  RETURNING *
+  `, [game_id, timer, max_players])
+  .then(() => {
+    const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
+    db.query(categoriesQuery, categoriesList)
+    .then((data) => {
+      return data.rows;
+    })
+  });
+
+};
+
+const deleteGame = (game_id) => {
+  return db.query(`
+  DELETE FROM games
+  WHERE id = $1
+  RETURNING *
+  `, [game_id])
+  .then((data) => data.rows[0])
+}
+
+module.exports = { getMainGame, getGameUsers, getGameCategories, getRandomSubcategories, createNewGame, updateGameDetails, deleteGame }

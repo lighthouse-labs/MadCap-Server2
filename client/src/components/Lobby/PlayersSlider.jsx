@@ -123,7 +123,6 @@ const StyledSlider = styled(SliderUnstyled)(
 `,
 );
 
-
 export default function PlayersSlider() {
   // timerSlider sets state
   const [value, setValue] = useState(5);
@@ -132,7 +131,7 @@ export default function PlayersSlider() {
     setValue(val);
   };
   // const getText = (value) => {
-  //   return `${value}°C`;
+  //   return `${value}s`;
   // }
   return (
     <Box sx={{ width: '300px', pl: '10px' }} className="select-timer">
