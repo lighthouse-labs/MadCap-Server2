@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
-
+import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
 
 import './App.css';
@@ -30,7 +30,8 @@ export default function App() {
           onClick={() => transition(LOBBY)}
         />
       )}
-      {mode === LOBBY && (<Lobby name={name} />)}
+      {mode === LOBBY && (<Lobby name={name}/>)}
+      {/* <Game /> */}
     </div>
   );
 }
