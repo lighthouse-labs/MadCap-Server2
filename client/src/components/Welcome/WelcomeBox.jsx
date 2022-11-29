@@ -27,10 +27,9 @@ export default function WelcomeBox(props) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          minWidth: 406,
-          maxWidth: 750,
+          maxWidth: '435px',
           height: 340,
-          width: '70%'
+          width: '97%'
         }}>
         <Avatar />
         <UserName

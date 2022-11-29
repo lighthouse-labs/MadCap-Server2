@@ -7,7 +7,7 @@ export default function ActionButton(props) {
     <Fragment>
       <Button onClick={props.onClick} variant="contained" color="success" size="large"
         sx={{
-          width: 300,
+          width: '93%',
           height: 65,
           fontSize: 30
         }}
