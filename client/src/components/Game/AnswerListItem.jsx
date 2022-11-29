@@ -1,7 +1,7 @@
 
 import classNames from "classnames";
 
-export default function DayListItem(props) {
+export default function AnswerListItem(props) {
   let captureColour = classNames(
     "letter-uncaptured",
     { "letter-captured": props.captured},

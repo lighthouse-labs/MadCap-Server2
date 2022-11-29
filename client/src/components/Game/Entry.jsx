@@ -6,44 +6,8 @@ const socket = io(SERVER, {
   transports: ["websocket"],
 });
 
-export default function Entry() {
-  const [isConnected, setIsConnected] = useState(socket.connected);
-  const [lastPong, setLastPong] = useState(null);
-  const [lastMessage, setLastMessage] = useState(null);
+export default function Entry(props) {
   const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    socket.on("connect", () => {
-      setIsConnected(true);
-    });
-
-    socket.on("disconnect", () => {
-      setIsConnected(false);
-    });
-
-    socket.on("pong", () => {
-      setLastPong(new Date().toISOString());
-    });
-    socket.on("message", (message) => {
-      console.log("here")
-      setLastMessage(message);
-    });
-
-    return () => {
-      socket.off("connect");
-      socket.off("disconnect");
-      socket.off("pong");
-      socket.off("send-message");
-    };
-  }, []);
-
-  const sendPing = () => {
-    socket.emit("ping");
-  };
-
-  const sendMessage = (s) => {
-    socket.emit("send-message", message);
-  };
 
   // const sendMessage = () => {
   //   socket.emit("send-message", "hello");
@@ -51,10 +15,8 @@ export default function Entry() {
 
   return (
     <div>
-      <p>Connected: {"" + isConnected}</p>
-      <p>Last pong: {lastPong || "-"}</p>
-      <p>last message:{lastMessage || "-"}</p>
-      <button onClick={sendPing}>Send ping</button>
+      <p>Connected: {"" + props.isConnected}</p>
+      <p>last message:{props.lastMessage || "-"}</p>
       <div className="messages-input">
         <input
           type="text"
@@ -63,7 +25,7 @@ export default function Entry() {
           }}
           value={message}
         />
-        <button onClick={sendMessage}>Send</button>
+        <button onClick={props.sendMessage}>Send</button>
       </div>
     </div>
   );
