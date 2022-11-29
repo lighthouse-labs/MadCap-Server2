@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MobileStepper from '@mui/material/MobileStepper';
@@ -46,10 +46,15 @@ const images = [
   }
 ];
 
-export default function ActionAvatar() {
+export default function ActionAvatar(props) {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
   const maxSteps = images.length;
+
+  useEffect(() => {
+    props.setAvatar(images[activeStep].imgPath)
+    console.log(images[activeStep].imgPath)
+  }, [activeStep])
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);

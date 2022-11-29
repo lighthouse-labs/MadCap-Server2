@@ -31,7 +31,7 @@ export default function WelcomeBox(props) {
           height: 340,
           width: '97%'
         }}>
-        <Avatar />
+        <Avatar setAvatar={props.setAvatar}/>
         <UserName
           handleName={props.handleName}
           name={props.name} />

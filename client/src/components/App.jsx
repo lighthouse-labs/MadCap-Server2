@@ -18,7 +18,7 @@ export default function App() {
   // const GAME = "GAME";
   const { mode, transition } = useVisualMode(WELCOME);
 
-  // const [avatar, setAvatar] = useState(null);
+  const [avatar, setAvatar] = useState(null);
   const [name, setName] = useState("");
 
   const handleName = (e) => {
@@ -38,6 +38,8 @@ export default function App() {
       {/* Welcome is default */}
       {mode === WELCOME && (
         <Welcome
+          avatar={avatar}
+          setAvatar={setAvatar}
           name={name}
           handleName={handleName}
           onClick={handleMakeGame}
