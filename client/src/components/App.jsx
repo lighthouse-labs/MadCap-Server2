@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
+import axios from 'axios';
+
+import { generateRandomString } from '../helpers/helpers';
 
 import './App.css';
 
 export default function App() {
+
+  const url = useRef(generateRandomString()).current;
 
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
@@ -20,17 +25,30 @@ export default function App() {
     setName(e.target.value);
   };
 
+  const handleMakeGame = () => {
+    axios.post("/api/games", { url })
+    .then(() => {
+      console.log(url);
+      transition(LOBBY)
+    })
+    .catch((err) => console.error(err));
+  };
+
   return (
     <div className="App">
       {/* Welcome is default */}
-      {/* {mode === WELCOME && (
+      {mode === WELCOME && (
         <Welcome
           name={name}
           handleName={handleName}
-          onClick={() => transition(LOBBY)}
+          onClick={handleMakeGame}
         />
       )}
-      {mode === LOBBY && (<Lobby name={name}/>)} */}
+      {mode === LOBBY && (
+        <Lobby
+          name={name}
+          url={url}
+        />)}
       <Game />
     </div>
   );

@@ -13,6 +13,7 @@ export default function Lobby(props) {
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
+        console.log(`Lobby: ${props.url}`)
         setCategories(res.data);
       })
       .catch(err => {
@@ -42,7 +43,7 @@ export default function Lobby(props) {
         width: '100%'
       }}>
         <PlayersList name={props.name}/>
-        <GameSettings categories={categories} />
+        <GameSettings categories={categories} url={props.url} />
       </Box>
     </div>
   );
