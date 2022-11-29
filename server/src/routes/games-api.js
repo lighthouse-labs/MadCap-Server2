@@ -60,7 +60,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  userQueries.updateGameDetails(id)
+  userQueries.deleteGame(id)
   .then((game) => res.json(game))
   .catch(error => {
     console.error(error);
