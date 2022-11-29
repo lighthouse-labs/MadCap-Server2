@@ -44,7 +44,7 @@ export default function App() {
           handleJoin={handleJoin}
         />
       )}
-      {mode === LOBBY && (<Lobby name={name} />)}  */}
+      {mode === LOBBY && (<Lobby name={name}/>)} */}
       <Game />
     </div>
   );

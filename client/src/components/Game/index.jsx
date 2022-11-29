@@ -47,11 +47,23 @@ const defaultAlph = [
     letter: "a",
     answer: "",
     captureColour: "",
+    id:1
   },
   {
     letter: "b",
-    answer: "",
-    captureColour: "",
+    id: 2
+  },
+  {
+    letter: "c",
+    id:3
+  },
+  {
+    letter: "d",
+    id:4
+  },
+  {
+    letter: "z",
+    id:25
   },
   { 
     letter: "c",

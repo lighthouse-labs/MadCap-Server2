@@ -24,8 +24,8 @@ const { createUser, setUserScore } = require ('../db/queries/users');
  * }
  */
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
+router.get('/:game_url', (req, res) => {
+  const { game_url } = req.params;
   const { getMainGame, getGameUsers, getGameCategories } = gameQueries;
   const promiseList = 
     [
@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
       getGameUsers,
       getGameCategories
     ]
-    .map((query) => query(id));
+    .map((query) => query(game_url));
   
   Promise.all(promiseList)
   .then(([mainGame, gameUsers, gameCategories]) => (
@@ -46,21 +46,23 @@ router.get('/:id', (req, res) => {
   .then((gameObject => res.json(gameObject)))
   .catch((error) => {
     console.error(error);
-    res.json({ error })
+    res.status(500).json({ error })
   })
 
 })
 
-router.get('/:game_id/subcategories', (req, res) => {
-  const game_id = req.params.game_id;
-  gameQueries.getRandomSubcategories(game_id)
+router.get('/:game_url/subcategories', (req, res) => {
+  const { game_url } = req.params;
+  gameQueries.getRandomSubcategories(game_url)
   .then(subcategories => res.json(subcategories))
-  .catch(error => res.json({ error }))
+  .catch(error => {
+    console.error(error);
+    res.status(500).json({ error })})
 });
 
-router.get('/:game_id/subcategories/:subcategory_number', (req, res) => {
-  const { game_id, subcategory_number } = req.params;
-  gameQueries.getRandomSubcategories(game_id)
+router.get('/:game_url/subcategories/:subcategory_number', (req, res) => {
+  const { game_url, subcategory_number } = req.params;
+  gameQueries.getRandomSubcategories(game_url)
   // Subtract 1 so that the first subcategory is number 1
   .then(subcategories => res.json(subcategories[subcategory_number - 1]))
   .catch(error => res.json({ error }))
@@ -93,10 +95,10 @@ router.post('/', (req, res) => {
  * returns the new user object
  */
 
-router.post('/:id/users', (req, res) => {
-  const { id: game_id } = req.params;
-  const { name, color } = req.body;
-  createUser(name, color, game_id)
+router.post('/:game_url/users', (req, res) => {
+  const { game_url } = req.params;
+  const { name, color, avatar_url } = req.body;
+  createUser(name, color, game_url, avatar_url)
   .then((user) => res.json(user))
   .catch((error) => {
     console.error(error);
@@ -118,10 +120,10 @@ router.post('/:id/users', (req, res) => {
  * returns nothing
  */
 
-router.put('/:id', (req, res) => {
-  const { id } = req.params;
+router.put('/:game_url', (req, res) => {
+  const { game_url } = req.params;
   const { categories, settings } = req.body;
-  gameQueries.updateGameDetails(id, categories, settings)
+  gameQueries.updateGameDetails(game_url, categories, settings)
   .then (() => res.send('Success!'))
   .catch(error => {
     console.error(error);
@@ -139,7 +141,7 @@ router.put('/:id', (req, res) => {
  * returns the user with the updated score
  */
 
-router.patch('/:game_id/users/:user_id', (req, res) => {
+router.patch('/:game_url/users/:user_id', (req, res) => {
   const { user_id } = req.params
   const { score } = req.body 
   setUserScore(user_id, score)
@@ -150,9 +152,9 @@ router.patch('/:game_id/users/:user_id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
-  const { id } = req.params;
-  gameQueries.deleteGame(id)
+router.delete('/:game_url', (req, res) => {
+  const { game_url } = req.params;
+  gameQueries.deleteGame(game_url)
   .then((game) => res.json(game))
   .catch(error => {
     console.error(error);

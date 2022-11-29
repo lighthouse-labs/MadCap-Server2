@@ -11,12 +11,18 @@ const getTopUsers = () => {
     return data.rows});
 }
 
-const createUser = (name, color, game_id) => {
+const createUser = (name, color, game_url, avatar_url) => {
   return db.query(`
-  INSERT INTO users(name, color, game_id)
-  VALUES ($1, $2, $3)
+  SELECT id
+  FROM games
+  WHERE url = $1
+  `, [game_url])
+  .then((data) => data.rows[0].id)
+  .then((game_id) => db.query(`
+  INSERT INTO users(name, color, game_id, avatar_url)
+  VALUES ($1, $2, $3, $4)
   RETURNING *
-  `, [name, color, game_id])
+  `, [name, color, game_id, avatar_url]))
   .then((data) => {
     return data.rows[0];
   });

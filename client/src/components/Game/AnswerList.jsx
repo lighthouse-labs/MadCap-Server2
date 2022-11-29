@@ -7,10 +7,11 @@ export default function AnswerList(props) {
     return (
       <Box>
         <AnswerListItem
-          key={answer.letter}
-          letter={answer.letter}
-          captureColour={answer.captureColour}
-        />
+        key={answer.id}
+        id= {answer.id}
+        letter={answer.letter}
+        captureColour={answer.captureColour}
+      />
       </Box>
     );
   });
