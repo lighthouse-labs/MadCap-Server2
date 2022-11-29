@@ -4,7 +4,8 @@ export default function AnswerList(props) {
   const answers = props.answers.map((answer) => {
     return (
       <AnswerListItem
-        key={answer.letter}
+        key={answer.id}
+        id= {answer.id}
         letter={answer.letter}
         captureColour={answer.captureColour}
       />

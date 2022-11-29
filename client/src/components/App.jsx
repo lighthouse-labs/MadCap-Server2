@@ -23,15 +23,15 @@ export default function App() {
   return (
     <div className="App">
       {/* Welcome is default */}
-      {mode === WELCOME && (
+      {/* {mode === WELCOME && (
         <Welcome
           name={name}
           handleName={handleName}
           onClick={() => transition(LOBBY)}
         />
       )}
-      {mode === LOBBY && (<Lobby name={name}/>)}
-      {/* <Game /> */}
+      {mode === LOBBY && (<Lobby name={name}/>)} */}
+      <Game />
     </div>
   );
 }
