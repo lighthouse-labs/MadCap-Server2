@@ -1,4 +1,5 @@
 import { Fragment, useRef, useState } from "react";
+import { Link } from "react-router-dom"
 import Box from '@mui/material/Box';
 
 import Avatar from './Avatar';
@@ -54,9 +55,11 @@ export default function WelcomeBox(props) {
         <UserName
           handleName={handleName}
           name={name} />
+      <Link to={`${url}`} reloadDocument>
         <ActionButton
           onClick={createGame} 
           message="Make New Game" />
+      </Link>
         {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
       </Box>
     </Fragment>

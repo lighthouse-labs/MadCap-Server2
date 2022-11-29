@@ -20,7 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    loader: () => {}
+    loader: (({ request }) => {
+      const url = new URL(request.url)
+      return { url };
+    })
   },
   {
     path: "/:game_url",

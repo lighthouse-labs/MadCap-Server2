@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { useLoaderData } from 'react-router';
+import { useState, useRef, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game"
@@ -19,8 +19,6 @@ export default function App(props) {
   // const GAME = "GAME";
   const { mode, transition } = useVisualMode(props.mode || WELCOME);
 
-  const [color, setColor] = useState(null)
-  const [avatar, setAvatar] = useState(null);
   const [name, setName] = useState("");
 
   let loader_url;
@@ -34,6 +32,10 @@ export default function App(props) {
   const handleMakeGame = () => {
    transition(LOBBY)
   };
+
+  useEffect(() => {
+
+  }, [url])
 
   return (
     <div className="App">
