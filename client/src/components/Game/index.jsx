@@ -78,14 +78,12 @@ export default function Game(props) {
   };
   //this was done in a really dumb way, but works. should probably fix
   const confirmUsed = (message, gameState) => {
-    const answers = gameState.answers.map((answer) => {
+    for (const answer of gameState.answers) {
       if (answer.letter === message.message[0] && answer.answer) {
         return true;
-      } else {
-        return false;
       }
-    });
-    return answers.includes(true);
+    }
+    return false;
   };
 
   const stateRef = useRef(state);
