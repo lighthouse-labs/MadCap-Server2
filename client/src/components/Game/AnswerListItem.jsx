@@ -2,8 +2,8 @@ import classNames from "classnames";
 import "./styles.css";
 
 export default function AnswerListItem(props) {
-  console.log(props.letter)
-  console.log(props.id)
+  // console.log(props.letter)
+  // console.log(props.id)
   let captureColour = classNames(
     props.captureColour,
     { "letter-captured": props.captureColour },
