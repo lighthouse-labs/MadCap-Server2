@@ -90,6 +90,7 @@ router.post('/', (req, res) => {
  * {
  *  name: Fred
  *  color: blue
+ *  avatar_url: './avatars/avatar-temp-4.png'
  * }
  * 
  * returns the new user object
