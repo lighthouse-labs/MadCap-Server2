@@ -1,26 +1,28 @@
 const db = require('../connection');
 const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
 
-const getMainGame = (game_id) => {
+const getMainGame = (game_url) => {
   return db.query(`
   SELECT id, url, timer, max_players FROM games
-  WHERE id = $1`, [game_id])
+  WHERE url = $1`, [game_url])
   .then((data) => data.rows[0])
 }
 
-const getGameUsers = (game_id) => {
+const getGameUsers = (game_url) => {
   return db.query(`
-  SELECT id, name, score, color, avatar_url FROM users
-  WHERE game_id = $1`, [game_id])
+  SELECT users.id, name, score, color, avatar_url FROM users
+  JOIN games ON games.id = game_id
+  WHERE games.url = $1`, [game_url])
   .then((data) => data.rows)
 }
 
-const getGameCategories = (game_id) => {
+const getGameCategories = (game_url) => {
   return db.query(`
   SELECT categories.title AS category
   FROM categories_sets
   JOIN categories ON category_id = categories.id
-  WHERE game_id = $1`, [game_id])
+  JOIN games ON game_id = games.id
+  WHERE games.url = $1`, [game_url])
   .then((data) => data.rows)
   .then((game_list) => game_list.map(game_obj => game_obj.category))
 }
