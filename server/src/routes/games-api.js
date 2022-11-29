@@ -2,6 +2,27 @@ const express = require('express');
 const router = express.Router();
 const userQueries = require ('../db/queries/games');
 
+/**
+ * Does not take in a body
+ * 
+ * Returns an object like 
+ * {
+ *  id: 1,
+ *  url: "gert56",
+ *  timer: 60,
+ *  max_players: 8,
+ *  users: [{
+ *    id: 1,
+ *    name: "Terry",
+ *    score: 12,
+ *    color: "red"
+ *  }],
+ *  categories: [
+ *    "Fruits"
+ *  ]
+ * }
+ */
+
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   const { getMainGame, getGameUsers, getGameCategories } = userQueries;
