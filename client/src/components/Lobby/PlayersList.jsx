@@ -15,31 +15,31 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 export default function PlayersList(props) {
 
- //  dummy memory!
+  //  dummy memory!
   const players = [
-    {
-      color: 'blue', label: 8, imgPath: './avatars/avatar-temp-8.png', name: 'lorepuse'}, 
-      {color: 'green', label: 7, imgPath: './avatars/avatar-temp-7.png', name: 'doongle'}, 
-      {color: 'yellow', label: 6, imgPath: './avatars/avatar-temp-6.png', name: 'finglebat'}, 
-      {color: 'orange', label: 5, imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash'},
-      {color: 'orange', label: 4, imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.'}
+    { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'lorepuse' },
+    { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle' },
+    { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat' },
+    { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash' },
+    { id: 4, color: 'orange', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.' }
   ];
-
-  const listItems = players.map((player) =>
+  //extract 
+  const PlayerListItem = players.map((player) =>
   (
-    <ListItem sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start'
-    }}>
+    <ListItem key={players.id}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start'
+      }}>
       <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Avatar src={player.imgPath} alt={player.label} sx={{maxWidth: '70%', height: 'auto'}}>
+        <Avatar src={player.imgPath} alt={player.label} sx={{ maxWidth: '70%', height: 'auto' }}>
 
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
       </ListItemAvatar>
-      <ListItemText primary={player.name} 
-      sx={{'.MuiTypography-root': {fontSize: "12px", pl: 1}}}/>
+      <ListItemText primary={player.name}
+        sx={{ '.MuiTypography-root': { fontSize: "12px", pl: 1 } }} />
     </ListItem>
   ));
 
@@ -81,7 +81,7 @@ export default function PlayersList(props) {
                   </ListItem>
                 </List>
                 <List>
-                    {listItems}
+                  {PlayerListItem}
                 </List>
               </CustomStyle>
             </Grid>

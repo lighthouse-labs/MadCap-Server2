@@ -16,7 +16,7 @@ export default function LinkBox() {
 
   const handleCopy = () => {
     setOpen(true);
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(`http://localhost:8000${url}`);
   };
 
   const CopyButton = () => (

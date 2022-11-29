@@ -36,7 +36,8 @@ export default function WelcomeBox(props) {
           handleName={props.handleName}
           name={props.name} />
         <ActionButton
-          onClick={props.onClick} 
+          handleJoin={props.handleJoin}
+          newPlayer={props.newPlayer} 
           message="Make New Game" />
         {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
       </Box>
