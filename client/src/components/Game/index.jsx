@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 
 import Container from "@mui/material/Container";
-import Box from "@mui/material/Box"
+// import Box from "@mui/material/Box"
 
 import GameBoard from "./GameBoard";
 import StatusBox from "./StatusBox";
@@ -242,10 +242,10 @@ export default function Game(props) {
 
   return (
     <div className="game-main">
-        <Box>
+        {/* <Box>
         <h1>CLOCKHERE!</h1>
         <h1>CLOCKHERE!</h1>
-      </Box>
+      </Box> */}
       <Container className="game-container"
         sx={{
           display: "flex",

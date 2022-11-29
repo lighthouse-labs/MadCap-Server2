@@ -66,7 +66,7 @@ export default function PlayersList(props) {
                 Players
               </Typography>
 
-              <CustomStyle sx={{ '& .MuiList-root': { p: 0 } }}>
+              <CustomStyle sx={{ '& .MuiList-root': { p: 0, pt: 1 } }}>
                 <List dense={true} >
                   <ListItem sx={{
                     display: 'flex',
