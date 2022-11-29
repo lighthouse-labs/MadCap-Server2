@@ -26,9 +26,7 @@ export default function Welcome(props) {
   <div className="welcome-main">
     <h1 className="main-title">MadCap</h1>
     <WelcomeBox
-      url={url}
-      setColor={props.setColor}
-      setAvatar={props.setAvatar}
+      url={props.url}
       name={props.name}
       handleName={props.handleName}
       onClick={props.onClick} />

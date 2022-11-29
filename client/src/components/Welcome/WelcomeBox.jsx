@@ -5,10 +5,10 @@ import Avatar from './Avatar';
 import UserName from './UserName';
 import ActionButton from "./ActionButton";
 import axios from "axios";
-import { generateRandomString } from "../../helpers/helpers";
 
 export default function WelcomeBox(props) {
- 
+  
+  const { url, name, handleName, onClick } = props;
 
   // const MAKE = "MAKE";
   // const JOIN = "JOIN";
@@ -17,21 +17,18 @@ export default function WelcomeBox(props) {
 
   const [avatar_url, setAvatar_url] = useState();
   const [color, setColor] = useState();
-  const [name, setName] = useState()
 
-
-  const createGame = (avatar_url, color) => {
+  const createGame = () => {
     Promise.all([
-      axios.post("/api/games", { url: props.url }),
+      axios.post("/api/games", { url }),
       axios.post(`/api/games/${url}/users`, { name, color, avatar_url})
     ])
     .then(() => {
-      props.onClick
+      onClick()
     })
     .catch((err) => console.error(err));
 
-  } 
-
+  }
 
   return (
     <Fragment>
@@ -52,13 +49,13 @@ export default function WelcomeBox(props) {
         }}>
         <Avatar
           setAvatar={setAvatar_url}
-          setColor={setColor}  
+          setColor={setColor}
         />
         <UserName
-          handleName={props.handleName}
-          name={props.name} />
+          handleName={handleName}
+          name={name} />
         <ActionButton
-          onClick={props.onClick} 
+          onClick={createGame} 
           message="Make New Game" />
         {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
       </Box>

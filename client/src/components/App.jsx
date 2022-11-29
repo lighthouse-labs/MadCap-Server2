@@ -27,14 +27,7 @@ export default function App() {
   };
 
   const handleMakeGame = () => {
-    Promise.all([
-      axios.post("/api/games", { url }),
-      axios.post(`/api/games/${url}/users`, { name, color, avatar_url: avatar })
-    ])
-    .then(() => {
-      transition(LOBBY)
-    })
-    .catch((err) => console.error(err));
+   transition(LOBBY)
   };
 
   return (
@@ -43,8 +36,6 @@ export default function App() {
       {mode === WELCOME && (
         <Welcome
           url={url}
-          setColor={setColor}
-          setAvatar={setAvatar}
           name={name}
           handleName={handleName}
           onClick={handleMakeGame}
