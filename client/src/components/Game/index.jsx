@@ -1,7 +1,7 @@
 import Entry from "./Entry";
 import AnswerList from "./AnswerList";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 const SERVER = "http://127.0.0.1:8001";
 //Temporary fix?
@@ -21,18 +21,6 @@ const defaultAlp = [
     "captureColour": ""
   }
 ]
-const defaultAlp2 = [
-  {
-    "letter": "c",
-    "answer": "",
-    "captureColour": ""
-  },
-  {
-    "letter": "d",
-    "answer": "",
-    "captureColour": ""
-  }
-]
 
 export default function Game(props) {
   const [state, setState] = useState({
@@ -42,11 +30,12 @@ export default function Game(props) {
   });
 
 
-  const setAnswer = (message) => {
-    const answers = state.answers.map((answer) => {
+  const setAnswer = (message, stort) => {
+    //sets the details of the letter in game
+    const answers = stort.answers.map((answer) => {
       if (answer.letter === message[0]) {
         return {
-          letter: "o",
+          letter : answer.letter,
           answer: message,
           captureColour: "Red"
         };
@@ -56,10 +45,17 @@ export default function Game(props) {
     return answers
   }
 
+  const stateRef = useRef(state)
+  useEffect(() => {
+    //without this, state ref in sockets will be out of date (when they are connected)
+    stateRef.current = state
+
+  });
+
   useEffect(() => {
     socket.on("connect", () => {
       setState({
-        ...state,
+        ...stateRef.current,
         isConnected: true
 
       })
@@ -67,30 +63,21 @@ export default function Game(props) {
 
     socket.on("disconnect", () => {
       setState({
-        ...state,
+        ...stateRef.current,
         isConnected: false
 
       })
     });
 
     socket.on("message", (message) => {
-      console.log(message[0])
-      let answerset = setAnswer(message)
-      console.log(state.answers)
-      console.log(answerset)
-      console.log([{letter: "a", answer: "arr", captureColour: "red"}, {letter: "c", answer: "", captureColour: ""}])
-      console.log(answerset)
-      // setState({
-      //   ... state,
-      //   answers:answerset
-      // })
-      
+      let answerset = setAnswer(message, stateRef.current)
 
-      setState(prev => ({
-        ...prev,
-        answers: answerset,
+      setState(prev => ({ ...prev,
+        answers:answerset,
         lastMessage: message
       }));
+
+      // console.log(stateRef.current)
     });
 
     return () => {
@@ -123,41 +110,3 @@ export default function Game(props) {
   );
 }
 
-// [
-//   {
-//     "letter": "a",
-//     "answer": "",
-//     "captureColour": ""
-//   },
-//   {
-//     "letter": "b",
-//     "answer": "",
-//     "captureColour": ""
-//   }
-// ]
-
-// [
-//   {
-//     "letter": "a",
-//     "answer": "arr",
-//     "captureColour": "red"
-//   },
-//   {
-//     "letter": "c",
-//     "answer": "",
-//     "captureColour": ""
-//   }
-// ]
-
-// [
-//   {
-//     "letter": "a",
-//     "answer": "ar",
-//     "captureColour": "Red"
-//   },
-//   {
-//     "letter": "b",
-//     "answer": "",
-//     "captureColour": ""
-//   }
-// ]
