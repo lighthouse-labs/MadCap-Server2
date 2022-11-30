@@ -9,11 +9,13 @@ export default function AnswerListItem(props) {
     { "letter-captured": props.captureColour },
     {"alpha2": props.id > 13 },
     {"alpha1": props.id <= 13 },
+    {"results-phase": props.phase === "results"},
     {}
   );
   return (
     <li className={captureColour}>
-      <h2>{props.letter}</h2>
+       {props.phase === "game" && <h2>{props.letter}</h2>}
+       {props.phase === "results" && <h2>{props.answer}</h2>}
     </li>
   );
 }

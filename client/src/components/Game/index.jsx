@@ -60,6 +60,7 @@ export default function Game(props) {
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
+    phase: "game"
   });
 
   const setAnswer = (message, stort) => {
@@ -125,6 +126,17 @@ export default function Game(props) {
           lastMessage: message.message,
         }));
       }
+      if (message.type === "chat"){
+        let chatSet = [
+          ...stateRef.current.chats,
+          { type: "chat", user: message.user, message: message.message },
+        ];
+        setState((prev) => ({
+          ...prev,
+          chats: chatSet,
+          lastMessage: message.message,
+        }));
+      }
 
       // console.log(stateRef.current)
     });
@@ -137,24 +149,30 @@ export default function Game(props) {
   }, []);
 
   const sendMessage = (message) => {
+    let messagetype = "chat"
+    if (stateRef.current.phase === "game") {
+      messagetype = "capture"
+    }
     const messageObject = {
       message: message,
       room: dummyuser.url,
       colour: dummyuser.colour,
       user: dummyuser.name,
-      type: "capture",
+      type: messagetype,
     };
+    console.log(messageObject)
     socket.emit("send-message", messageObject);
   };
 
   return (
     <div className="welcome-main">
-      <AnswerList answers={state.answers} />
+      <AnswerList answers={state.answers} phase = {state.phase} />
       <ChatList chats={state.chats} />
       <Entry
         sendMessage={sendMessage}
         isConnected={state.isConnected}
         lastMessage={state.lastMessage}
+        phase = {state.phase}
       />
     </div>
   );
