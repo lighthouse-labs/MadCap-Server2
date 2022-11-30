@@ -20,26 +20,43 @@ import './App.css';
 
 
 export default function App(props) {
-
+  
+  const { full_url, url_path } = useLoaderData();
+  
+  const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
   const [cookies, setCookie] = useCookies(['host']);
   
   const url = useRef(generateRandomString()).current;
-
+  const curr_url_path = useRef(url_path).current;
+  
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
   const GAME = "GAME";
+
+  // useEffect(() => {
+  //   axios.get(`api/games/${url_path}`)
+  //   .then((response) => {
+  //     setGameData((prev) => {
+  //       console.log(prev);
+  //       return response.data
+  //     }, []);
+  //   })
+  //   .catch((error) => console.error(error.message))
+
+  // })
 
   useEffect(() => {
     transition(cookies.host ? props.mode : WELCOME)
   }, [cookies.host, props.mode])
 
-   const { mode, transition } = useVisualMode(WELCOME);
+  console.log("loader_url:", full_url);
+  console.log("url_path:", curr_url_path)
 
 
-  let loader_url;
+  const { mode, transition } = useVisualMode(WELCOME);
 
- loader_url = useLoaderData().url;
+
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -52,7 +69,7 @@ export default function App(props) {
 
 
   function handleJoin(id, name, color) {
-    axios.post(`/api/games/1/users`, {
+    axios.post(`/api/games/${url_path}/users`, {
       name: 'shelly',
       color: 'purple'
     })
@@ -87,8 +104,11 @@ export default function App(props) {
       {mode === LOBBY && (
         <Lobby
           name={name}
-          url={loader_url}
+          url={full_url}
+          url_path={url_path}
           handleStart={handleStart}
+          gameData={gameData}
+          setGameData={setGameData}
         />)}
          
       {mode === "GAME" && <Game />}

@@ -32,8 +32,11 @@ const router = createBrowserRouter([
     path: "/:game_url",
     element: <App mode="LOBBY"/>,
     loader: (({ request }) => {
-      const url = new URL(request.url)
-      return { url };
+      const url = new URL(request.url);
+      const url_path = url.pathname.substring(1);
+      const full_url = url.href;
+      console.log(url.pathname)
+      return { full_url, url_path };
     })
   }
 ])
