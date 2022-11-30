@@ -19,7 +19,7 @@ const romanAlpha = [
   {
     id: 1,
     letter: "A",
-    answer: "Abalone",
+    answer: "",
     captureColour: "",
   },
   {
@@ -31,7 +31,7 @@ const romanAlpha = [
   {
     id: 3,
     letter: "C",
-    answer: "Crestatians from the deep",
+    answer: "",
     captureColour: "",
   },
   {
@@ -61,7 +61,7 @@ const romanAlpha = [
   {
     id: 8,
     letter: "H",
-    answer: "Hotate",
+    answer: "",
     captureColour: "",
   },
   {
@@ -79,7 +79,7 @@ const romanAlpha = [
   {
     id: 11,
     letter: "K",
-    answer: "Killer Whales",
+    answer: "",
     captureColour: "",
   },
   {
@@ -97,7 +97,7 @@ const romanAlpha = [
   {
     id: 14,
     letter: "N",
-    answer: "November",
+    answer: "",
     captureColour: "",
   },
   {
@@ -208,8 +208,8 @@ export default function Game(props) {
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
-    //phase : game and results
-    phase: "results"
+    //phase : game, results & podium
+    phase: "game"
   });
 
   const setAnswer = (message, store) => {
@@ -293,7 +293,6 @@ export default function Game(props) {
           lastMessage: message.message,
         }));
       }
-
       // console.log(stateRef.current)
     });
 

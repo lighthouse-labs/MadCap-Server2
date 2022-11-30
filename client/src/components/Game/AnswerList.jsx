@@ -37,7 +37,8 @@ export default function AnswerList(props) {
 
   const rowPhase = classNames(
     { "game": props.phase === "game" },
-    { "results": props.phase === "results" }
+    { "results": props.phase === "results" },
+    { "podium": props.phase === "podium" }
   );
 
   return (

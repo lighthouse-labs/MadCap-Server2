@@ -26,7 +26,7 @@ export default function PlayersList(props) {
   //extract 
   const PlayerListItem = players.map((player) =>
   (
-    <ListItem key={players.id}
+    <ListItem key={player.id}
       style={{ padding: 0 }}
       sx={{
         display: 'flex',
