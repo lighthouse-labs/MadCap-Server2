@@ -9,6 +9,7 @@ export default function Welcome(props) {
     <div className="welcome-main">
       <h1 className="main-title">MadCap</h1>
       <WelcomeBox
+        host={props.host}
         url={props.url}
         name={props.name}
         handleName={props.handleName}

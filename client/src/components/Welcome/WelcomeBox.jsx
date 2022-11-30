@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"
 
 import Box from '@mui/material/Box';
@@ -12,8 +12,14 @@ export default function WelcomeBox(props) {
   
   const { url, name, handleName } = props;
 
-  // const MAKE = "MAKE";
-  // const JOIN = "JOIN";
+  const [btnState, setBtnState] = useState("MAKE")
+
+  useEffect(() => {
+    setBtnState(props.host ? "MAKE" : "JOIN")
+  }, [props.host])
+
+  const MAKE = "MAKE";
+  const JOIN = "JOIN";
   // if no link use MAKE (default state)
   // if there is a custom link use JOIN
 
@@ -71,7 +77,7 @@ export default function WelcomeBox(props) {
           newPlayer={props.newPlayer} 
           onClick={createGame} 
           message="Make New Game" />
-        {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
+        {btnState === JOIN && <ActionButton message="Join the Game!" />}
       </Box>
     </Fragment>
   );

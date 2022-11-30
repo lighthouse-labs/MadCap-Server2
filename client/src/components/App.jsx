@@ -95,6 +95,7 @@ export default function App(props) {
         <Welcome
           url={url}
           name={name}
+          host={cookies.host}
           // avatar={avatar}
           handleName={handleName}
           setHost={setHost}
