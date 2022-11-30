@@ -15,6 +15,7 @@ export default function Entry(props) {
     props.sendMessage(message);
   };
 
+    /// if event.target ==
 
 
 

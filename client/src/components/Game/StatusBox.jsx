@@ -29,27 +29,6 @@ export default function StatusBox(props) {
             maxHeight: '300px',
             overflow: 'auto',
           }}>
-          <ul>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-            <li>user1: capture A</li>
-          </ul>
         </Box>
         <ChatList chats={props.chats} />
         <Entry
