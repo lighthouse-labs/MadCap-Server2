@@ -17,7 +17,7 @@ export default function Entry(props) {
 
   const post = (e) => {
     setMessage(e.target.value);
-    // console.log('state change', message)
+    // console.log('state change', e.target.value)
   };
 
   /// if event.target ==

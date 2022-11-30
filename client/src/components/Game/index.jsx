@@ -199,7 +199,7 @@ const dummyuser = {
   url: "madcap.com/322klj4",
   colour: "Green",
   avatar: 1,
-  score: 10,
+  score: 10
 };
 
 export default function Game(props) {
@@ -209,7 +209,7 @@ export default function Game(props) {
     isConnected: socket.connected,
     lastMessage: null,
     //phase : game and results
-    phase: "game",
+    phase: "results"
   });
 
   const setAnswer = (message, store) => {
@@ -305,7 +305,8 @@ export default function Game(props) {
   }, []);
 
   const sendMessage = (message) => {
-    //had to move this here, since can connect when not on this page. less backend setting if just have a state "inroom"
+    //had to move this here, since can connect when not on this page
+    //less backend setting if just have a state "inroom"
     socket.emit("set-room", dummyuser.url);
     let messagetype = "chat";
     if (stateRef.current.phase === "game") {
