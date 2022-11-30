@@ -19,7 +19,7 @@ const romanAlpha = [
   {
     id: 1,
     letter: "A",
-    answer: "",
+    answer: "Abalone",
     captureColour: "",
   },
   {
@@ -31,7 +31,7 @@ const romanAlpha = [
   {
     id: 3,
     letter: "C",
-    answer: "",
+    answer: "Crestatians from the deep",
     captureColour: "",
   },
   {
@@ -61,7 +61,7 @@ const romanAlpha = [
   {
     id: 8,
     letter: "H",
-    answer: "",
+    answer: "Hotate",
     captureColour: "",
   },
   {
@@ -79,7 +79,7 @@ const romanAlpha = [
   {
     id: 11,
     letter: "K",
-    answer: "",
+    answer: "Killer Whales",
     captureColour: "",
   },
   {
@@ -97,7 +97,7 @@ const romanAlpha = [
   {
     id: 14,
     letter: "N",
-    answer: "",
+    answer: "November",
     captureColour: "",
   },
   {
