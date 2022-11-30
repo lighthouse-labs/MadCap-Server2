@@ -1,4 +1,5 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom"
 import Box from '@mui/material/Box';
 
 import Avatar from './Avatar';
@@ -8,7 +9,7 @@ import axios from "axios";
 
 export default function WelcomeBox(props) {
   
-  const { url, name, handleName, onClick } = props;
+  const { url, name, handleName } = props;
 
   // const MAKE = "MAKE";
   // const JOIN = "JOIN";
@@ -17,15 +18,18 @@ export default function WelcomeBox(props) {
 
   const [avatar_url, setAvatar_url] = useState();
   const [color, setColor] = useState();
+  const navigate = useNavigate();
 
   const createGame = () => {
+    console.log("url", url);
     Promise.all([
       axios.post("/api/games", { url }),
       axios.post(`/api/games/${url}/users`, { name, color, avatar_url})
     ])
     .then(() => {
-      onClick()
+      navigate(`/${url}`)
     })
+    .then(() => window.location.reload(false))
     .catch((err) => console.error(err));
 
   }
@@ -54,11 +58,13 @@ export default function WelcomeBox(props) {
         <UserName
           handleName={handleName}
           name={name} />
+      {/* <Link to={`${url}`} reloadDocument> */}
         <ActionButton
           handleJoin={props.handleJoin}
           newPlayer={props.newPlayer} 
           onClick={createGame} 
           message="Make New Game" />
+      {/* </Link> */}
         {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
       </Box>
     </Fragment>

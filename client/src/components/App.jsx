@@ -1,32 +1,36 @@
 import { useState, useRef } from 'react';
-// import Welcome from "./Welcome";
-// import Lobby from "./Lobby";
-import Game from "./Game";
-// import useVisualMode from "../hooks/useVisualMode";
-import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
+import Welcome from "./Welcome";
+import Lobby from "./Lobby";
+import Game from "./Game"
+import useVisualMode from "../hooks/useVisualMode";
+
 
 import { generateRandomString } from '../helpers/helpers';
 
 import './App.css';
 
-export default function App() {
+export default function App(props) {
 
   const url = useRef(generateRandomString()).current;
 
   // const WELCOME = "WELCOME";
   // const LOBBY = "LOBBY";
   // const GAME = "GAME";
+
+  // const { mode, transition } = useVisualMode(props.mode || WELCOME);
+
+  const [name, setName] = useState("");
+
+  let loader_url;
+
+ loader_url = useLoaderData().url;
+
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+
                                 //change to WELCOME
-  // const { mode, transition } = useVisualMode(GAME);
-  // const [name, setName] = useState("");
-
-  // const [color, setColor] = useState(null)
-  // const [avatar, setAvatar] = useState(null);
-  // const [name, setName] = useState("");
-
-  // const handleName = (e) => {
-  //   setName(e.target.value);
-  // };
 
   // function handleJoin(id, name, color) {
   //   axios.post(`/api/games/1/users`, {
@@ -41,9 +45,11 @@ export default function App() {
   //   transition(GAME);
   // }
 
+
   // const handleMakeGame = () => {
   //  transition(LOBBY)
   // };
+
 
   return (
     <div className="App">
@@ -54,14 +60,14 @@ export default function App() {
           name={name}
           // avatar={avatar}
           handleName={handleName}
-          onClick={handleMakeGame}
         />
       )} */}
       {/* {mode === LOBBY && (
         <Lobby
           name={name}
-          url={url}
-        />)} */}
+          url={loader_url}
+        />)}
+          */}
       <Game />
     </div>
   );
