@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
+import io from "socket.io-client";
 
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
@@ -8,7 +9,17 @@ import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
 import { generateRandomString } from '../helpers/helpers';
 
+
 import './App.css';
+
+
+
+
+const SERVER = "http://127.0.0.1:8001";
+//Temporary fix?
+const socket = io(SERVER, {
+  transports: ["websocket"],
+});
 
 export default function App(props) {
 
@@ -55,6 +66,7 @@ export default function App(props) {
   // };
 
 
+
   return (
     <div className="App">
       {/* Welcome is default */}
@@ -75,7 +87,6 @@ export default function App(props) {
         />)}
          
       {mode === "GAME" && <Game />}
-      <Game />
     </div>
 
     
