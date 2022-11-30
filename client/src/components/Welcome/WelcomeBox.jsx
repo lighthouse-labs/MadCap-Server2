@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom"
+
 import Box from '@mui/material/Box';
 
 import Avatar from './Avatar';
@@ -33,7 +34,7 @@ export default function WelcomeBox(props) {
         })
       ))
       .then(() => {
-      props.setHost(true);
+        props.setHost();
     }).then(() => {
       navigate(`/${url}`)
     })

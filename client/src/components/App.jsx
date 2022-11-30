@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { useCookies } from 'react-cookie'
+
 import axios from 'axios';
 
 import Welcome from "./Welcome";
@@ -13,7 +15,7 @@ import './App.css';
 export default function App(props) {
 
   const [name, setName] = useState("");
-  const [host, setHost] = useState(false);
+  const [cookies, setCookie] = useCookies(['host']);
   
   const url = useRef(generateRandomString()).current;
 
@@ -22,12 +24,8 @@ export default function App(props) {
   const GAME = "GAME";
 
   useEffect(() => {
-    transition(host ? props.mode : WELCOME)
-  }, [host, props.mode])
-
-  useEffect(() => {
-    setHost(props.host)
-  }, [props.host])
+    transition(cookies.host ? props.mode : WELCOME)
+  }, [cookies.host, props.mode])
 
    const { mode, transition } = useVisualMode(WELCOME);
 
@@ -39,6 +37,10 @@ export default function App(props) {
   const handleName = (e) => {
     setName(e.target.value);
   };
+
+  const setHost = () => {
+    setCookie('host', true, { path: '/' });
+  }
 
 
 
