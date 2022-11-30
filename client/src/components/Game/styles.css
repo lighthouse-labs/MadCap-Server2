@@ -26,9 +26,11 @@
 
 .game-board-inner {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
-  height: 476px;
+  width: 100%;
+  height: 460px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -37,6 +39,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .alpha-row {
@@ -44,12 +47,31 @@
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  width: 100%;
+  /* width: fit-content; */
   padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.alpha-row.results {
+  width: 100%;
+}
+.alpha-row.game {
+  width: fit-content;
+}
+
+
+.alpha2.results {
+  width: 90%;
 }
 
 .alpha-item h2 {
   margin-top: 3px;
   margin-bottom: 3px;
+}
+.alpha-item.results-phase {
+  display: inline-block;
+  width: 100%;
 }
 
 .clock {
