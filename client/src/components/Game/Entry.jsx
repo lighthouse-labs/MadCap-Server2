@@ -12,13 +12,22 @@ export default function Entry(props) {
 
   const send = () => {
     props.sendMessage(message);
+    setMessage("")
     // console.log(message);
   };
 
   const post = (e) => {
+
     setMessage(e.target.value);
     // console.log('state change', message)
   };
+
+  const enterWatch = (e) => {
+    console.log(e.key)
+    if (e.key === "Enter") {
+      send();
+    }
+  }
 
   /// if event.target ==
 
@@ -35,6 +44,7 @@ export default function Entry(props) {
           style={{ width: '100%' }}
           type="text"
           onChange={post}
+          onKeyPress={enterWatch}
           value={message}
         />
         <button id="submit" onClick={send}>Send</button>
