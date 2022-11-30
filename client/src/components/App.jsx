@@ -28,7 +28,6 @@ export default function App(props) {
   const [cookies, setCookie] = useCookies(['host']);
   
   const url = useRef(generateRandomString()).current;
-  const curr_url_path = useRef(url_path).current;
   
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
@@ -51,7 +50,7 @@ export default function App(props) {
   }, [cookies.host, props.mode])
 
   console.log("loader_url:", full_url);
-  console.log("url_path:", curr_url_path)
+  console.log("url_path:", url_path)
 
 
   const { mode, transition } = useVisualMode(WELCOME);
@@ -93,6 +92,8 @@ export default function App(props) {
       {/* Welcome is default */}
       {mode === WELCOME && (
         <Welcome
+          transition={transition}
+          url_path={url_path}
           url={url}
           name={name}
           host={cookies.host}

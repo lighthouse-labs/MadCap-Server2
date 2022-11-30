@@ -15,8 +15,8 @@ export default function WelcomeBox(props) {
   const [btnState, setBtnState] = useState("MAKE")
 
   useEffect(() => {
-    setBtnState(props.host ? "MAKE" : "JOIN")
-  }, [props.host])
+    setBtnState(props.url_path ? "JOIN" : "MAKE")
+  }, [props.url_path])
 
   const MAKE = "MAKE";
   const JOIN = "JOIN";
@@ -26,9 +26,9 @@ export default function WelcomeBox(props) {
   const [avatar_url, setAvatar_url] = useState();
   const [color, setColor] = useState();
   const navigate = useNavigate();
+  console.log("url_path", props.url_path);
 
   const createGame = () => {
-    console.log("url", url);
    
       axios.post("/api/games", { url })
       .then(() => (
@@ -46,6 +46,20 @@ export default function WelcomeBox(props) {
     })
     .catch((err) => console.error(err));
 
+  }
+
+  const joinGame = () => {
+     
+      axios.post(`/api/games/${props.url_path}/users`, {
+        name,
+        color,
+        avatar_url,
+        host: true
+      })
+      .then(() => {
+        props.transition("LOBBY")
+      })
+    .catch((err) => console.error(err));
   }
 
   return (
@@ -72,12 +86,14 @@ export default function WelcomeBox(props) {
         <UserName
           handleName={handleName}
           name={name} />
-        <ActionButton
-          handleJoin={props.handleJoin}
-          newPlayer={props.newPlayer} 
+        {btnState === MAKE && <ActionButton
+          message="Make New Game"
           onClick={createGame} 
-          message="Make New Game" />
-        {btnState === JOIN && <ActionButton message="Join the Game!" />}
+        />}
+        {btnState === JOIN && <ActionButton
+          message="Join the Game!"
+          onClick={joinGame}
+        />}
       </Box>
     </Fragment>
   );
