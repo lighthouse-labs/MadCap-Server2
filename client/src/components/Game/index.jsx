@@ -181,7 +181,6 @@ const romanAlpha = [
     answer: "",
     captureColour: "",
   },
-
 ];
 const dummychat = [
   {
@@ -209,7 +208,8 @@ export default function Game(props) {
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
-    phase: "results"
+    //phase : game and results
+    phase: "game",
   });
 
   const setAnswer = (message, store) => {
@@ -236,6 +236,9 @@ export default function Game(props) {
     }
     return false;
   };
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
 
   const stateRef = useRef(state);
   useEffect(() => {
@@ -244,7 +247,10 @@ export default function Game(props) {
   });
 
   useEffect(() => {
+    // console.log(stateRef.current);
+
     socket.on("connect", () => {
+      // console.log("connected");
       socket.emit("set-room", dummyuser.url);
       setState({
         ...stateRef.current,
@@ -276,7 +282,7 @@ export default function Game(props) {
           lastMessage: message.message,
         }));
       }
-      if (message.type === "chat"){
+      if (message.type === "chat") {
         let chatSet = [
           ...stateRef.current.chats,
           { type: "chat", user: message.user, message: message.message },
@@ -299,44 +305,52 @@ export default function Game(props) {
   }, []);
 
   const sendMessage = (message) => {
-    let messagetype = "chat"
+    //had to move this here, since can connect when not on this page. less backend setting if just have a state "inroom"
+    socket.emit("set-room", dummyuser.url);
+    let messagetype = "chat";
     if (stateRef.current.phase === "game") {
-      messagetype = "capture"
+      messagetype = "capture";
     }
+    let messageUpper = capitalizeFirstLetter(message);
     const messageObject = {
-      message: message,
+      message: messageUpper,
       room: dummyuser.url,
       colour: dummyuser.colour,
       user: dummyuser.name,
       type: messagetype,
     };
-    console.log(messageObject)
+    // console.log(messageObject);
+    // console.log(socket);
     socket.emit("send-message", messageObject);
   };
 
   return (
     <div className="game-main">
-      <Box className="game-container"
+      <Box
+        className="game-container"
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           maxWidth: 435,
-          height: '100%',
-          width: '100%',
+          height: "100%",
+          width: "100%",
           px: 0,
-        }}>
+        }}
+      >
         <GameBoard
           answers={state.answers}
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
-          phase = {state.phase} />
-        <StatusBox sendMessage={sendMessage}
+          phase={state.phase}
+        />
+        <StatusBox
+          sendMessage={sendMessage}
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
-          chats={state.chats} 
-          />
+          chats={state.chats}
+        />
       </Box>
     </div>
   );

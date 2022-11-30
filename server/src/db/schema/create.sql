@@ -37,5 +37,6 @@ CREATE TABLE users (
   score SMALLINT DEFAULT 0,
   color VARCHAR(255),
   game_id INTEGER REFERENCES games(id) ON DELETE SET NULL,
-  avatar_url VARCHAR(255)
+  avatar_url VARCHAR(255),
+  host BOOLEAN DEFAULT FALSE
 ); 

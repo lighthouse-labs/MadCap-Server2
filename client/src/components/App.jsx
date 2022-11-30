@@ -1,6 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { useCookies } from 'react-cookie'
+
 import axios from 'axios';
+
 
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
@@ -8,10 +11,19 @@ import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
 import { generateRandomString } from '../helpers/helpers';
 
+
 import './App.css';
+
+
+
+
+
 
 export default function App(props) {
 
+  const [name, setName] = useState("");
+  const [cookies, setCookie] = useCookies(['host']);
+  
   const url = useRef(generateRandomString()).current;
 
   const WELCOME = "WELCOME";
@@ -19,12 +31,11 @@ export default function App(props) {
   const GAME = "GAME";
 
   useEffect(() => {
-    transition(props.mode)
-  }, [props.mode])
+    transition(cookies.host ? props.mode : WELCOME)
+  }, [cookies.host, props.mode])
 
    const { mode, transition } = useVisualMode(WELCOME);
 
-  const [name, setName] = useState("");
 
   let loader_url;
 
@@ -33,6 +44,10 @@ export default function App(props) {
   const handleName = (e) => {
     setName(e.target.value);
   };
+
+  const setHost = () => {
+    setCookie('host', true, { path: '/' });
+  }
 
 
 
@@ -55,6 +70,7 @@ export default function App(props) {
   // };
 
 
+
   return (
     <div className="App">
       {/* Welcome is default */}
@@ -64,6 +80,7 @@ export default function App(props) {
           name={name}
           // avatar={avatar}
           handleName={handleName}
+          setHost={setHost}
           handleJoin={handleJoin}
         />
       )}
@@ -75,6 +92,9 @@ export default function App(props) {
         />)}
          
       {mode === "GAME" && <Game />}
+      
     </div>
+
+    
   );
 }

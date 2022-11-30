@@ -11,6 +11,7 @@ module.exports = (app) => {
       console.log(socket.id)
     });
     socket.on('send-message', message => {
+      console.log(message)
         app.io.in(message.room).emit('message', message);
     });
     socket.on("disconnect", () => {

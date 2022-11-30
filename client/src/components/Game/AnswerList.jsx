@@ -1,12 +1,13 @@
+import classNames from "classnames";
+
 import Box from '@mui/material/Box';
 import AnswerListItem from "./AnswerListItem";
 import Clock from './Clock';
 import Notice from './Notice';
 
-import classNames from "classnames";
 
 export default function AnswerList(props) {
-  console.log(props.answers);
+  // console.log(props.answers)
   const firstHalf = props.answers.slice(0, 13);
   const secondHalf = props.answers.slice(13);
   const answers1 = firstHalf.map((answer) => {
@@ -28,7 +29,8 @@ export default function AnswerList(props) {
         id={answer.id}
         letter={answer.letter}
         captureColour={answer.captureColour}
-        phase={props.phase}
+        answer = {answer.answer}
+        phase = {props.phase}
       />
     );
   });
