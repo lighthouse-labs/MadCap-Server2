@@ -46,7 +46,7 @@ export default function SelectCategories(props) {
   };
 
   return (
-    <FormControl sx={{ m: 1, width: '93%' }}
+    <FormControl sx={{ m: 1, width: '100%' }}
       className="select-categories">
       <InputLabel id="multiple-chip-label">
         Categories
@@ -63,7 +63,7 @@ export default function SelectCategories(props) {
           <Box sx={{
             display: 'flex', flexWrap: 'wrap',
             gap: 0, '& .MuiChip-root':
-              { fontSize: '10px' }
+              { fontSize: '12px' }
           }}
           >
             {selected.map((value) => (

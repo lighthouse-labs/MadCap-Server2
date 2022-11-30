@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+// import Container from '@mui/material/Container';
 
 import GamePlayersList from "./GamePlayersList";
 import Entry from "./Entry";
@@ -7,27 +7,29 @@ import ChatList from './ChatList';
 
 export default function StatusBox(props) {
   return (
-    <Box className="status-box" sx={{ px: '5px' }}>
+    <Box className="status-box" >
+    
       <GamePlayersList />
 
-      <Container className="text-box-main"
+      <Box className="chat-box-main"
         sx={{
           backgroundColor: '#dde5ff',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-end',
           justifyContent: 'space-between',
-          pr: 1, pb: '4px',
+          pr: 0, pl: '4px', pb: '4px',
           m: 0,
           width: '71.5%',
-          height: '320px',
+          height: '313px',
         }}>
-        <Box className="text-box"
+        <Box className="chat-box"
           sx={{
-            width: '100%',
             backgroundColor: '#bec5dc',
+            height: '100%',
+            width: '100%',
             maxHeight: '300px',
-            overflow: 'auto',
+            overflow: 'auto'
           }}>
         <ChatList chats={props.chats} />
         </Box>
@@ -36,7 +38,7 @@ export default function StatusBox(props) {
           isConnected={props.isConnected}
           lastMessage={props.lastMessage}
         />
-      </Container>
+      </Box>
     </Box>
   );
 }

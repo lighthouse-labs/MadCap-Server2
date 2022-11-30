@@ -7,7 +7,7 @@ export default function CategoriesBox(props) {
   const { categories } = props;
   return (
     <Fragment>
-      <Box>
+      <Box className="cat-box" sx={{width: '93%'}}>
        <SelectCategories categories={categories} />
       </Box>
     </Fragment>

@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import axios from 'axios';
+
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
-
-
 import { generateRandomString } from '../helpers/helpers';
 
 import './App.css';
@@ -39,20 +39,20 @@ export default function App(props) {
     setName(e.target.value);
   };
 
-                                //change to WELCOME
 
-  // function handleJoin(id, name, color) {
-  //   axios.post(`/api/games/1/users`, {
-  //     name: 'shelly',
-  //     color: 'purple'
-  //   })
-  //     .then(() => transition(LOBBY))
-  //     .catch(err => console.log(err));
-  // }
 
-  // function handleStart() {
-  //   transition(GAME);
-  // }
+  function handleJoin(id, name, color) {
+    axios.post(`/api/games/1/users`, {
+      name: 'shelly',
+      color: 'purple'
+    })
+      .then(() => transition(LOBBY))
+      .catch(err => console.log(err));
+  }
+
+  function handleStart() {
+    transition(GAME);
+  }
 
 
   // const handleMakeGame = () => {
@@ -70,15 +70,17 @@ export default function App(props) {
           // avatar={avatar}
           handleName={handleName}
           setHost={setHost}
+          handleJoin={handleJoin}
         />
       )}
       {mode === LOBBY && (
         <Lobby
           name={name}
           url={loader_url}
+          handleStart={handleStart}
         />)}
          
-      {/* <Game /> */}
+      {mode === "GAME" && <Game />}
     </div>
   );
 }

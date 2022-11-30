@@ -3,8 +3,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { TextField, Snackbar } from '@mui/material';
 
-import { generateRandomString } from '../../helpers/helpers';
-
 
 export default function LinkBox(props) {
   const [url, setUrl] = useState("");
@@ -16,7 +14,7 @@ export default function LinkBox(props) {
 
   const handleCopy = () => {
     setOpen(true);
-    navigator.clipboard.writeText(`http://localhost:8000${url}`);
+    navigator.clipboard.writeText(url);
   };
 
   const CopyButton = () => (
@@ -53,6 +51,7 @@ export default function LinkBox(props) {
         autoHideDuration={1600}
         onChange={() => setOpen(false)}
         open={open}
+        sx={{}}
       />
     </Fragment>
   );

@@ -27,7 +27,7 @@
 
 .game-settings-main {
   height: 600px;
-  width: fit-content;
+  width: 67%;
   display: flex;
   flex-direction: column;
   align-items: center;
