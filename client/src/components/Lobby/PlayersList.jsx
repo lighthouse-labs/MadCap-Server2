@@ -1,5 +1,3 @@
-import { Fragment, useEffect, useState } from 'react';
-
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -25,9 +23,7 @@ export default function PlayersList(props) {
   ];
 
   const host = props.players && props.players.find(player => player.host === true)
-  console.log("List Host", host);
-  console.log("Players", props.players)
-  //extract 
+  //extract players player item list.
   const PlayerListItem = props.players && props.players.map((player) =>
   (
     <ListItem key={player.id}
