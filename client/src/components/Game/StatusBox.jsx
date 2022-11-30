@@ -21,7 +21,7 @@ export default function StatusBox(props) {
           pr: 0, pl: '4px', pb: '4px',
           m: 0,
           width: '71.5%',
-          height: '313px',
+          height: '100%',
         }}>
         <Box className="chat-box"
           sx={{

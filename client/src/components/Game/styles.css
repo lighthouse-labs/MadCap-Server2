@@ -6,6 +6,16 @@
   align-items: center;
 }
 
+
+.game-board-main {
+  /* background-color: #f0f2ff; */
+  width: 100%;
+  /* height: fit-content; */
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 12px;
+}
 .game-header {
   display: flex;
   justify-content: space-between;
@@ -13,15 +23,8 @@
   padding-left: 10px;
   width: 98%;
   height: 45px;
-  margin-top: 3px;
-}
-
-.game-board-main {
-  background-color: #f0f2ff;
-  width: 100%;
-  height: fit-content;
-  padding-left: 10px;
-  padding-right: 10px;
+  /* margin-top: 3px; */
+  /* margin-top: 7px; */
 }
 
 .game-board-inner {
@@ -60,7 +63,6 @@
   width: fit-content;
 }
 
-
 .alpha2.results {
   width: 90%;
 }
@@ -76,8 +78,8 @@
 
 .clock {
   width: fit-content;
-  margin-bottom: 28px;
-  margin-top: 46px;
+  margin-bottom: 9px;
+  margin-top: 65px;
   display: flex;
   flex-direction: column;
   align-items: center;
