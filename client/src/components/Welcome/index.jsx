@@ -18,6 +18,7 @@ export default function Welcome(props) {
         handleJoin={props.handleJoin}
         newPlayer={props.newPlayer}
         onClick={props.onClick}
+        setHost={props.setHost}
       />
       <HowToPlay />
     </div>

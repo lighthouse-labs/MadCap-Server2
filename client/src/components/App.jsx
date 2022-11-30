@@ -19,12 +19,17 @@ export default function App(props) {
   const GAME = "GAME";
 
   useEffect(() => {
-    transition(props.mode)
+    transition(host ? props.mode : WELCOME)
   }, [props.mode])
+
+  useEffect(() => {
+    setHost(props.host)
+  }, [props.host])
 
    const { mode, transition } = useVisualMode(WELCOME);
 
   const [name, setName] = useState("");
+  const [host, setHost] = useState(false);
 
   let loader_url;
 
@@ -64,6 +69,7 @@ export default function App(props) {
           name={name}
           // avatar={avatar}
           handleName={handleName}
+          setHost={setHost}
         />
       )}
       {mode === LOBBY && (

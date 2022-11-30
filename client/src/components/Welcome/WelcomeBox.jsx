@@ -27,6 +27,8 @@ export default function WelcomeBox(props) {
       axios.post(`/api/games/${url}/users`, { name, color, avatar_url})
     ])
     .then(() => {
+      props.setHost(true);
+    }).then(() => {
       navigate(`/${url}`)
     })
     .catch((err) => console.error(err));
