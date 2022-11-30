@@ -21,6 +21,7 @@ const romanAlpha = [
     letter: "A",
     answer: "Abalone",
     captureColour: "",
+    captureUser: "",
   },
   {
     id: 2,
@@ -183,16 +184,16 @@ const romanAlpha = [
   },
 ];
 const dummychat = [
-  {
-    type: "chat",
-    user: "dummychatuser",
-    message: "dummychatmessage",
-  },
-  {
-    type: "capture",
-    user: "dummychatuser",
-    message: "A",
-  },
+  // {
+  //   type: "chat",
+  //   user: "dummychatuser",
+  //   message: "dummychatmessage",
+  // },
+  // {
+  //   type: "capture",
+  //   user: "dummychatuser",
+  //   message: "A",
+  // },
 ];
 const dummyuser = {
   name: "Dummy",
@@ -200,6 +201,7 @@ const dummyuser = {
   colour: "Green",
   avatar: 1,
   score: 10,
+  admin: true
 };
 
 export default function Game(props) {
@@ -266,6 +268,7 @@ export default function Game(props) {
     });
 
     socket.on("message", (message) => {
+      console.log(stateRef.current)
       if (
         message.type === "capture" &&
         !confirmUsed(message, stateRef.current)
@@ -294,13 +297,42 @@ export default function Game(props) {
         }));
       }
 
+
       // console.log(stateRef.current)
     });
+
+    //can be used to update from host
+
+    socket.on("request-state", (message) => {
+      console.log("state requested")
+      if (dummyuser.admin) {
+        console.log("got here")
+        let currentState = {
+          answers: stateRef.current.answers,
+          chats:stateRef.current.chats,
+          room: dummyuser.url
+        }
+        console.log(currentState)
+        socket.emit("send-state", currentState)
+      }
+    })
+
+    socket.on("sync-state", (message) => {
+      console.log ("state syncing")
+      setState((prev) => ({
+        ...prev,
+        message: message.answers,
+        chats: message.chats,
+      }));
+
+    })
 
     return () => {
       socket.off("connect");
       socket.off("disconnect");
       socket.off("message");
+      socket.off("request-state")
+      socket.off("sync-state")
     };
   }, []);
 
