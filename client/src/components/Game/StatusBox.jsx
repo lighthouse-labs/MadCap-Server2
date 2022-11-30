@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 
 import GamePlayersList from "./GamePlayersList";
 import Entry from "./Entry";
+import ChatList from './ChatList';
 
 export default function StatusBox(props) {
   return (
@@ -50,6 +51,7 @@ export default function StatusBox(props) {
             <li>user1: capture A</li>
           </ul>
         </Box>
+        <ChatList chats={props.chats} />
         <Entry
           sendMessage={props.sendMessage}
           isConnected={props.isConnected}

@@ -13,6 +13,7 @@ export default function Welcome(props) {
         handleName={props.handleName}
         handleJoin={props.handleJoin}
         newPlayer={props.newPlayer}
+        onClick={props.onClick}
       />
       <HowToPlay />
     </div>

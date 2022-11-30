@@ -6,12 +6,12 @@ import { TextField, Snackbar } from '@mui/material';
 import { generateRandomString } from '../../helpers/helpers';
 
 
-export default function LinkBox() {
+export default function LinkBox(props) {
   const [url, setUrl] = useState("");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setUrl(`/${generateRandomString()}`);
+    setUrl(`/${props.url}`);
   }, []);
 
   const handleCopy = () => {
