@@ -43,19 +43,21 @@ export default function AnswerList(props) {
 
   return (
     <div className="game-board-inner">
+
       <ul className={`alpha-row alpha1 ${rowPhase}`}>{answers1}</ul>
 
       {props.phase === "game" &&
         <div className="game-board-inner-center">
 
           <Box className="clock">
-            <Clock />
+            <Clock counter={props.counter}/>
           </Box>
           <Notice lastMessage={props.lastMessage} />
 
         </div>}
 
       <ul className={`alpha-row alpha2 ${rowPhase}`}>{answers2}</ul>
+      
     </div>
   );
 }

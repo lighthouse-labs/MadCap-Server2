@@ -6,7 +6,7 @@ export default function ChatList(props) {
 
     return (
       <ChatListItem
-        // key={chat.id}
+        key={chat.id}
         message={chat.message}
         user={chat.user}
         type={chat.type}

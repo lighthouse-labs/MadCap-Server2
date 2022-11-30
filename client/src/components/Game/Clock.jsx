@@ -1,6 +1,6 @@
 import { useState, useEffect, Fragment } from "react";
 
-export default function Clock() {
+export default function Clock(props) {
 
   const seconds = 60
   const [counter, setCounter] = useState(seconds);

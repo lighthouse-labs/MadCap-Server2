@@ -1,4 +1,5 @@
 import AnswerList from './AnswerList';
+import Podium from './Podium';
 
 export default function GameBoard(props) {
 
@@ -9,9 +10,15 @@ export default function GameBoard(props) {
         <h2>Animal Kingdom:</h2>
         <h1>Ocean</h1>
       </div>
-      <AnswerList answers={props.answers}
-        lastMessage={props.lastMessage}
-        phase = {props.phase} />
+      { props.phase === "game" || props.phase === "results" ?
+        <AnswerList
+          answers={props.answers}
+          lastMessage={props.lastMessage}
+          phase={props.phase}
+          counter={props.counter}
+        />
+        :
+        props.phase === "podium" && <Podium /> }
     </div>
   );
 }

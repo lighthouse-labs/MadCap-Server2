@@ -203,6 +203,17 @@ const dummyuser = {
 };
 
 export default function Game(props) {
+  //extract code eventually
+  // const seconds = 60 //dummy number
+  // const [counter, setCounter] = useState(seconds);
+
+  // useEffect(() => {
+  //   const timer =
+  //     counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+  //   return () => clearInterval(timer);
+  // }, [counter]);
+
+
   const [state, setState] = useState({
     answers: romanAlpha,
     chats: dummychat,
@@ -344,6 +355,7 @@ export default function Game(props) {
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
           phase={state.phase}
+          // counter={counter}
         />
         <StatusBox
           sendMessage={sendMessage}
