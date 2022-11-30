@@ -29,8 +29,8 @@ export default function StatusBox(props) {
             maxHeight: '300px',
             overflow: 'auto',
           }}>
-        </Box>
         <ChatList chats={props.chats} />
+        </Box>
         <Entry
           sendMessage={props.sendMessage}
           isConnected={props.isConnected}
