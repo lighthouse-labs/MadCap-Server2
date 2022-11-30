@@ -292,6 +292,7 @@ export default function Game(props) {
 
       <Container className="game-container"
         sx={{
+          // '.MuiContainer-root': {'@media(minWidth: 600px)' : { px: 0}},
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -300,7 +301,6 @@ export default function Game(props) {
           height: '100%',
           width: '100%',
           px: 0,
-          // '& .MuiContainer-root': {@media (min-width: 600px) {px: 0}}
           
         }}>
         <GameBoard answers={state.answers}

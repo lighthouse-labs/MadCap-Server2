@@ -63,7 +63,7 @@ export default function SelectCategories(props) {
           <Box sx={{
             display: 'flex', flexWrap: 'wrap',
             gap: 0, '& .MuiChip-root':
-              { fontSize: '10px' }
+              { fontSize: '12px' }
           }}
           >
             {selected.map((value) => (

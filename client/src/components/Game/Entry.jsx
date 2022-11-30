@@ -17,8 +17,6 @@ export default function Entry(props) {
 
     /// if event.target ==
 
-
-
   return (
     <Box className="entry-box" sx={{ width: '100%' }}>
       {/* <p>Connected: {"" + props.isConnected}</p>

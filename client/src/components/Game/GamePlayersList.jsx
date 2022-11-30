@@ -26,15 +26,16 @@ export default function PlayersList(props) {
   //extract 
   const PlayerListItem = players.map((player) =>
   (
-    <ListItem key={players.id} style={{ padding: 0 }}
+    <ListItem key={players.id}
+      style={{ padding: 0 }}
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start'
       }}>
-      <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <ListItemAvatar
+        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <Avatar src={player.imgPath} alt={player.label} sx={{ maxWidth: '30%', height: 'auto' }}>
-
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
         <Typography sx={{ fontSize: "10px", pl: 1 }}>
@@ -42,7 +43,7 @@ export default function PlayersList(props) {
         </Typography>
       </ListItemAvatar>
       <ListItemText primary={player.name}
-        sx={{ '.MuiTypography-root': { fontSize: "10px", pl: 1 } }} />
+        sx={{ '.MuiTypography-root': { fontSize: "12px", pl: 1 } }} />
     </ListItem>
   ));
 
@@ -53,7 +54,8 @@ export default function PlayersList(props) {
 
   return (
     <Fragment>
-      <Box className="players-box" sx={{ height: 'fit-content' }}>
+      <Box className="players-box"
+        sx={{ height: 'fit-content', width: '34%' }}>
         <Paper style={{ maxHeight: '315px', width: '100%', paddingRight: '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px', }}>
           <Box sx={{
             flexGrow: 1,
@@ -77,7 +79,7 @@ export default function PlayersList(props) {
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar sx={{ maxWidth: '40%', height: 'auto' }}>
                       </Avatar>
-                      <Typography sx={{ fontSize: "10px", pl: 1 }}>
+                      <Typography sx={{ fontSize: "12px", pl: 1 }}>
                         Host
                       </Typography>
                     </ListItemAvatar>

@@ -8,6 +8,7 @@ import ChatList from './ChatList';
 export default function StatusBox(props) {
   return (
     <Box className="status-box" sx={{ px: '5px' }}>
+    
       <GamePlayersList />
 
       <Container className="text-box-main"
@@ -17,17 +18,18 @@ export default function StatusBox(props) {
           flexDirection: 'column',
           alignItems: 'flex-end',
           justifyContent: 'space-between',
-          pr: 1, pb: '4px',
+          pr: 0, pl: '4px', pb: '4px',
           m: 0,
           width: '71.5%',
           height: '320px',
         }}>
         <Box className="text-box"
           sx={{
-            width: '100%',
             backgroundColor: '#bec5dc',
+            height: '100%',
+            width: '100%',
             maxHeight: '300px',
-            overflow: 'auto',
+            overflow: 'auto'
           }}>
         <ChatList chats={props.chats} />
         </Box>

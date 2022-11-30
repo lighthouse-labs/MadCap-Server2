@@ -11,5 +11,5 @@ export default function ChatList(props) {
       />
     );
   });
-  return <ul>{chats}</ul>;
+  return <ul className="chat-list">{chats}</ul>;
 }
