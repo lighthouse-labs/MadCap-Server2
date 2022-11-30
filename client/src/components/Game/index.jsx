@@ -21,6 +21,7 @@ const romanAlpha = [
     letter: "A",
     answer: "Abalone",
     captureColour: "",
+    captureUser: "",
   },
   {
     id: 2,
@@ -183,16 +184,16 @@ const romanAlpha = [
   },
 ];
 const dummychat = [
-  {
-    type: "chat",
-    user: "dummychatuser",
-    message: "dummychatmessage",
-  },
-  {
-    type: "capture",
-    user: "dummychatuser",
-    message: "A",
-  },
+  // {
+  //   type: "chat",
+  //   user: "dummychatuser",
+  //   message: "dummychatmessage",
+  // },
+  // {
+  //   type: "capture",
+  //   user: "dummychatuser",
+  //   message: "A",
+  // },
 ];
 const dummyuser = {
   name: "Dummy",
