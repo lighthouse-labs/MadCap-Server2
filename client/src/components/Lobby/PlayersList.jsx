@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -16,17 +16,21 @@ import CircleIcon from '@mui/icons-material/Circle';
 export default function PlayersList(props) {
 
   //  dummy memory!
-  const players = [
+  const hardcodedPlayers = [
     { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'lorepuse' },
     { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle' },
     { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat' },
     { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash' },
     { id: 4, color: 'orange', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.' }
   ];
+
+  const [players, setPlayers] = useState([]);
+
+  useEffect
   //extract 
-  const PlayerListItem = players.map((player) =>
+  const PlayerListItem = hardcodedPlayers.map((player) =>
   (
-    <ListItem key={players.id}
+    <ListItem key={hardcodedPlayers.id}
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -49,7 +53,6 @@ export default function PlayersList(props) {
   }));
 
   return (
-    <Fragment>
       <Box className="players-box" sx={{ height: 'fit-content' }}>
         <Paper style={{ height: '640px', width: '100%' }} elevation={3} sx={{ p: '15px', }}>
           <Box sx={{
@@ -88,6 +91,5 @@ export default function PlayersList(props) {
           </Box>
         </Paper>
       </Box>
-    </Fragment>
   );
 };
