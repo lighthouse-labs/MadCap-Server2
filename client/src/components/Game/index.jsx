@@ -296,13 +296,34 @@ export default function Game(props) {
         }));
       }
 
+
       // console.log(stateRef.current)
     });
+
+    socket.on("request-state", () => {
+      if (stateRef.current.user.admin) {
+        let currentState = {
+          answers: stateRef.current.answers,
+          chats:stateRef.current.chats
+        }
+        socket.emit("send-state", currentState)
+      }
+    })
+
+    socket.on("sync-state", (message) => {
+      setState((prev) => ({
+        ...prev,
+        message: message.answers,
+        chats: message.chats,
+      }));
+
+    })
 
     return () => {
       socket.off("connect");
       socket.off("disconnect");
       socket.off("message");
+      socket.off("request-state")
     };
   }, []);
 

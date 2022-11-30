@@ -22,7 +22,12 @@ module.exports = (app) => {
       socket.join(room)
       console.log(socket.rooms)
     });
+    socket.on("request-state-from-host", (room) => {
+      app.io.in(room).emit('request-state')
+    })
+    socket.on("send-state", (state)=>{
+      app.io.in(state.room).emit('sync-state', state)
+    })
+
   });
 };
-
-
