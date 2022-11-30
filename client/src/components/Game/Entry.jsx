@@ -23,7 +23,6 @@ export default function Entry(props) {
   };
 
   const enterWatch = (e) => {
-    console.log(e.key)
     if (e.key === "Enter") {
       send();
     }

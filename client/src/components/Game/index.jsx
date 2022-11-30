@@ -267,6 +267,7 @@ export default function Game(props) {
     });
 
     socket.on("message", (message) => {
+      console.log(stateRef.current)
       if (
         message.type === "capture" &&
         !confirmUsed(message, stateRef.current)
