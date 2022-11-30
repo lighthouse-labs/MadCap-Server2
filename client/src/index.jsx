@@ -16,6 +16,8 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 // import SocketPoC from "./SocketPoC"
 
+import { CookiesProvider } from 'react-cookie'
+
 
 const router = createBrowserRouter([
   {
@@ -39,8 +41,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   <RouterProvider router={router}/>
-    {/* <SocketPoC /> */}
+    <CookiesProvider>
+      <RouterProvider router={router}/>
+      {/* <SocketPoC /> */}
+    </CookiesProvider>
   </React.StrictMode>
 );
 
