@@ -31,7 +31,6 @@ export default function GameSettings(props) {
         <CategoriesBox categories={props.categories} />
         <OptionsBox />
       </Box>
-<<<<<<< HEAD
       <Box
         sx={{
           backgroundColor: '#f0f5ff',
@@ -46,23 +45,6 @@ export default function GameSettings(props) {
         }}>
         <LinkBox />
         <StartButton handleStart={props.handleStart}/>
-=======
-      <Box sx={{
-        backgroundColor: '#f0f5ff',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        mt: '10px',
-        ml: '6px',
-        // width: '320px',
-        width: '100%',
-        // minHeight: '200px',
-        height: 'fit-content',
-        pb: '10px'
-      }}>
-      <LinkBox url={props.url}/>
-      <StartButton />
->>>>>>> master
       </Box>
     </div>
   );

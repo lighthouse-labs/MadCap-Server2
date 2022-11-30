@@ -1,8 +1,8 @@
 import classNames from "classnames";
 
 export default function AnswerListItem(props) {
-  console.log(props.letter)
-  console.log(props.id)
+  // console.log(props.letter)
+  // console.log(props.id)
   let alphaRows = classNames(
     props.captureColour,
     { "letter-captured": props.captureColour },

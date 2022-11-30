@@ -18,7 +18,7 @@ export default function App(props) {
   // const LOBBY = "LOBBY";
   // const GAME = "GAME";
 
-  const { mode, transition } = useVisualMode(props.mode || WELCOME);
+  // const { mode, transition } = useVisualMode(props.mode || WELCOME);
 
   const [name, setName] = useState("");
 
