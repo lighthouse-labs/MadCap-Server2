@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 
@@ -18,7 +18,11 @@ export default function App(props) {
   const LOBBY = "LOBBY";
   const GAME = "GAME";
 
-  const { mode, transition } = useVisualMode(props.mode || WELCOME);
+  useEffect(() => {
+    transition(props.mode)
+  }, [props.mode])
+
+   const { mode, transition } = useVisualMode(WELCOME);
 
   const [name, setName] = useState("");
 

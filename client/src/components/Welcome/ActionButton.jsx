@@ -5,7 +5,7 @@ export default function ActionButton(props) {
 
   return (
     <Fragment>
-      <Button onClick={props.handleJoin} variant="contained" color="success" size="large"
+      <Button onClick={props.onClick} variant="contained" color="success" size="large"
         sx={{
           width: '100%',
           maxWidth: '350px',
