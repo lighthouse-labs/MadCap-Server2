@@ -201,6 +201,7 @@ const dummyuser = {
   colour: "Green",
   avatar: 1,
   score: 10,
+  admin: true
 };
 
 export default function Game(props) {
@@ -300,17 +301,24 @@ export default function Game(props) {
       // console.log(stateRef.current)
     });
 
-    socket.on("request-state", () => {
-      if (stateRef.current.user.admin) {
+    //can be used to update from host
+
+    socket.on("request-state", (message) => {
+      console.log("state requested")
+      if (dummyuser.admin) {
+        console.log("got here")
         let currentState = {
           answers: stateRef.current.answers,
-          chats:stateRef.current.chats
+          chats:stateRef.current.chats,
+          room: dummyuser.url
         }
+        console.log(currentState)
         socket.emit("send-state", currentState)
       }
     })
 
     socket.on("sync-state", (message) => {
+      console.log ("state syncing")
       setState((prev) => ({
         ...prev,
         message: message.answers,
@@ -324,6 +332,7 @@ export default function Game(props) {
       socket.off("disconnect");
       socket.off("message");
       socket.off("request-state")
+      socket.off("sync-state")
     };
   }, []);
 
