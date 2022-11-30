@@ -33,7 +33,6 @@ export default function Lobby(props) {
           <h1>Lobby</h1>
         </div>
       </Box>
-<<<<<<< HEAD
       <Box
         sx={{
           my: 1,
@@ -46,21 +45,8 @@ export default function Lobby(props) {
         }}>
         <PlayersList name={props.name} />
         <GameSettings
-          categories={categories} handleStart={props.handleStart}
+          categories={categories} handleStart={props.handleStart} url={props.url}
         />
-=======
-      <Box sx={{
-        my: 1,
-        px: 1,
-        display: "flex",
-        justifyContent: "space-between",
-        maxWidth: 435,
-        height: 'fit-content',
-        width: '100%'
-      }}>
-        <PlayersList name={props.name}/>
-        <GameSettings categories={categories} url={props.url} />
->>>>>>> master
       </Box>
     </div>
   );

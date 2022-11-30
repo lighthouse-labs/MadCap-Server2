@@ -25,7 +25,7 @@ export default function StatusBox(props) {
         <Box className="text-box"
           sx={{
             width: '100%',
-            'background-color': '#bec5dc',
+            backgroundColor: '#bec5dc',
             maxHeight: '300px',
             overflow: 'auto',
           }}>

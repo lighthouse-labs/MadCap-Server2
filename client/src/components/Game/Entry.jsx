@@ -27,7 +27,7 @@ export default function Entry(props) {
         className="messages-input"
         style={{
           display: 'flex',
-          'flex-direction': 'row', 'justify-content': 'flex-end'
+          flexDirection: 'row', justifyContent: 'flex-end'
         }}>
         <input
           id="message-box"
