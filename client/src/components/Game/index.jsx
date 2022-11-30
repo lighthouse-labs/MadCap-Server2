@@ -172,7 +172,7 @@ const romanAlpha = [
     answer: "",
     captureColour: "",
   },
-  
+
 ];
 
 export default function Game(props) {
@@ -242,25 +242,26 @@ export default function Game(props) {
 
   return (
     <div className="game-main">
-        {/* <Box>
-        <h1>CLOCKHERE!</h1>
-        <h1>CLOCKHERE!</h1>
-      </Box> */}
+
       <Container className="game-container"
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
+          justifyContent: "center",
+          alignItems: "center",
           maxWidth: 435,
-          height: 'fit-content',
+          height: '100%',
           width: '100%',
-          px: 0
+          px: 0,
+          // '& .MuiContainer-root': {@media (min-width: 600px) {px: 0}}
+          
         }}>
-        <GameBoard answers={state.answers}/>
+        <GameBoard answers={state.answers}
+          isConnected={state.isConnected}
+          lastMessage={state.lastMessage} />
         <StatusBox sendMessage={sendMessage}
           isConnected={state.isConnected}
-          lastMessage={state.lastMessage}/>
+          lastMessage={state.lastMessage} />
       </Container>
     </div>
   );

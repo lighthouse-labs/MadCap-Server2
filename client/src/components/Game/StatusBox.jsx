@@ -16,15 +16,16 @@ export default function StatusBox(props) {
           flexDirection: 'column',
           alignItems: 'flex-end',
           justifyContent: 'space-between',
-          pr: 1,
+          pr: 1, pb: '4px',
           m: 0,
-          width: '71.5%'
+          width: '71.5%',
+          height: '320px',
         }}>
         <Box className="text-box"
           sx={{
             width: '100%',
             'background-color': '#bec5dc',
-            maxHeight: '319px',
+            maxHeight: '300px',
             overflow: 'auto',
           }}>
           <ul>

@@ -54,7 +54,7 @@ export default function PlayersList(props) {
   return (
     <Fragment>
       <Box className="players-box" sx={{ height: 'fit-content' }}>
-        <Paper style={{ maxHeight: '340px', width: '100%', 'padding-right': '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px', }}>
+        <Paper style={{ 'max-height': '315px', width: '100%', 'padding-right': '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px', }}>
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,

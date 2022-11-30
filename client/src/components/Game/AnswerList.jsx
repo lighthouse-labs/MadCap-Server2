@@ -1,7 +1,23 @@
+import Box from '@mui/material/Box';
 import AnswerListItem from "./AnswerListItem";
+import Clock from './Clock';
+import Notice from './Notice';
+
 
 export default function AnswerList(props) {
-  const answers = props.answers.map((answer) => {
+  const firstHalf = props.answers.slice(0, 13);
+  const secondHalf = props.answers.slice(13);
+  const answers1 = firstHalf.map((answer) => {
+    return (
+      <AnswerListItem
+        key={answer.id}
+        id={answer.id}
+        letter={answer.letter}
+        captureColour={answer.captureColour}
+      />
+    );
+  });
+  const answers2 = secondHalf.map((answer) => {
     return (
       <AnswerListItem
         key={answer.id}
@@ -12,15 +28,15 @@ export default function AnswerList(props) {
     );
   });
   return (
-    <ul className="alpha-rows"
-      style={{
-        display: 'grid',
-        width: '100%',
-        'grid-template-columns': '93% 0%',
-        'list-style-type': 'none',
-        'padding-left': '10px',
-        'margin-top': 0, 'margin-bottom': '5px'
-      }}
-    >{answers}</ul>
+    <div className="game-board-inner">
+      <ul className="alpha-row alpha1">{answers1}</ul>
+      <div className="game-board-inner-center">
+        <Box class="clock">
+          <Clock />
+        </Box>
+        <Notice lastMessage={props.lastMessage}/>
+      </div>
+      <ul className="alpha-row alpha2">{answers2}</ul>
+    </div>
   );
 }

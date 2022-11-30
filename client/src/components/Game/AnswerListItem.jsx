@@ -11,7 +11,7 @@ export default function AnswerListItem(props) {
     {}
   );
   return (
-    <li className={alphaRows}>
+    <li className={`alpha-item ${alphaRows}`}>
       <h2>{props.letter}</h2>
     </li>
   );
