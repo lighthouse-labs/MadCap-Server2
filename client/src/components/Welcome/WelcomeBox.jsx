@@ -57,13 +57,11 @@ export default function WelcomeBox(props) {
         <UserName
           handleName={handleName}
           name={name} />
-      {/* <Link to={`${url}`} reloadDocument> */}
         <ActionButton
           handleJoin={props.handleJoin}
           newPlayer={props.newPlayer} 
           onClick={createGame} 
           message="Make New Game" />
-      {/* </Link> */}
         {/* {btnState === JOIN && <ActionButton message="Join the Game!" />} */}
       </Box>
     </Fragment>
