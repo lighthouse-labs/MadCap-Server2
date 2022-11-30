@@ -22,11 +22,17 @@ export default function WelcomeBox(props) {
 
   const createGame = () => {
     console.log("url", url);
-    Promise.all([
-      axios.post("/api/games", { url }),
-      axios.post(`/api/games/${url}/users`, { name, color, avatar_url})
-    ])
-    .then(() => {
+   
+      axios.post("/api/games", { url })
+      .then(() => (
+        axios.post(`/api/games/${url}/users`, {
+          name,
+          color,
+          avatar_url,
+          host: true
+        })
+      ))
+      .then(() => {
       props.setHost(true);
     }).then(() => {
       navigate(`/${url}`)
