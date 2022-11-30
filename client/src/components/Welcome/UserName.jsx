@@ -1,14 +1,7 @@
-// import { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 
 export default function UserName(props) {
-  // const [name, setName] = useState("");
-
-  // const handleName = (e) => {
-  //   setName(e.target.value)
-  //   console.log(name)
-  // }
 
   const UserTextField = styled(TextField)({
     '& label.Mui-focused': {

@@ -13,15 +13,16 @@ export default function HowToPlay() {
         height: '100%',
         my: 1
       }}>
-      <Box sx={{
-        backgroundColor: 'aliceblue',
-        width: '100%',
-        height: 350,
-        display: 'flex',
-        justifyContent: 'space-between',
-        mt: 5,
-        mb: 2
-      }}>
+      <Box
+        sx={{
+          backgroundColor: 'aliceblue',
+          width: '100%',
+          height: 350,
+          display: 'flex',
+          justifyContent: 'space-between',
+          mt: 5,
+          mb: 2
+        }}>
         <div className="how-to how-to-description">
           <h2>How To Play</h2>
 
@@ -32,13 +33,14 @@ export default function HowToPlay() {
           <p>will................go.. here.....coool.</p>
         </Paper>
       </Box>
-      <Box sx={{
-        width: '100%',
-        height: 300,
-        backgroundColor: '#f0f2ff',
-        display: 'flex',
-        justifyContent: 'space-between'
-      }}>
+      <Box
+        sx={{
+          width: '100%',
+          height: 300,
+          backgroundColor: '#f0f2ff',
+          display: 'flex',
+          justifyContent: 'space-between'
+        }}>
         <div className="how-to about-description">
           <h2>About</h2>
 

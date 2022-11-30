@@ -60,6 +60,8 @@ export default function WelcomeBox(props) {
           name={name} />
       {/* <Link to={`${url}`} reloadDocument> */}
         <ActionButton
+          handleJoin={props.handleJoin}
+          newPlayer={props.newPlayer} 
           onClick={createGame} 
           message="Make New Game" />
       {/* </Link> */}

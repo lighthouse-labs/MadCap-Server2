@@ -1,10 +1,9 @@
 import classNames from "classnames";
-import "./styles.css";
 
 export default function AnswerListItem(props) {
   console.log(props.letter)
   console.log(props.id)
-  let captureColour = classNames(
+  let alphaRows = classNames(
     props.captureColour,
     { "letter-captured": props.captureColour },
     {"alpha2": props.id > 13 },
@@ -12,7 +11,7 @@ export default function AnswerListItem(props) {
     {}
   );
   return (
-    <li className={captureColour}>
+    <li className={`alpha-item ${alphaRows}`}>
       <h2>{props.letter}</h2>
     </li>
   );

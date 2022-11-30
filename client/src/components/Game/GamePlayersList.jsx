@@ -26,32 +26,35 @@ export default function PlayersList(props) {
   //extract 
   const PlayerListItem = players.map((player) =>
   (
-    <ListItem key={players.id}
+    <ListItem key={players.id} style={{ padding: 0 }}
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start'
       }}>
       <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Avatar src={player.imgPath} alt={player.label} sx={{ maxWidth: '70%', height: 'auto' }}>
+        <Avatar src={player.imgPath} alt={player.label} sx={{ maxWidth: '30%', height: 'auto' }}>
 
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
+        <Typography sx={{ fontSize: "10px", pl: 1 }}>
+          100
+        </Typography>
       </ListItemAvatar>
       <ListItemText primary={player.name}
-        sx={{ '.MuiTypography-root': { fontSize: "12px", pl: 1 } }} />
+        sx={{ '.MuiTypography-root': { fontSize: "10px", pl: 1 } }} />
     </ListItem>
   ));
 
   const CustomStyle = styled('div')(({ theme }) => ({
-    px: 0
-    // backgroundColor: theme.palette.background.paper,
+    px: 0,
+    // backgroundColor: theme.palette.background.paper
   }));
 
   return (
     <Fragment>
       <Box className="players-box" sx={{ height: 'fit-content' }}>
-        <Paper style={{ height: '640px', width: '100%' }} elevation={3} sx={{ p: '15px', }}>
+        <Paper style={{ 'max-height': '315px', width: '100%', 'padding-right': '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px', }}>
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,
@@ -59,21 +62,22 @@ export default function PlayersList(props) {
           }}
           >
             <Grid item xs={12} md={6}>
-              <Typography sx={{ mt: 0, mb: 2 }} variant="h6" component="div">
+              <Typography sx={{ mt: 0, mb: 0 }} variant="h6" component="div">
                 Players
               </Typography>
 
-              <CustomStyle >
+              <CustomStyle sx={{ '& .MuiList-root': { p: 0, pt: 1 } }}>
                 <List dense={true} >
                   <ListItem sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'flex-start'
+                    alignItems: 'flex-start',
+                    p: 0
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar sx={{}}>
+                      <Avatar sx={{ maxWidth: '40%', height: 'auto' }}>
                       </Avatar>
-                      <Typography sx={{ fontSize: "12px", pl: 1 }}>
+                      <Typography sx={{ fontSize: "10px", pl: 1 }}>
                         Host
                       </Typography>
                     </ListItemAvatar>
