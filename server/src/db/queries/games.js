@@ -10,7 +10,7 @@ const getMainGame = (game_url) => {
 
 const getGameUsers = (game_url) => {
   return db.query(`
-  SELECT users.id, name, score, color, avatar_url FROM users
+  SELECT users.id, name, score, color, avatar_url, host FROM users
   JOIN games ON games.id = game_id
   WHERE games.url = $1`, [game_url])
   .then((data) => data.rows)
