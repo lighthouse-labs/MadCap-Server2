@@ -29,7 +29,7 @@ export default function Welcome(props) {
       url={props.url}
       name={props.name}
       handleName={props.handleName}
-      onClick={props.onClick} />
+     />
     <HowToPlay />
   </div>
   );

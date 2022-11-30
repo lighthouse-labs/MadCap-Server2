@@ -16,6 +16,7 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 // import SocketPoC from "./SocketPoC"
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/:game_url",
-    element: <App mode="LOBBY" />,
+    element: <App mode="LOBBY"/>,
     loader: (({ request }) => {
       const url = new URL(request.url)
       return { url };

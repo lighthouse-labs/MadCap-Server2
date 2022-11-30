@@ -1,10 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
-import axios from 'axios';
 
 import { generateRandomString } from '../helpers/helpers';
 
@@ -29,13 +28,11 @@ export default function App(props) {
     setName(e.target.value);
   };
 
-  const handleMakeGame = () => {
-   transition(LOBBY)
-  };
 
-  useEffect(() => {
+  // const handleMakeGame = () => {
+  //  transition(LOBBY)
+  // };
 
-  }, [url])
 
   return (
     <div className="App">
@@ -45,13 +42,12 @@ export default function App(props) {
           url={url}
           name={name}
           handleName={handleName}
-          onClick={handleMakeGame}
         />
       )}
       {mode === LOBBY && (
         <Lobby
           name={name}
-          url={loader_url || url}
+          url={loader_url}
         />)}
       <Game />
     </div>
