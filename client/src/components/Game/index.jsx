@@ -200,7 +200,7 @@ export default function Game(props) {
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
-    phase: "game"
+    phase: "results"
   });
 
   const setAnswer = (message, store) => {
@@ -322,7 +322,8 @@ export default function Game(props) {
         }}>
         <GameBoard answers={state.answers}
           isConnected={state.isConnected}
-          lastMessage={state.lastMessage} />
+          lastMessage={state.lastMessage}
+          phase = {state.phase} />
         <StatusBox sendMessage={sendMessage}
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}

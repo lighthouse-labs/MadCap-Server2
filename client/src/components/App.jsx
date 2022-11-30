@@ -58,7 +58,7 @@ export default function App(props) {
   return (
     <div className="App">
       {/* Welcome is default */}
-      {mode === WELCOME && (
+      {/* {mode === WELCOME && (
         <Welcome
           url={url}
           name={name}
@@ -70,9 +70,9 @@ export default function App(props) {
         <Lobby
           name={name}
           url={loader_url}
-        />)}
+        />)} */}
          
-      {/* <Game /> */}
+      <Game />
     </div>
   );
 }

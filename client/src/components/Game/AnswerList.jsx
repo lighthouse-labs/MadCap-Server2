@@ -5,6 +5,7 @@ import Notice from './Notice';
 
 
 export default function AnswerList(props) {
+  console.log(props.answers)
   const firstHalf = props.answers.slice(0, 13);
   const secondHalf = props.answers.slice(13);
   const answers1 = firstHalf.map((answer) => {
@@ -30,6 +31,7 @@ export default function AnswerList(props) {
       />
     );
   });
+
   return (
     <div className="game-board-inner">
       <ul className="alpha-row alpha1">{answers1}</ul>
