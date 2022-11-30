@@ -11,12 +11,12 @@ export default function LinkBox(props) {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setUrl(`/${props.url}`);
+    setUrl(`${props.url}`);
   }, []);
 
   const handleCopy = () => {
     setOpen(true);
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(`http://localhost:8000${url}`);
   };
 
   const CopyButton = () => (

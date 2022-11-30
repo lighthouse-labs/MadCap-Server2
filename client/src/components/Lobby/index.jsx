@@ -22,27 +22,31 @@ export default function Lobby(props) {
 
   return (
     <div className="lobby-main">
-      <Box sx={{
-        px: 2.5,
-        display: "flex",
-        maxWidth: 435,
-        width: '100%'
-      }}>
+      <Box
+        sx={{
+          px: 2.5,
+          display: "flex",
+          maxWidth: 435,
+          width: '100%'
+        }}>
         <div className="lobby-header">
           <h1>Lobby</h1>
         </div>
       </Box>
-      <Box sx={{
-        my: 1,
-        px: 1,
-        display: "flex",
-        justifyContent: "space-between",
-        maxWidth: 435,
-        height: 'fit-content',
-        width: '100%'
-      }}>
-        <PlayersList name={props.name}/>
-        <GameSettings categories={categories} url={props.url} />
+      <Box
+        sx={{
+          my: 1,
+          px: 1,
+          display: "flex",
+          justifyContent: "space-between",
+          maxWidth: 435,
+          height: 'fit-content',
+          width: '100%'
+        }}>
+        <PlayersList name={props.name} />
+        <GameSettings
+          categories={categories} handleStart={props.handleStart} url={props.url}
+        />
       </Box>
     </div>
   );

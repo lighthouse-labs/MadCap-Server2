@@ -1,34 +1,59 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game"
 import useVisualMode from "../hooks/useVisualMode";
-import axios from 'axios';
+
 
 import { generateRandomString } from '../helpers/helpers';
 
 import './App.css';
 
-export default function App() {
+export default function App(props) {
 
   const url = useRef(generateRandomString()).current;
 
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
-  // const GAME = "GAME";
-  const { mode, transition } = useVisualMode(WELCOME);
+  const GAME = "GAME";
 
-  const [color, setColor] = useState(null)
-  const [avatar, setAvatar] = useState(null);
+  useEffect(() => {
+    transition(props.mode)
+  }, [props.mode])
+
+   const { mode, transition } = useVisualMode(WELCOME);
+
   const [name, setName] = useState("");
+
+  let loader_url;
+
+ loader_url = useLoaderData().url;
 
   const handleName = (e) => {
     setName(e.target.value);
   };
 
-  const handleMakeGame = () => {
-   transition(LOBBY)
-  };
+                                //change to WELCOME
+
+  // function handleJoin(id, name, color) {
+  //   axios.post(`/api/games/1/users`, {
+  //     name: 'shelly',
+  //     color: 'purple'
+  //   })
+  //     .then(() => transition(LOBBY))
+  //     .catch(err => console.log(err));
+  // }
+
+  // function handleStart() {
+  //   transition(GAME);
+  // }
+
+
+  // const handleMakeGame = () => {
+  //  transition(LOBBY)
+  // };
+
 
   return (
     <div className="App">
@@ -37,16 +62,17 @@ export default function App() {
         <Welcome
           url={url}
           name={name}
+          // avatar={avatar}
           handleName={handleName}
-          onClick={handleMakeGame}
         />
       )}
       {mode === LOBBY && (
         <Lobby
           name={name}
-          url={url}
+          url={loader_url}
         />)}
-      <Game />
+         
+      {/* <Game /> */}
     </div>
   );
 }
