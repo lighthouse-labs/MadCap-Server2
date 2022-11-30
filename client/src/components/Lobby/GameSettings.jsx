@@ -14,7 +14,7 @@ export default function GameSettings(props) {
 
   return (
     <div className="game-settings-main">
-      <Box
+      <Box className="cat-option-box"
         sx={{
           backgroundColor: '#f0f5ff',
           display: 'flex',

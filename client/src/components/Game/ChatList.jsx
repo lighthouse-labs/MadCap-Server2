@@ -1,7 +1,9 @@
 import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
+
   const chats = props.chats.map((chat) => {
+    
     return (
       <ChatListItem
         // key={chat.id}
