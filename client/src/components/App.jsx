@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
@@ -14,11 +14,15 @@ export default function App(props) {
 
   const url = useRef(generateRandomString()).current;
 
-  // const WELCOME = "WELCOME";
-  // const LOBBY = "LOBBY";
-  // const GAME = "GAME";
+  const WELCOME = "WELCOME";
+  const LOBBY = "LOBBY";
+  const GAME = "GAME";
 
-  // const { mode, transition } = useVisualMode(props.mode || WELCOME);
+  useEffect(() => {
+    transition(props.mode)
+  }, [props.mode])
+
+   const { mode, transition } = useVisualMode(WELCOME);
 
   const [name, setName] = useState("");
 
@@ -54,21 +58,21 @@ export default function App(props) {
   return (
     <div className="App">
       {/* Welcome is default */}
-      {/* {mode === WELCOME && (
+      {mode === WELCOME && (
         <Welcome
           url={url}
           name={name}
           // avatar={avatar}
           handleName={handleName}
         />
-      )} */}
-      {/* {mode === LOBBY && (
+      )}
+      {mode === LOBBY && (
         <Lobby
           name={name}
           url={loader_url}
         />)}
-          */}
-      <Game />
+         
+      {/* <Game /> */}
     </div>
   );
 }

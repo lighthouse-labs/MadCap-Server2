@@ -12,6 +12,7 @@ export default function Welcome(props) {
     <div className="welcome-main">
       <h1 className="main-title">MadCap</h1>
       <WelcomeBox
+        url={props.url}
         name={props.name}
         handleName={props.handleName}
         handleJoin={props.handleJoin}

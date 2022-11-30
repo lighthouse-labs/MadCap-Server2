@@ -29,7 +29,6 @@ export default function WelcomeBox(props) {
     .then(() => {
       navigate(`/${url}`)
     })
-    .then(() => window.location.reload(false))
     .catch((err) => console.error(err));
 
   }
