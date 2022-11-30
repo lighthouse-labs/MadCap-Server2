@@ -12,12 +12,12 @@ export default function Entry(props) {
 
   const send = () => {
     props.sendMessage(message);
-    console.log('submit state', message);
+    // console.log(message);
   };
 
   const post = (e) => {
     setMessage(e.target.value);
-    console.log('state change', message)
+    // console.log('state change', message)
   };
 
   /// if event.target ==

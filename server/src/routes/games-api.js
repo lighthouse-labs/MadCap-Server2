@@ -98,12 +98,12 @@ router.post('/', (req, res) => {
 
 router.post('/:game_url/users', (req, res) => {
   const { game_url } = req.params;
-  const { name, color, avatar_url } = req.body;
-  createUser(name, color, game_url, avatar_url)
+  const { name, color, avatar_url, host } = req.body;
+  createUser(name, color, game_url, avatar_url, host)
   .then((user) => res.json(user))
   .catch((error) => {
     console.error(error);
-    res.json({ error })
+    res.status(500).json({ error })
   });
 });
 
