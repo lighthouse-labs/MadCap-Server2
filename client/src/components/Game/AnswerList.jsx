@@ -31,7 +31,7 @@ export default function AnswerList(props) {
     <div className="game-board-inner">
       <ul className="alpha-row alpha1">{answers1}</ul>
       <div className="game-board-inner-center">
-        <Box class="clock">
+        <Box className="clock">
           <Clock />
         </Box>
         <Notice lastMessage={props.lastMessage}/>

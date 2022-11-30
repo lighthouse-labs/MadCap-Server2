@@ -16,7 +16,7 @@ export default function Clock() {
     <Fragment>
       <h1>THE TIMER</h1>
       <h1 style={{width: 'fit-content',
-    'text-align': 'center'}}>{counter}</h1>
+    textAlign: 'center'}}>{counter}</h1>
     </Fragment>
 
   );
