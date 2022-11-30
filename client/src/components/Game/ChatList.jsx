@@ -2,11 +2,11 @@ import ChatListItem from "./ChatListItem";
 
 export default function ChatList(props) {
 
-  const chats = props.chats.map((chat) => {
-
+  const chats = props.chats.map((chat, index) => {
+    
     return (
       <ChatListItem
-        key={chat.id}
+        key={index}
         message={chat.message}
         user={chat.user}
         type={chat.type}

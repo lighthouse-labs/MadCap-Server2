@@ -8,15 +8,27 @@ import PlayersList from './PlayersList';
 import './styles.css';
 
 export default function Lobby(props) {
-  const [categories, setCategories] = useState(null);
 
+
+  const [categories, setCategories] = useState(null);
+  const players = props.gameData.users;
   useEffect(() => {
     axios.get("/api/categories")
       .then(res => {
         setCategories(res.data);
       })
+      .then(() => {
+        axios.get("/api/categories")
+      })
+      .then(() => (
+        axios.get(`/api/games/${props.url_path}`)
+      ))
+      .then((res) => {
+        console.log(res.data)
+        props.setGameData(res.data)
+      })
       .catch(err => {
-        console.log(err.message);
+        console.error(err.message);
       });
   }, []);
 
@@ -43,7 +55,7 @@ export default function Lobby(props) {
           height: 'fit-content',
           width: '100%'
         }}>
-        <PlayersList name={props.name} />
+        <PlayersList name={props.name} players={players} setGameData={props.setGameData}/>
         <GameSettings
           categories={categories} handleStart={props.handleStart} url={props.url}
         />
