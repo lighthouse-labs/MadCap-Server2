@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -24,20 +24,18 @@ export default function PlayersList(props) {
     { id: 4, color: 'orange', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.' }
   ];
 
-  const [players, setPlayers] = useState([]);
-
-  useEffect
+  console.log(props)
   //extract 
-  const PlayerListItem = hardcodedPlayers.map((player) =>
+  const PlayerListItem = props.players && props.players.map((player) =>
   (
-    <ListItem key={hardcodedPlayers.id}
+    <ListItem key={player.id}
       sx={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start'
       }}>
       <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Avatar src={player.imgPath} alt={player.label} sx={{ maxWidth: '70%', height: 'auto' }}>
+        <Avatar src={player.avatar_url} alt={player.id} sx={{ maxWidth: '70%', height: 'auto' }}>
 
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
@@ -51,6 +49,7 @@ export default function PlayersList(props) {
     px: 0
     // backgroundColor: theme.palette.background.paper,
   }));
+
 
   return (
       <Box className="players-box" sx={{ height: 'fit-content' }}>
@@ -84,7 +83,7 @@ export default function PlayersList(props) {
                   </ListItem>
                 </List>
                 <List>
-                  {PlayerListItem}
+                  {props.players && PlayerListItem}
                 </List>
               </CustomStyle>
             </Grid>
