@@ -247,11 +247,10 @@ export default function Game(props) {
   });
 
   useEffect(() => {
-    console.log("ueseEffect");
-    console.log(stateRef.current);
+    // console.log(stateRef.current);
 
     socket.on("connect", () => {
-      console.log("connected");
+      // console.log("connected");
       socket.emit("set-room", dummyuser.url);
       setState({
         ...stateRef.current,
@@ -306,14 +305,13 @@ export default function Game(props) {
   }, []);
 
   const sendMessage = (message) => {
+    //had to move this here, since can connect when not on this page. less backend setting if just have a state "inroom"
     socket.emit("set-room", dummyuser.url);
     let messagetype = "chat";
     if (stateRef.current.phase === "game") {
       messagetype = "capture";
     }
-    console.log(message)
     let messageUpper = capitalizeFirstLetter(message);
-    console.log(messageUpper)
     const messageObject = {
       message: messageUpper,
       room: dummyuser.url,
@@ -321,8 +319,8 @@ export default function Game(props) {
       user: dummyuser.name,
       type: messagetype,
     };
-    console.log(messageObject);
-    console.log(socket);
+    // console.log(messageObject);
+    // console.log(socket);
     socket.emit("send-message", messageObject);
   };
 
