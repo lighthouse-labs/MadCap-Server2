@@ -12,6 +12,9 @@ import './App.css';
 
 export default function App(props) {
 
+  const [name, setName] = useState("");
+  const [host, setHost] = useState(false);
+  
   const url = useRef(generateRandomString()).current;
 
   const WELCOME = "WELCOME";
@@ -20,7 +23,7 @@ export default function App(props) {
 
   useEffect(() => {
     transition(host ? props.mode : WELCOME)
-  }, [props.mode])
+  }, [host, props.mode])
 
   useEffect(() => {
     setHost(props.host)
@@ -28,8 +31,6 @@ export default function App(props) {
 
    const { mode, transition } = useVisualMode(WELCOME);
 
-  const [name, setName] = useState("");
-  const [host, setHost] = useState(false);
 
   let loader_url;
 
