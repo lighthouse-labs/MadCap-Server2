@@ -24,7 +24,9 @@ export default function PlayersList(props) {
     { id: 4, color: 'orange', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.' }
   ];
 
-  console.log(props)
+  const host = props.players && props.players.find(player => player.host === true)
+  console.log("List Host", host);
+  console.log("Players", props.players)
   //extract 
   const PlayerListItem = props.players && props.players.map((player) =>
   (
@@ -79,7 +81,7 @@ export default function PlayersList(props) {
                         Host
                       </Typography>
                     </ListItemAvatar>
-                    <ListItemText primary={props.name} />
+                    <ListItemText primary={host && host.name} />
                   </ListItem>
                 </List>
                 <List>
