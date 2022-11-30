@@ -11,7 +11,7 @@ export default function Entry(props) {
   // };
 
   const send = () => {
-    props.sendMessage('submit state', message);
+    props.sendMessage(message);
     console.log(message);
   };
 

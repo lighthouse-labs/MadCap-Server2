@@ -17,8 +17,8 @@ export default function AnswerListItem(props) {
       {props.phase === "game" && <h2>{props.letter}</h2>}
       {props.phase === "results" && props.answer && (
         <h2>
-          {props.answer}
-          <button onClick={console.log("click")}>Reject!</button>
+          
+          <button onClick={console.log("click")}>{props.answer}</button>
         </h2>
       )}
       {props.phase === "results" && !props.answer && (

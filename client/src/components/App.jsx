@@ -75,6 +75,9 @@ export default function App(props) {
         />)}
          
       {mode === "GAME" && <Game />}
+      <Game />
     </div>
+
+    
   );
 }

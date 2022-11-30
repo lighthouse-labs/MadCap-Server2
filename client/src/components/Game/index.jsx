@@ -209,6 +209,7 @@ export default function Game(props) {
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
+    //phase : game and results
     phase: "game"
   });
 
@@ -244,7 +245,10 @@ export default function Game(props) {
   });
 
   useEffect(() => {
+    console.log("ueseEffect")
+    console.log(stateRef.current)
     socket.on("connect", () => {
+      console.log("connected")
       socket.emit("set-room", dummyuser.url);
       setState({
         ...stateRef.current,
