@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 export default function AnswerListItem(props) {
   const [buttonClick, setButtonClick] = useState(props.votesAgainst);
-  const [buttonColour, setButtonColor] = useState(0);
+  const [voted, setVoted] = useState(false);
   const [buttonMode, setButtonState] = useState(false);
   const playerCount = 6;
   // console.log(props.letter)
@@ -24,6 +24,7 @@ export default function AnswerListItem(props) {
 
   const handleClick = () => {
     voteAgainst()
+    setVoted(true)
     
   };
   
@@ -43,7 +44,7 @@ export default function AnswerListItem(props) {
       {props.phase === "game" && <h2>{props.letter}</h2>}
       {props.phase === "results" && props.answer && (
         <h2 >
-          <button onClick={handleClick} disabled={buttonMode}
+          <button onClick={handleClick} disabled={voted}
             style={{
               backgroundColor:
                 !buttonMode ? `rgba(255,0,0,${buttonsColour})` : "#313e4454",

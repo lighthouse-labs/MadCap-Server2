@@ -255,11 +255,14 @@ export default function Game(props) {
     isConnected: socket.connected,
     lastMessage: null,
     //phase : game, results & podium
-    phase: "results",
+    phase: "game",
     players: props.gameData.users,
     //needs to be set to player
-    player: props.gameData.users[0]
+    player: props.gameData.users[0],
+    checkIn: false
   });
+  
+
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -331,7 +334,6 @@ export default function Game(props) {
 
     socket.on("connect", () => {
       // console.log("connected");
-      socket.emit("set-room", stateRef.current.player.url);
       setState({
         ...stateRef.current,
         isConnected: true,
@@ -427,14 +429,13 @@ export default function Game(props) {
     };
   }, []);
 
-  const sendMessage = (message) => {
+  const sendMessage = (message, gamePhase = stateRef.current.phase) => {
     //had to move this here, since can connect when not on this page
     //less backend setting if just have a state "inroom"
 
     //needs url set to user
-    socket.emit("set-room", "dummyroom");
     let messagetype = "chat";
-    if (stateRef.current.phase === "game") {
+    if (gamePhase === "game") {
       messagetype = "capture";
     }
     let messageUpper = capitalizeFirstLetter(message);
@@ -451,13 +452,20 @@ export default function Game(props) {
   };
   const sendVote = (vote) => {
     console.log(vote)
-    socket.emit("set-room", "dummyroom");
     const voteObject = {
       vote: vote,
       room: "dummyroom"
     }
     socket.emit("send-vote", voteObject);
   };
+  if (!state.checkIn) {
+    sendMessage("has connected", "results")
+    socket.emit("set-room", "dummyroom");
+    setState((prev) => ({
+      ...prev,
+      checkIn: true
+    }));
+  }
 
   return (
     <div className="game-main">
