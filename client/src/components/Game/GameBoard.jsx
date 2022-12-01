@@ -1,25 +1,28 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import AnswerList from './AnswerList';
 import Podium from './Podium';
+import ResultsClock from './ResultsClock';
 
 export default function GameBoard(props) {
 
 
-  const [voteTimer, setVoteTimer] = useState(0);
-  useEffect(() => {
-    let timer = 0
-    if (props.phase === "results") {
-      timer = voteTimer > 0 && setInterval(() => setVoteTimer(prev => (prev -1)), 1000);
-    }
-    if (voteTimer === 0) {
-      props.setStatePhase("round");
-      setVoteTimer(2);
-    }
-    return () => clearInterval(timer);
-  }, [voteTimer]);
+  // const [voteTimer, setVoteTimer] = useState(0);
+
+  // useEffect(() => {
+  //   console.log("voteTimer", voteTimer);
+  //   let timer = 0
+  //   if (props.phase === "results") {
+  //     timer = voteTimer > 0 && setInterval(() => setVoteTimer(prev => (prev -1)), 1000);
+  //   }
+  //   if (voteTimer === 0) {
+  //     props.setStatePhase("round");
+  //     setVoteTimer(2);
+  //   }
+  //   return () => clearInterval(timer);
+  // }, [voteTimer]);
+
 
   // const [voteTimer, setGameTimer] = useState(3);
-
   // useEffect(() => {
   //   const timer =
   //     voteTimer > 0 && setInterval(() => setGameTimer(prev => (prev - 1)), 1000);
@@ -31,7 +34,10 @@ export default function GameBoard(props) {
   return (
     <div className="game-board-main">
       <div className="game-header">
-        <h2>Animal Kingdom: {props.phase === "results" && voteTimer}</h2>
+        <h2>Animal Kingdom: {props.phase === "results" &&
+          <ResultsClock phase={props.phase}
+            setStatePhase={props.setStatePhase} />}
+        </h2>
         <h1>Ocean</h1>
       </div>
       {
@@ -42,8 +48,8 @@ export default function GameBoard(props) {
             answers={props.answers}
             lastMessage={props.lastMessage}
             phase={props.phase}
-            gameTimer={props.gameTimer}
             setStatePhase={props.setStatePhase}
+            gameTimer={props.gameTimer}
           />
           :
           props.phase === "podium" && <Podium />
