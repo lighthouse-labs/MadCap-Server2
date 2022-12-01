@@ -5,6 +5,7 @@ import CategoriesBox from "./CategoriesBox";
 import LinkBox from "./LinkBox";
 import StartButton from './StartButton';
 import { useState } from 'react';
+import axios from 'axios';
 
 export default function GameSettings(props) {
 
@@ -22,6 +23,12 @@ export default function GameSettings(props) {
   );
 
   const [currentCategories, setCurrentCategories] = useState([])
+
+  const handleSet = () => {
+    console.log("Props Url", props.url_path)
+    axios.put(`api/games/${props.url_path}`, { settings, categories: currentCategories})
+    .catch((error) => console.error(error.message))
+  }
   const buttonText = "Start the Game"
 
   return (
@@ -39,7 +46,7 @@ export default function GameSettings(props) {
           <h2>Game Settings</h2>
         </div>
         <CategoriesBox categories={props.categories} currentCategories={currentCategories} setCurrentCategories={setCurrentCategories}/>
-        <OptionsBox settings={settings} setSettings={setSettings}/>
+        <OptionsBox settings={settings} setSettings={setSettings} handleSet={handleSet}/>
       </Box>
       <Box
         sx={{

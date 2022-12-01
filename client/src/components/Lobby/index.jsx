@@ -59,6 +59,7 @@ export default function Lobby(props) {
           categories={categories}
           handleStart={props.handleStart}
           url={props.url}
+          url_path={props.url_path}
         />
       </Box>
     </div>
