@@ -147,12 +147,12 @@ const StyledSlider = styled(SliderUnstyled)(
 // ];
 
 
-export default function TimerSlider() {
+export default function TimerSlider(props) {
   // timerSlider sets state
-  const [value, setValue] = useState(60);
+  const {timer, setTimer} = props;
   
-  const changeValue = (e, val) => {
-    setValue(val)
+  const changeTimer = (e, val) => {
+    setTimer(val)
   }
   const getText = (value) => {
     return `${value}s`;
@@ -165,9 +165,9 @@ export default function TimerSlider() {
           max={120}
           step={10}
           // defaultValue={60}
-          onChange={changeValue}
+          onChange={changeTimer}
           valueLabelDisplay="on"
-          value={value}
+          value={timer}
           marks
           getAriaValueText={getText}
         />
