@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import AnswerListItem from "./AnswerListItem";
 import Clock from './Clock';
 import Notice from './Notice';
+import Round from "./Round";
 
 
 export default function AnswerList(props) {
@@ -29,16 +30,15 @@ export default function AnswerList(props) {
         id={answer.id}
         letter={answer.letter}
         captureColour={answer.captureColour}
-        answer = {answer.answer}
-        phase = {props.phase}
+        answer={answer.answer}
+        phase={props.phase}
       />
     );
   });
 
   const rowPhase = classNames(
-    { "game": props.phase === "game" },
-    { "results": props.phase === "results" },
-    { "podium": props.phase === "podium" }
+    { "game": props.phase === "game" || props.phase === "round" },
+    { "results": props.phase === "results" }
   );
 
   return (
@@ -50,17 +50,21 @@ export default function AnswerList(props) {
         <div className="game-board-inner-center">
 
           <Box className="clock">
-            <Clock 
-            gameTimer={props.gameTimer}
-            setStatePhase={props.setStatePhase}
+            <Clock
+              gameTimer={props.gameTimer}
+              setStatePhase={props.setStatePhase}
             />
           </Box>
           <Notice lastMessage={props.lastMessage} />
 
-        </div>}
+        </div>
+      }
 
+      {props.phase === "round" &&
+        <Round setStatePhase={props.setStatePhase}/>
+      }
       <ul className={`alpha-row alpha2 ${rowPhase}`}>{answers2}</ul>
-      
+
     </div>
   );
 }

@@ -213,6 +213,8 @@ const dummychat = [
 
 export default function Game(props) {
 
+  // extract all logic eventually...
+
   const [state, setState] = useState({
     answers: romanAlpha,
     chats: dummychat,
@@ -224,23 +226,14 @@ export default function Game(props) {
     //needs to be set to player
     player: props.gameData && props.gameData.users[0]
   });
-
-  // extract code eventually
-  // fn setphase resulrts
+  
+  // fn setphase to results
   // in timer pass down props.phase result
-  const setStatePhase = () => {
+  const setStatePhase = (phase) => {
     setState(prev => (
-      { ...prev, phase: "results" }
+      { ...prev, phase: phase }
     ));
   };
-
-  // const [voteTimer, setVoteTimer] = useState(30);
-  // useEffect(() => {
-  //   const timer =
-  //     (state.phase !== "game" && voteTimer > 0) && setInterval(() => setVoteTimer(voteTimer - 1), 1000);
-  //   return () => clearInterval(timer);
-  // }, []);
-
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game

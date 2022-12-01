@@ -7,10 +7,8 @@ export default function Clock(props) {
 
   useEffect(() => {
     const timer =
-      gameTimer > 0 && setInterval(() => setGameTimer(gameTimer - 1), 1000);
-    if (gameTimer === 0) {
-      props.setStatePhase()
-    }
+      gameTimer > 0 && setInterval(() => setGameTimer(prev => (prev - 1)), 1000);
+    if (gameTimer === 0) props.setStatePhase("results");
     return () => clearInterval(timer);
   }, [gameTimer]);
 

@@ -20,7 +20,7 @@ export default function SelectCategories(props) {
       fontWeight:
         categoryName.indexOf(name) === -1
           ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
+          : theme.typography.fontWeightMedium
     };
   };
 
@@ -62,14 +62,11 @@ export default function SelectCategories(props) {
         renderValue={(selected) => (
           <Box sx={{
             display: 'flex', flexWrap: 'wrap',
-            gap: 0, '& .MuiChip-root':
-              { fontSize: '12px' }
+            gap: 0, '& .MuiChip-root': { fontSize: '12px' }
           }}
           >
             {selected.map((value) => (
               <Chip key={value} label={value}
-                sx={{
-                }}
               />
             ))}
           </Box>
@@ -86,7 +83,6 @@ export default function SelectCategories(props) {
           </MenuItem>
         ))}
       </Select>
-
     </FormControl>
   );
 }
