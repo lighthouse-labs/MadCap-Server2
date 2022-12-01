@@ -14,15 +14,14 @@ const SERVER = "http://127.0.0.1:8001";
 const socket = io(SERVER, {
   transports: ["websocket"],
 });
-//
-  //  dummy memory!
-  // const dummyPlayers = [
-  //   { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
-  //   { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
-  //   { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
-  //   { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
-  //   { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
-  // ];
+
+// const dummyPlayers = [
+//   { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
+//   { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
+//   { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
+//   { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
+//   { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
+// ];
 const romanAlpha = [
   {
     id: 1,
@@ -213,16 +212,6 @@ const dummychat = [
 // };
 
 export default function Game(props) {
-  //extract code eventually
-  // const seconds = 60 //dummy number
-  // const [counter, setCounter] = useState(seconds);
-
-  // useEffect(() => {
-  //   const timer =
-  //     counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-  //   return () => clearInterval(timer);
-  // }, [counter]);
-
 
   const [state, setState] = useState({
     answers: romanAlpha,
@@ -235,6 +224,23 @@ export default function Game(props) {
     //needs to be set to player
     player: props.gameData && props.gameData.users[0]
   });
+
+  // extract code eventually
+  // fn setphase resulrts
+  // in timer pass down props.phase result
+  const setStatePhase = () => {
+    setState(prev => (
+      { ...prev, phase: "results" }
+    ));
+  };
+
+  // const [voteTimer, setVoteTimer] = useState(30);
+  // useEffect(() => {
+  //   const timer =
+  //     (state.phase !== "game" && voteTimer > 0) && setInterval(() => setVoteTimer(voteTimer - 1), 1000);
+  //   return () => clearInterval(timer);
+  // }, []);
+
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -262,21 +268,21 @@ export default function Game(props) {
   };
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
 
   const setPlayerScore = (name, gameState, change) => {
     const players = gameState.players.map((player) => {
       if (player.name === name) {
-        let newScore = player.score + change
+        let newScore = player.score + change;
         return {
           ...player,
-          score : newScore
+          score: newScore
         };
       }
       return player;
     });
     return players;
-  }
+  };
 
   const stateRef = useRef(state);
   useEffect(() => {
@@ -304,14 +310,14 @@ export default function Game(props) {
     });
 
     socket.on("message", (message) => {
-      console.log(stateRef.current)
+      console.log(stateRef.current);
       if (
         message.type === "capture" &&
         !confirmUsed(message, stateRef.current)
       ) {
-        let playerSet = setPlayerScore(message.user, stateRef.current, 10)
-        console.log(playerSet)
-        
+        let playerSet = setPlayerScore(message.user, stateRef.current, 10);
+        console.log(playerSet);
+
         let answerSet = setAnswer(message, stateRef.current);
         let chatSet = [
           ...stateRef.current.chats,
@@ -338,39 +344,39 @@ export default function Game(props) {
       }
       // console.log(stateRef.current)
     });
-    
+
     //can be used to update from host
 
     socket.on("request-state", (message) => {
-      console.log("state requested")
+      console.log("state requested");
       if (stateRef.current.player.admin) {
-        console.log("got here")
+        console.log("got here");
         let currentState = {
           answers: stateRef.current.answers,
-          chats:stateRef.current.chats,
+          chats: stateRef.current.chats,
           room: stateRef.current.player.url
-        }
-        console.log(currentState)
-        socket.emit("send-state", currentState)
+        };
+        console.log(currentState);
+        socket.emit("send-state", currentState);
       }
-    })
+    });
 
     socket.on("sync-state", (message) => {
-      console.log ("state syncing")
+      console.log("state syncing");
       setState((prev) => ({
         ...prev,
         message: message.answers,
         chats: message.chats,
       }));
 
-    })
+    });
 
     return () => {
       socket.off("connect");
       socket.off("disconnect");
       socket.off("message");
-      socket.off("request-state")
-      socket.off("sync-state")
+      socket.off("request-state");
+      socket.off("sync-state");
     };
   }, []);
 
@@ -418,14 +424,16 @@ export default function Game(props) {
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
           phase={state.phase}
-          // counter={counter}
+          setStatePhase={setStatePhase}
+        // gameTimer={gameTimer}
+        // voteTimer={voteTimer}
         />
         <StatusBox
           sendMessage={sendMessage}
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
           chats={state.chats}
-          players = {state.players}
+          players={state.players}
         />
       </Box>
     </div>

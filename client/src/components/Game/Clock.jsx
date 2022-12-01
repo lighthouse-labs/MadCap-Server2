@@ -2,21 +2,30 @@ import { useState, useEffect, Fragment } from "react";
 
 export default function Clock(props) {
 
-  const seconds = 60
-  const [counter, setCounter] = useState(seconds);
+  const seconds = 5;
+  const [gameTimer, setGameTimer] = useState(seconds);
 
   useEffect(() => {
     const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+      gameTimer > 0 && setInterval(() => setGameTimer(gameTimer - 1), 1000);
+    if (gameTimer === 0) {
+      props.setStatePhase()
+    }
     return () => clearInterval(timer);
-  }, [counter]);
+  }, [gameTimer]);
 
   return (
 
     <Fragment>
+
       <h1>THE TIMER</h1>
-      <h1 style={{width: 'fit-content',
-    textAlign: 'center'}}>{counter}</h1>
+      <h1 style={{
+        width: 'fit-content',
+        textAlign: 'center'
+      }}>
+        {gameTimer}
+      </h1>
+
     </Fragment>
 
   );

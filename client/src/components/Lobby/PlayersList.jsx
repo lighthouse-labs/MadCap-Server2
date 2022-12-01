@@ -51,7 +51,7 @@ export default function PlayersList(props) {
 
   return (
       <Box className="players-box" sx={{ height: 'fit-content' }}>
-        <Paper style={{ height: '700px', width: '112%' }} elevation={3} sx={{ p: '15px', }}>
+        <Paper style={{ height: '700px', width: '100%' }} elevation={3} sx={{ p: '15px', }}>
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,

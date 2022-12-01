@@ -50,7 +50,7 @@ export default function PlayersList(props) {
       <Box className="players-box"
         sx={{ height: '100%', width: '34%', pl: '4px', pb: '4px' }}>
         <Paper className="player-box-inner" 
-        style={{ height: '100%', width: '100%', paddingRight: '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px', }}>
+        style={{ height: '100%', width: '100%', paddingRight: '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px' }}>
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,

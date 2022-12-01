@@ -51,7 +51,8 @@ export default function AnswerList(props) {
 
           <Box className="clock">
             <Clock 
-            // counter={props.counter}
+            gameTimer={props.gameTimer}
+            setStatePhase={props.setStatePhase}
             />
           </Box>
           <Notice lastMessage={props.lastMessage} />

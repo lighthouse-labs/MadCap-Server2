@@ -1,12 +1,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-
-import axios from 'axios';
-
+// import axios from 'axios';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game";
+
 import useVisualMode from "../hooks/useVisualMode";
 import { generateRandomString } from '../helpers/helpers';
 
@@ -28,6 +27,8 @@ export default function App(props) {
   const LOBBY = "LOBBY";
   const GAME = "GAME";
 
+  const { mode, transition } = useVisualMode(WELCOME);
+
   // useEffect(() => {
   //   axios.get(`api/games/${url_path}`)
   //   .then((response) => {
@@ -48,7 +49,6 @@ export default function App(props) {
   console.log("url_path:", url_path);
 
 
-  const { mode, transition } = useVisualMode(WELCOME);
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -62,16 +62,13 @@ export default function App(props) {
     transition(GAME);
   }
 
-
   // const handleMakeGame = () => {
   //  transition(LOBBY)
   // };
 
-
-
   return (
     <div className="App">
-      {/* Welcome is default */}
+      
       {mode === WELCOME && (
         <Welcome
           transition={transition}
@@ -79,11 +76,11 @@ export default function App(props) {
           url={url}
           name={name}
           host={cookies.host}
-          // avatar={avatar}
           handleName={handleName}
           setHost={setHost}
         />
       )}
+      
       {mode === LOBBY && (
         <Lobby
           name={name}
@@ -99,7 +96,5 @@ export default function App(props) {
       />}
 
     </div>
-
-
   );
 }
