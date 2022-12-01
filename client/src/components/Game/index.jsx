@@ -15,6 +15,14 @@ const socket = io(SERVER, {
   transports: ["websocket"],
 });
 //
+  //  dummy memory!
+  const dummyPlayers = [
+    { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
+    { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
+    { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
+    { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
+    { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
+  ];
 const romanAlpha = [
   {
     id: 1,
@@ -222,7 +230,10 @@ export default function Game(props) {
     isConnected: socket.connected,
     lastMessage: null,
     //phase : game, results & podium
-    phase: "game"
+    phase: "game",
+    players: props.gameData.users,
+    //needs to be set to player
+    player: props.gameData.users[0]
   });
 
   const setAnswer = (message, store) => {
@@ -264,7 +275,7 @@ export default function Game(props) {
 
     socket.on("connect", () => {
       // console.log("connected");
-      socket.emit("set-room", dummyuser.url);
+      socket.emit("set-room", stateRef.current.player.url);
       setState({
         ...stateRef.current,
         isConnected: true,
@@ -314,12 +325,12 @@ export default function Game(props) {
 
     socket.on("request-state", (message) => {
       console.log("state requested")
-      if (dummyuser.admin) {
+      if (stateRef.current.player.admin) {
         console.log("got here")
         let currentState = {
           answers: stateRef.current.answers,
           chats:stateRef.current.chats,
-          room: dummyuser.url
+          room: stateRef.current.player.url
         }
         console.log(currentState)
         socket.emit("send-state", currentState)
@@ -348,7 +359,9 @@ export default function Game(props) {
   const sendMessage = (message) => {
     //had to move this here, since can connect when not on this page
     //less backend setting if just have a state "inroom"
-    socket.emit("set-room", dummyuser.url);
+
+    //needs url set to user
+    socket.emit("set-room", "dummyroom");
     let messagetype = "chat";
     if (stateRef.current.phase === "game") {
       messagetype = "capture";
@@ -356,9 +369,9 @@ export default function Game(props) {
     let messageUpper = capitalizeFirstLetter(message);
     const messageObject = {
       message: messageUpper,
-      room: dummyuser.url,
-      colour: dummyuser.colour,
-      user: dummyuser.name,
+      room: "dummyroom",
+      colour: state.player.color,
+      user: state.player.name,
       type: messagetype,
     };
     // console.log(messageObject);
@@ -394,6 +407,7 @@ export default function Game(props) {
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
           chats={state.chats}
+          players = {state.players}
         />
       </Box>
     </div>

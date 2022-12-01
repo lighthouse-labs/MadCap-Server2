@@ -9,7 +9,8 @@ export default function StatusBox(props) {
   return (
     <Box className="status-box" >
     
-      <GamePlayersList />
+      <GamePlayersList
+      players = {props.players} />
 
       <Box className="chat-box-main"
         sx={{

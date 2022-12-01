@@ -15,16 +15,9 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 export default function PlayersList(props) {
 
-  //  dummy memory!
-  const players = [
-    { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'lorepuse' },
-    { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle' },
-    { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat' },
-    { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash' },
-    { id: 4, color: 'orange', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.' }
-  ];
+
   //extract 
-  const PlayerListItem = players.map((player) =>
+  const PlayerListItem = props.players.map((player) =>
   (
     <ListItem key={player.id}
       style={{ padding: 0 }}
