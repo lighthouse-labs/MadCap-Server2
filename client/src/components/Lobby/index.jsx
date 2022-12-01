@@ -55,9 +55,15 @@ export default function Lobby(props) {
           height: 'fit-content',
           width: '100%'
         }}>
-        <PlayersList name={props.name} players={players} setGameData={props.setGameData}/>
+        <PlayersList
+          name={props.name}
+          players={players}
+          setGameData={props.setGameData}
+        />
         <GameSettings
-          categories={categories} handleStart={props.handleStart} url={props.url}
+          categories={categories}
+          handleStart={props.handleStart}
+          url={props.url}
         />
       </Box>
     </div>
