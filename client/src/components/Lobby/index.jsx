@@ -13,23 +13,17 @@ export default function Lobby(props) {
   const [categories, setCategories] = useState(null);
   const players = props.gameData.users;
   useEffect(() => {
-    axios.get("/api/categories")
-      .then(res => {
-        setCategories(res.data);
-      })
-      .then(() => {
-        axios.get("/api/categories")
-      })
-      .then(() => (
-        axios.get(`/api/games/${props.url_path}`)
-      ))
-      .then((res) => {
-        console.log(res.data)
-        props.setGameData(res.data)
-      })
-      .catch(err => {
-        console.error(err.message);
-      });
+    Promise.all([
+      axios.get("/api/categories"),
+      axios.get(`/api/games/${props.url_path}`)
+    ])
+    .then(([categoriesResponse, gameResponse]) => {
+      setCategories(categoriesResponse.data);
+      props.setGameData(gameResponse.data);
+    })
+    .catch(err => {
+      console.error(err.message);
+    });
   }, []);
 
   return (
@@ -55,9 +49,15 @@ export default function Lobby(props) {
           height: 'fit-content',
           width: '100%'
         }}>
-        <PlayersList name={props.name} players={players} setGameData={props.setGameData}/>
+        <PlayersList
+          name={props.name}
+          players={players}
+          setGameData={props.setGameData}
+        />
         <GameSettings
-          categories={categories} handleStart={props.handleStart} url={props.url}
+          categories={categories}
+          handleStart={props.handleStart}
+          url={props.url}
         />
       </Box>
     </div>
