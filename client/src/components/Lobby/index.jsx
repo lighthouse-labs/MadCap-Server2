@@ -13,23 +13,18 @@ export default function Lobby(props) {
   const [categories, setCategories] = useState(null);
   const players = props.gameData.users;
   useEffect(() => {
-    axios.get("/api/categories")
-      .then(res => {
-        setCategories(res.data);
-      })
-      .then(() => {
-        axios.get("/api/categories")
-      })
-      .then(() => (
-        axios.get(`/api/games/${props.url_path}`)
-      ))
-      .then((res) => {
-        console.log(res.data)
-        props.setGameData(res.data)
-      })
-      .catch(err => {
-        console.error(err.message);
-      });
+    Promise.all([
+      axios.get("/api/categories"),
+      axios.get(`/api/games/${props.url_path}`)
+    ])
+    .then(([categoriesResponse, gameResponse]) => {
+      console.log("Categories", categoriesResponse.data)
+      setCategories(categoriesResponse.data);
+      props.setGameData(gameResponse.data);
+    })
+    .catch(err => {
+      console.error(err.message);
+    });
   }, []);
 
   return (
