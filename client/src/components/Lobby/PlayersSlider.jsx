@@ -123,12 +123,12 @@ const StyledSlider = styled(SliderUnstyled)(
 `,
 );
 
-export default function PlayersSlider() {
-  // timerSlider sets state
-  const [value, setValue] = useState(5);
+export default function PlayersSlider(props) {
+ 
+  const {maxPlayers, setMaxPlayers} = props;
 
-  const changeValue = (e, val) => {
-    setValue(val);
+  const changeMaxPlayers = (e, val) => {
+    setMaxPlayers(val);
   };
   // const getText = (value) => {
   //   return `${value}s`;
@@ -144,8 +144,8 @@ export default function PlayersSlider() {
         aria-label="Players"
         valueLabelDisplay="auto"
         marks
-        onChange={changeValue}
-        value={value}
+        onChange={changeMaxPlayers}
+        value={maxPlayers}
       // getAriaValueText={getText}
       />
     </Box>

@@ -4,6 +4,7 @@ import OptionsBox from "./OptionsBox";
 import CategoriesBox from "./CategoriesBox";
 import LinkBox from "./LinkBox";
 import StartButton from './StartButton';
+import { useState } from 'react';
 
 export default function GameSettings(props) {
 
@@ -11,6 +12,14 @@ export default function GameSettings(props) {
   // const waitToStart = () => {
   //   // if "waiting..."
   // }
+
+  const [settings, setSettings] = useState(
+    {
+      timer: 60,
+      maxPlayers: 5,
+      rounds: 3
+    }
+  );
 
   const buttonText = "Start the Game"
 
@@ -29,7 +38,7 @@ export default function GameSettings(props) {
           <h2>Game Settings</h2>
         </div>
         <CategoriesBox categories={props.categories} />
-        <OptionsBox />
+        <OptionsBox settings={settings} setSettings={setSettings}/>
       </Box>
       <Box
         sx={{
