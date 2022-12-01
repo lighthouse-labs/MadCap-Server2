@@ -107,10 +107,19 @@
   height: 100%;
 }
 
-.Red {
+.red {
   color: red;
 }
 
-.Green {
+.green {
   color: green;
+}
+.blue {
+  color: blue;
+}
+.yellow {
+  color: yellow;
+}
+.orange {
+  color: orange
 }
