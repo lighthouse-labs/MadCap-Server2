@@ -1,10 +1,9 @@
 import classNames from "classnames";
 
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import AnswerListItem from "./AnswerListItem";
-import Clock from './Clock';
-import Notice from './Notice';
-
+import Clock from "./Clock";
+import Notice from "./Notice";
 
 export default function AnswerList(props) {
   // console.log(props.answers)
@@ -29,35 +28,32 @@ export default function AnswerList(props) {
         id={answer.id}
         letter={answer.letter}
         captureColour={answer.captureColour}
-        answer = {answer.answer}
-        phase = {props.phase}
+        answer={answer.answer}
+        phase={props.phase}
       />
     );
   });
 
   const rowPhase = classNames(
-    { "game": props.phase === "game" },
-    { "results": props.phase === "results" },
-    { "podium": props.phase === "podium" }
+    { game: props.phase === "game" },
+    { results: props.phase === "results" },
+    { podium: props.phase === "podium" }
   );
 
   return (
     <div className="game-board-inner">
-
       <ul className={`alpha-row alpha1 ${rowPhase}`}>{answers1}</ul>
 
-      {props.phase === "game" &&
+      {props.phase === "game" && (
         <div className="game-board-inner-center">
-
           <Box className="clock">
-            <Clock counter={props.counter}/>
+            <Clock counter={props.counter} />
           </Box>
           <Notice lastMessage={props.lastMessage} />
-
-        </div>}
+        </div>
+      )}
 
       <ul className={`alpha-row alpha2 ${rowPhase}`}>{answers2}</ul>
-      
     </div>
   );
 }

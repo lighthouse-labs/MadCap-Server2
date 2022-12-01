@@ -18,6 +18,9 @@ export default function AnswerListItem(props) {
     { "results-phase": props.phase === "results" },
     {}
   );
+  const voteAgainst = () => {
+
+  }
 
   const handleClick = () => {
     setButtonClick(buttonClick + 1);

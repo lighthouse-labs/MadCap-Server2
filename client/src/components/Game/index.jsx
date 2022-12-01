@@ -29,7 +29,7 @@ const romanAlpha = [
     letter: "A",
     answer: "",
     captureColour: "",
-    captureUser: "",
+    votesAgainst: 0
   },
   {
     id: 2,
@@ -278,6 +278,20 @@ export default function Game(props) {
     return players;
   }
 
+  const setVote = (vote, gameState) => {
+    //sets the details of the letter in game
+    const answers = gameState.answers.map((answer) => {
+      if (answer.letter === message.letter) {
+        return {
+          ...answer,
+          votesAgainst: (answer.votes + 1),
+        };
+      }
+      return answer;
+    });
+    return answers;
+  };
+
   const stateRef = useRef(state);
   useEffect(() => {
     //without this, state ref in sockets will be out of date (when they are connected)
@@ -338,6 +352,15 @@ export default function Game(props) {
       }
       // console.log(stateRef.current)
     });
+
+    socket.on("vote", (vote) => {
+      voteAnswersSet = setVote(vote, stateRef.current)
+      setState((prev) => ({
+        ...prev,
+        answers: voteAnswersSet
+      }));
+
+    });
     
     //can be used to update from host
 
@@ -369,6 +392,7 @@ export default function Game(props) {
       socket.off("connect");
       socket.off("disconnect");
       socket.off("message");
+      socket.off("vote")
       socket.off("request-state")
       socket.off("sync-state")
     };
