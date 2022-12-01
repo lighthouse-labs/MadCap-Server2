@@ -54,17 +54,6 @@ export default function App(props) {
     setCookie('host', true, { path: '/' });
   }
 
-
-
-  function handleJoin(id, name, color) {
-    axios.post(`/api/games/${url_path}/users`, {
-      name: 'shelly',
-      color: 'purple'
-    })
-      .then(() => transition(LOBBY))
-      .catch(err => console.log(err));
-  }
-
   function handleStart() {
     transition(GAME);
   }
