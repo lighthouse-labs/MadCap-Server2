@@ -50,7 +50,9 @@ export default function AnswerList(props) {
         <div className="game-board-inner-center">
 
           <Box className="clock">
-            <Clock counter={props.counter}/>
+            <Clock 
+            // counter={props.counter}
+            />
           </Box>
           <Notice lastMessage={props.lastMessage} />
 

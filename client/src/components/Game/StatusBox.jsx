@@ -18,8 +18,8 @@ export default function StatusBox(props) {
           backgroundColor: '#dde5ff',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'flex-end',
-          justifyContent: 'space-between',
+          alignItems: 'center',
+          justifyContent: 'center',
           pr: 0, pl: '4px', pb: '4px',
           m: 0,
           width: '71.5%',
@@ -29,9 +29,9 @@ export default function StatusBox(props) {
           sx={{
             backgroundColor: '#bec5dc',
             height: '100%',
-            width: '100%',
-            maxHeight: '300px',
-            overflow: 'auto'
+            width: '99%',
+            maxHeight: '100%',
+            overflow: 'auto', mr: '2px'
           }}>
         <ChatList chats={props.chats} />
         </Box>
