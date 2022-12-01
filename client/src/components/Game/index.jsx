@@ -238,15 +238,8 @@ const dummychat = [
 // };
 
 export default function Game(props) {
-  //extract code eventually
-  // const seconds = 60 //dummy number
-  // const [counter, setCounter] = useState(seconds);
 
-  // useEffect(() => {
-  //   const timer =
-  //     counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-  //   return () => clearInterval(timer);
-  // }, [counter]);
+  // extract all logic eventually...
 
   const [state, setState] = useState({
     answers: romanAlpha,
@@ -262,6 +255,14 @@ export default function Game(props) {
       props.gameData.users.find((player) => player.id === props.currentUser),
     checkIn: false,
   });
+  
+  // fn setphase to results
+  // in timer pass down props.phase result
+  const setStatePhase = (phase) => {
+    setState(prev => (
+      { ...prev, phase: phase }
+    ));
+  };
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -432,6 +433,7 @@ export default function Game(props) {
         message: message.answers,
         chats: message.chats,
       }));
+
     });
 
     return () => {
@@ -507,6 +509,9 @@ export default function Game(props) {
           phase={state.phase}
           sendVote={sendVote}
           playerCount = {state.players.length}
+          setStatePhase={setStatePhase}
+        // gameTimer={gameTimer}
+        // voteTimer={voteTimer}
           // counter={counter}
         />
         <StatusBox

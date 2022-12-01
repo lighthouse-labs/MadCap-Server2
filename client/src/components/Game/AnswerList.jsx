@@ -2,8 +2,10 @@ import classNames from "classnames";
 
 import Box from "@mui/material/Box";
 import AnswerListItem from "./AnswerListItem";
-import Clock from "./Clock";
-import Notice from "./Notice";
+import Clock from './Clock';
+import Notice from './Notice';
+import Round from "./Round";
+
 
 export default function AnswerList(props) {
   // console.log(props.answers)
@@ -56,13 +58,17 @@ export default function AnswerList(props) {
         <div className="game-board-inner-center">
           <Box className="clock">
             <Clock
-            // counter={props.counter}
+              gameTimer={props.gameTimer}
+              setStatePhase={props.setStatePhase}
             />
           </Box>
           <Notice lastMessage={props.lastMessage} />
         </div>
       )}
 
+      {props.phase === "round" &&
+        <Round setStatePhase={props.setStatePhase}/>
+      }
       <ul className={`alpha-row alpha2 ${rowPhase}`}>{answers2}</ul>
     </div>
   );

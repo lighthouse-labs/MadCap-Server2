@@ -12,6 +12,7 @@ export default function Lobby(props) {
 
   const [categories, setCategories] = useState(null);
   const players = props.gameData.users;
+
   useEffect(() => {
     Promise.all([
       axios.get("/api/categories"),
@@ -25,6 +26,8 @@ export default function Lobby(props) {
       console.error(err.message);
     });
   }, []);
+
+  
 
   return (
     <div className="lobby-main">
@@ -59,6 +62,7 @@ export default function Lobby(props) {
           categories={categories}
           handleStart={props.handleStart}
           url={props.url}
+          url_path={props.url_path}
         />
       </Box>
     </div>

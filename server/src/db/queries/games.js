@@ -3,7 +3,7 @@ const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
 
 const getMainGame = (game_url) => {
   return db.query(`
-  SELECT id, url, timer, max_players, rounds FROM games
+  SELECT id, url, timer, max_players AS "maxPlayers", rounds FROM games
   WHERE url = $1`, [game_url])
   .then((data) => data.rows[0])
 }
@@ -61,13 +61,13 @@ const createNewGame = (url) => {
  * @param {array of ints} category_ids 
  * @param {{
  *  timer: int (int seconds),
- *  max_players: int,
+ *  maxPlayers: int,
  *  rounds: int,
  * }} settings
  * @returns 
  */
 const updateGameDetails = (game_url, category_ids, settings) => {
-  const {timer, max_players, rounds} = settings
+  const {timer, maxPlayers, rounds} = settings
   return db.query(`
   UPDATE games
   SET timer = $2,
@@ -75,7 +75,7 @@ const updateGameDetails = (game_url, category_ids, settings) => {
       rounds = $4
   WHERE url = $1
   RETURNING *
-  `, [game_url, timer, max_players, rounds])
+  `, [game_url, timer, maxPlayers, rounds])
   .then((data) => data.rows[0].id)
   .then((game_id) => {
     const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)

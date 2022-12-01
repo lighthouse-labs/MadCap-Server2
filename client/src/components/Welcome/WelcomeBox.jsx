@@ -9,8 +9,9 @@ import ActionButton from "./ActionButton";
 import axios from "axios";
 
 export default function WelcomeBox(props) {
-  
   const { url, name, handleName } = props;
+  const MAKE = "MAKE";
+  const JOIN = "JOIN";
 
   const [btnState, setBtnState] = useState("MAKE")
 
@@ -18,15 +19,15 @@ export default function WelcomeBox(props) {
     setBtnState(props.url_path ? "JOIN" : "MAKE")
   }, [props.url_path])
 
-  const MAKE = "MAKE";
-  const JOIN = "JOIN";
   // if no link use MAKE (default state)
   // if there is a custom link use JOIN
 
   const [avatar_url, setAvatar_url] = useState();
   const [color, setColor] = useState();
+
   const navigate = useNavigate();
-  const createGame = () => {
+
+  const makeGame = () => {
    
       axios.post("/api/games", { url })
       .then(() => (
@@ -94,7 +95,7 @@ export default function WelcomeBox(props) {
           name={name} />
         {btnState === MAKE && <ActionButton
           message="Make New Game"
-          onClick={createGame} 
+          onClick={makeGame} 
         />}
         {btnState === JOIN && <ActionButton
           message="Join the Game!"
