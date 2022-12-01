@@ -108,7 +108,9 @@ export default function App(props) {
           setGameData={setGameData}
         />)}
          
-      {mode === "GAME" && <Game />}
+      {mode === "GAME" && <Game
+      gameData = {gameData}
+       />}
       
     </div>
 

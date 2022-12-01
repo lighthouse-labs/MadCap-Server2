@@ -21,7 +21,7 @@ const socket = io(SERVER, {
     { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
     { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
     { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
-    { id: 4, color: 'orange', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
+    { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
   ];
 const romanAlpha = [
   {
@@ -231,8 +231,9 @@ export default function Game(props) {
     lastMessage: null,
     //phase : game, results & podium
     phase: "game",
-    players: dummyPlayers,
-    player: dummyPlayers[2]
+    players: props.gameData.users,
+    //needs to be set to player
+    player: props.gameData.users[0]
   });
 
   const setAnswer = (message, store) => {
@@ -358,7 +359,9 @@ export default function Game(props) {
   const sendMessage = (message) => {
     //had to move this here, since can connect when not on this page
     //less backend setting if just have a state "inroom"
-    socket.emit("set-room", state.player.url);
+
+    //needs url set to user
+    socket.emit("set-room", "dummyroom");
     let messagetype = "chat";
     if (stateRef.current.phase === "game") {
       messagetype = "capture";
@@ -366,7 +369,7 @@ export default function Game(props) {
     let messageUpper = capitalizeFirstLetter(message);
     const messageObject = {
       message: messageUpper,
-      room: state.player.url,
+      room: "dummyroom",
       colour: state.player.color,
       user: state.player.name,
       type: messagetype,
