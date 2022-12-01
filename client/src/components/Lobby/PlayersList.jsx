@@ -38,6 +38,7 @@ export default function PlayersList(props) {
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
       </ListItemAvatar>
+      {player.id === props.currentUser && "Current Player"}
       <ListItemText primary={player.name}
         sx={{ '.MuiTypography-root': { fontSize: "12px" } }} />
     </ListItem>
@@ -78,6 +79,8 @@ export default function PlayersList(props) {
                         Host
                       </Typography>
                     </ListItemAvatar>
+                    {host && host.id === props.currentUser && "Current Player"}
+
                     <ListItemText primary={host && host.name} />
                   </ListItem>
                 </List>

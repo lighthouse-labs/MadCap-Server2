@@ -37,6 +37,7 @@ export default function PlayersList(props) {
       </ListItemAvatar>
       <ListItemText primary={player.name}
         sx={{ '.MuiTypography-root': { fontSize: "12px", pl: 1 } }} />
+      {props.currentPlayerID === player.id ? "Current Player" : ""}
     </ListItem>
   ));
 

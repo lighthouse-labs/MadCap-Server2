@@ -13,6 +13,7 @@ export default function Welcome(props) {
         url={props.url}
         url_path={props.url_path}
         name={props.name}
+        setCurrentUser={props.setCurrentUser}
         handleName={props.handleName}
         newPlayer={props.newPlayer}
         onClick={props.onClick}

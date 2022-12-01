@@ -14,6 +14,10 @@ module.exports = (app) => {
       console.log(message);
       app.io.in(message.room).emit("message", message);
     });
+    socket.on("send-vote", (vote) => {
+      console.log(vote);
+      app.io.in(vote.room).emit("vote", vote.vote);
+    });
     socket.on("disconnect", () => {
       console.log("A user disconnected");
     });

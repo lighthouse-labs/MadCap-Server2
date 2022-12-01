@@ -38,12 +38,17 @@ export default function WelcomeBox(props) {
           host: true
         })
       ))
+      .then((response) => {
+        console.log("Current user id", response.data.id)
+        props.setCurrentUser(response.data.id)
+      })
       .then(() => {
         props.setHost();
-    }).then(() => {
-      navigate(`/${url}`)
-    })
-    .catch((err) => console.error(err));
+      })
+      .then(() => {
+        navigate(`/${url}`)
+      })
+      .catch((err) => console.error(err));
 
   }
 
@@ -54,6 +59,9 @@ export default function WelcomeBox(props) {
         color,
         avatar_url,
         host: false
+      })
+      .then((response) => {
+        props.setCurrentUser(response.data.id)
       })
       .then(() => {
         props.transition("LOBBY")

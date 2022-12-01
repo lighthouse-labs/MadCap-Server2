@@ -53,6 +53,7 @@ export default function Lobby(props) {
           width: '100%'
         }}>
         <PlayersList
+          currentUser={props.currentUser}
           name={props.name}
           players={players}
           setGameData={props.setGameData}
@@ -61,6 +62,7 @@ export default function Lobby(props) {
           categories={categories}
           handleStart={props.handleStart}
           url={props.url}
+          url_path={props.url_path}
         />
       </Box>
     </div>

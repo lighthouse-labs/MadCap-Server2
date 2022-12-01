@@ -10,6 +10,7 @@ export default function StatusBox(props) {
     <Box className="status-box" >
     
       <GamePlayersList
+      currentPlayerID={props.currentPlayer.id}
       players = {props.players} />
 
       <Box className="chat-box-main"

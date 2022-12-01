@@ -9,7 +9,8 @@ CREATE TABLE games (
   url VARCHAR(255) NOT NULL,
   seed INTEGER NOT NULL,
   timer SMALLINT DEFAULT 60,
-  max_players SMALLINT DEFAULT 8
+  max_players SMALLINT DEFAULT 8,
+  rounds SMALLINT DEFAULT 3
 );
 
 CREATE TABLE categories (
