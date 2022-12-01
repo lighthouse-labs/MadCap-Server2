@@ -18,7 +18,6 @@ export default function Lobby(props) {
       axios.get(`/api/games/${props.url_path}`)
     ])
     .then(([categoriesResponse, gameResponse]) => {
-      console.log("Categories", categoriesResponse.data)
       setCategories(categoriesResponse.data);
       props.setGameData(gameResponse.data);
     })
