@@ -20,7 +20,7 @@ export default function App(props) {
 
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
-  const [cookies, setCookie] = useCookies(['host']);
+  const [hostCookies, setHostCookie] = useCookies(['host']);
 
   const url = useRef(generateRandomString()).current;
 
@@ -41,8 +41,10 @@ export default function App(props) {
   // })
 
   useEffect(() => {
-    transition(cookies.host ? props.mode : WELCOME);
-  }, [cookies.host, props.mode]);
+    transition(hostCookies.host ? props.mode : WELCOME);
+  }, [hostCookies.host, props.mode]);
+
+  const [currentUserCookies, setCurrentUserCookie] = useCookies(['user']);
 
   console.log("loader_url:", full_url);
   console.log("url_path:", url_path);
@@ -55,7 +57,11 @@ export default function App(props) {
   };
 
   const setHost = () => {
-    setCookie('host', true, { path: '/' });
+    setHostCookie('host', true, { path: '/' });
+  }
+
+  const setCurrentUser = (id) => {
+    setCurrentUserCookie('user', id, { path: '/' })
   }
 
   function handleStart() {
@@ -78,8 +84,9 @@ export default function App(props) {
           url_path={url_path}
           url={url}
           name={name}
-          host={cookies.host}
+          host={hostCookies.host}
           // avatar={avatar}
+          setCurrentUser={setCurrentUser}
           handleName={handleName}
           setHost={setHost}
         />
@@ -90,12 +97,13 @@ export default function App(props) {
           url={full_url}
           url_path={url_path}
           handleStart={handleStart}
+          currentUser={Number(currentUserCookies.user)}
           gameData={gameData}
           setGameData={setGameData}
         />)}
 
       {mode === "GAME" && <Game
-        gameData={gameData}
+        gameData={gameData} currentUser={Number(currentUserCookies.user)}
       />}
 
     </div>

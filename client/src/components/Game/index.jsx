@@ -233,7 +233,7 @@ export default function Game(props) {
     phase: "game",
     players: props.gameData.users,
     //needs to be set to player
-    player: props.gameData && props.gameData.users[0]
+    player: props.gameData && props.gameData.users.find((player) => player.id === props.currentUser)
   });
 
   const setAnswer = (message, store) => {
@@ -426,6 +426,7 @@ export default function Game(props) {
           lastMessage={state.lastMessage}
           chats={state.chats}
           players = {state.players}
+          currentPlayer={state.player}
         />
       </Box>
     </div>
