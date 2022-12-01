@@ -50,8 +50,6 @@ export default function App(props) {
 
   const { mode, transition } = useVisualMode(WELCOME);
 
-
-
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -96,7 +94,6 @@ export default function App(props) {
           // avatar={avatar}
           handleName={handleName}
           setHost={setHost}
-          handleJoin={handleJoin}
         />
       )}
       {mode === LOBBY && (

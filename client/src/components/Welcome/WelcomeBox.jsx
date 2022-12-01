@@ -26,8 +26,6 @@ export default function WelcomeBox(props) {
   const [avatar_url, setAvatar_url] = useState();
   const [color, setColor] = useState();
   const navigate = useNavigate();
-  console.log("url_path", props.url_path);
-
   const createGame = () => {
    
       axios.post("/api/games", { url })

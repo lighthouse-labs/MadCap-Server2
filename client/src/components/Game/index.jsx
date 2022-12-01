@@ -264,6 +264,20 @@ export default function Game(props) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  const setPlayerScore = (name, gameState, change) => {
+    const players = gameState.players.map((player) => {
+      if (player.name === name) {
+        let newScore = player.score + change
+        return {
+          ...player,
+          score : newScore
+        };
+      }
+      return player;
+    });
+    return players;
+  }
+
   const stateRef = useRef(state);
   useEffect(() => {
     //without this, state ref in sockets will be out of date (when they are connected)
@@ -295,6 +309,9 @@ export default function Game(props) {
         message.type === "capture" &&
         !confirmUsed(message, stateRef.current)
       ) {
+        let playerSet = setPlayerScore(message.user, stateRef.current, 10)
+        console.log(playerSet)
+        
         let answerSet = setAnswer(message, stateRef.current);
         let chatSet = [
           ...stateRef.current.chats,
@@ -305,6 +322,7 @@ export default function Game(props) {
           answers: answerSet,
           chats: chatSet,
           lastMessage: message.message,
+          players: playerSet
         }));
       }
       if (message.type === "chat") {

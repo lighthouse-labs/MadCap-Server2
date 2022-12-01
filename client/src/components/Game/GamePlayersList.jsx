@@ -32,7 +32,7 @@ export default function PlayersList(props) {
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
         <Typography sx={{ fontSize: "10px", pl: 1 }}>
-          100
+          {player.score}
         </Typography>
       </ListItemAvatar>
       <ListItemText primary={player.name}

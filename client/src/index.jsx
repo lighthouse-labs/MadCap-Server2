@@ -35,7 +35,6 @@ const router = createBrowserRouter([
       const url = new URL(request.url);
       const url_path = url.pathname.substring(1);
       const full_url = url.href;
-      console.log(url.pathname)
       return { full_url, url_path };
     })
   }
