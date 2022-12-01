@@ -101,7 +101,9 @@ export default function App(props) {
         />)}
 
       {mode === "GAME" && <Game
-        gameData={gameData} currentUser={Number(currentUserCookies.user)}
+        gameData={gameData}
+        currentUser={Number(currentUserCookies.user)}
+        url_path={url_path}
       />}
 
     </div>

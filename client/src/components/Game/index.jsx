@@ -8,6 +8,7 @@ import GameBoard from "./GameBoard";
 import StatusBox from "./StatusBox";
 
 import "./styles.css";
+import axios from "axios";
 
 const SERVER = "http://127.0.0.1:8001";
 //Temporary fix?
@@ -254,6 +255,8 @@ export default function Game(props) {
       props.gameData &&
       props.gameData.users.find((player) => player.id === props.currentUser),
     checkIn: false,
+    category:"",
+    subcategory:""
   });
   
   // fn setphase to results
@@ -263,6 +266,18 @@ export default function Game(props) {
       { ...prev, phase: phase }
     ));
   };
+
+  useEffect(() => {
+    axios.get(`/api/games/${props.url_path}/subcategories/1`)
+    .then((response) => response.data)
+    .then(({category, subcategory}) => {
+      setState((prev) => ({
+        ...prev,
+        category,
+        subcategory
+      }))
+    })
+  }, [])
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -503,6 +518,8 @@ export default function Game(props) {
         }}
       >
         <GameBoard
+          category={state.category}
+          subcategory={state.subcategory}
           answers={state.answers}
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
