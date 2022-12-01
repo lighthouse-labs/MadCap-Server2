@@ -18,7 +18,12 @@ export default function AnswerListItem(props) {
     {}
   );
   const voteAgainst = () => {
-    props.sendVote(props.letter);
+    console.log(props)
+    let voteObject = {
+      letter: props.letter,
+      userId: props.userId
+    }
+    props.sendVote(voteObject);
   };
 
   const handleClick = () => {
