@@ -124,8 +124,14 @@ router.post('/:game_url/users', (req, res) => {
 router.put('/:game_url', (req, res) => {
   const { game_url } = req.params;
   const { categories, settings } = req.body;
-  gameQueries.updateGameDetails(game_url, categories, settings)
-  .then (() => res.send('Success!'))
+  const queries = [];
+  queries.push(gameQueries.updateGameSettings(game_url, settings))
+  categories[0] && queries.push(gameQueries.updateGameCategories(game_url, categories))
+  Promise.all(queries)
+  .then (([settings]) => res.json({
+    ...settings,
+    categories: req.body.categories || []
+  }))
   .catch(error => {
     console.error(error);
     res.json({ error });
