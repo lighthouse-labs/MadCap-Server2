@@ -52,7 +52,7 @@ export default function WelcomeBox(props) {
         name,
         color,
         avatar_url,
-        host: true
+        host: false
       })
       .then(() => {
         props.transition("LOBBY")
