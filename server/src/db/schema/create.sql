@@ -29,8 +29,6 @@ CREATE TABLE subcategories (
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
---              STRETCH, STORE RESULTS ETC...
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
