@@ -65,7 +65,7 @@ router.get('/:game_url/subcategories/:subcategory_number', (req, res) => {
   gameQueries.getRandomSubcategories(game_url)
   // Subtract 1 so that the first subcategory is number 1
   .then(subcategories => res.json(subcategories[subcategory_number - 1]))
-  .catch(error => res.json({ error }))
+  .catch(error => res.status(500).json({ error }))
 });
 
 /**
@@ -91,6 +91,7 @@ router.post('/', (req, res) => {
  *  name: Fred
  *  color: blue
  *  avatar_url: './avatars/avatar-temp-4.png'
+ *  host: true,
  * }
  * 
  * returns the new user object
@@ -128,7 +129,7 @@ router.put('/:game_url', (req, res) => {
   .then (() => res.send('Success!'))
   .catch(error => {
     console.error(error);
-    res.json({ error });
+    res.status(500).json({ error });
   });
 });
 
@@ -149,7 +150,7 @@ router.patch('/:game_url/users/:user_id', (req, res) => {
   .then((user) => res.json(user))
   .catch((error) => {
     console.error(error);
-    res.json({ error });
+    res.status(500).json({ error });
   });
 });
 
@@ -159,7 +160,7 @@ router.delete('/:game_url', (req, res) => {
   .then((game) => res.json(game))
   .catch(error => {
     console.error(error);
-    res.json({ error });
+    res.status(500).json({ error });
   });
 });
 
