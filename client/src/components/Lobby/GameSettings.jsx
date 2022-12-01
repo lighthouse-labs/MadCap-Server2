@@ -12,6 +12,8 @@ export default function GameSettings(props) {
   //   // if "waiting..."
   // }
 
+  const buttonText = "Start the Game"
+
   return (
     <div className="game-settings-main">
       <Box className="cat-option-box"
@@ -21,9 +23,7 @@ export default function GameSettings(props) {
           flexDirection: 'column',
           width: '100%',
           height: 'fit-content',
-          ml: '6px',
-          pl: '2px',
-          pb: '3px'
+          ml: '6px', pl: '2px', pb: '20px'
         }}>
         <div className="settings-header">
           <h2>Game Settings</h2>
@@ -37,14 +37,15 @@ export default function GameSettings(props) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          mt: '10px',
-          ml: '6px',
           width: '100%',
           height: 'fit-content',
-          pb: '10px'
+          mt: '30px', ml: '6px', pb: '10px'
         }}>
         <LinkBox url={props.url}/>
-        <StartButton handleStart={props.handleStart}/>
+
+        <StartButton handleStart={props.handleStart}
+          message={buttonText}
+        />
       </Box>
     </div>
   );
