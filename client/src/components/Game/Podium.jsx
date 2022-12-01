@@ -13,7 +13,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 //map over players!! then return list with percentage based on score in width
-//include points, avatar and colour *****************************************
+//include points, colour and Avatar to right of bar *****************************************
 
 export default function Podium() {
   return (

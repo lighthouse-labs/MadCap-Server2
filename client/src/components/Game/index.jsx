@@ -392,6 +392,7 @@ export default function Game(props) {
           height: "100%",
           width: "100%",
           px: 0,
+          backgroundColor: "#f0f2ff",
         }}
       >
         <GameBoard
