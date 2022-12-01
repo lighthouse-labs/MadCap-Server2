@@ -87,6 +87,13 @@ const updateGameSettings = (game_url, settings) => {
     `, [game_url])
   .then((data) => data.rows[0].id)
   .then((game_id) => {
+    db.query(`
+      DELETE FROM categories_sets
+      WHERE game_id = $1
+    `, [game_id])
+    return game_id
+  })
+  .then((game_id) => {
     const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
     db.query(categoriesQuery, categoriesList)
     .then((data) => {
