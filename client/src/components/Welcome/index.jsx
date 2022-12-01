@@ -14,7 +14,6 @@ export default function Welcome(props) {
         url_path={props.url_path}
         name={props.name}
         handleName={props.handleName}
-        handleJoin={props.handleJoin}
         newPlayer={props.newPlayer}
         onClick={props.onClick}
         setHost={props.setHost}

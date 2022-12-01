@@ -44,13 +44,7 @@ export default function App(props) {
     transition(cookies.host ? props.mode : WELCOME)
   }, [cookies.host, props.mode])
 
-  console.log("loader_url:", full_url);
-  console.log("url_path:", url_path)
-
-
   const { mode, transition } = useVisualMode(WELCOME);
-
-
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -95,7 +89,6 @@ export default function App(props) {
           // avatar={avatar}
           handleName={handleName}
           setHost={setHost}
-          handleJoin={handleJoin}
         />
       )}
       {mode === LOBBY && (
