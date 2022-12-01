@@ -3,7 +3,7 @@ const { generateAddGameCategoriesQuery } = require('./helpers/game_helpers');
 
 const getMainGame = (game_url) => {
   return db.query(`
-  SELECT id, url, timer, max_players, rounds FROM games
+  SELECT id, url, timer, max_players AS "maxPlayers", rounds FROM games
   WHERE url = $1`, [game_url])
   .then((data) => data.rows[0])
 }
