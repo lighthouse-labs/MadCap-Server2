@@ -1,16 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import io from "socket.io-client"
 // import axios from 'axios';
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
 import Game from "./Game";
+
 
 import useVisualMode from "../hooks/useVisualMode";
 import { generateRandomString } from '../helpers/helpers';
 
 
 import './App.css';
+
+const SERVER = "http://127.0.0.1:8001";
+//Temporary fix?
+const socket = io(SERVER, {
+  transports: ["websocket"],
+});
 
 
 export default function App(props) {
@@ -19,7 +27,9 @@ export default function App(props) {
 
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
+  const [checkIn, setCheckIn] = useState(false)
   const [hostCookies, setHostCookie] = useCookies(['host']);
+ 
 
   const url = useRef(generateRandomString()).current;
 
@@ -65,12 +75,42 @@ export default function App(props) {
   }
 
   function handleStart() {
+    socket.emit("host-start-game", "dummyroom")
     transition(GAME);
   }
 
   // const handleMakeGame = () => {
   //  transition(LOBBY)
   // };
+
+  const modeRef = useRef(mode);
+  useEffect(() => {
+    //without this, state ref in sockets will be out of date (when they are connected)
+    modeRef.current = mode;
+  });
+
+  useEffect(() => {
+    // console.log(stateRef.current);
+
+    socket.on("start-game",  () => {
+      console.log("host start game");
+      console.log(modeRef.current)
+      if (modeRef.current === LOBBY){
+        transition(GAME);
+      }
+    });
+
+    return () => {
+    socket.off("start-game");
+
+    };
+  }, []);
+
+  if (!checkIn) {
+    console.log("checkin")
+    socket.emit("set-room", "dummyroom");
+    setCheckIn("true")
+  }
 
   return (
     <div className="App">

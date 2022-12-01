@@ -7,6 +7,7 @@ import PlayersList from './PlayersList';
 
 import './styles.css';
 
+
 export default function Lobby(props) {
 
 
@@ -26,6 +27,7 @@ export default function Lobby(props) {
       console.error(err.message);
     });
   }, []);
+
 
   
 
