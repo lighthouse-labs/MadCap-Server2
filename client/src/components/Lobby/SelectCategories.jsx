@@ -11,8 +11,8 @@ import Chip from '@mui/material/Chip';
 
 export default function SelectCategories(props) {
   const { categories } = props;
+  const { currentCategories, setCurrentCategories } = props;
 
-  const [categoryName, setCategoryName] = useState([]);
   const theme = useTheme();
 
   const getStyles = (name, categoryName, theme) => {
@@ -25,10 +25,11 @@ export default function SelectCategories(props) {
   };
 
   const handleChange = (event) => {
+    console.log(event)
     const {
       target: { value },
     } = event;
-    setCategoryName(
+    setCurrentCategories(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
     );
@@ -45,6 +46,11 @@ export default function SelectCategories(props) {
     },
   };
 
+  console.log("Categories", categories);
+  // console.log("Category IDs", currentCategories)
+
+  const CategoryIDToValue = ((cat_id) => categories.find((category) => category.id === cat_id).title);
+
   return (
     <FormControl sx={{ m: 1, width: '100%' }}
       className="select-categories">
@@ -55,7 +61,7 @@ export default function SelectCategories(props) {
         labelId="multiple-chip-label"
         id="multiple-chip"
         multiple
-        value={categoryName}
+        value={currentCategories}
         onChange={handleChange}
         input={<OutlinedInput id="select-multiple-chip" label="Chip"
         />}
@@ -67,9 +73,7 @@ export default function SelectCategories(props) {
           }}
           >
             {selected.map((value) => (
-              <Chip key={value} label={value}
-                sx={{
-                }}
+              <Chip key={value} label={CategoryIDToValue(value)}
               />
             ))}
           </Box>
@@ -79,10 +83,11 @@ export default function SelectCategories(props) {
         {categories && categories.map((cat) => (
           <MenuItem
             key={cat.id}
-            value={cat.title}
-            style={getStyles(cat.title, categoryName, theme)}
+            value={cat.id}
+            style={getStyles(cat.title, currentCategories, theme)}
           >
             {cat.title}
+            {console.log("Cat", cat)}
           </MenuItem>
         ))}
       </Select>

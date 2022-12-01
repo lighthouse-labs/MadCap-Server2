@@ -21,6 +21,8 @@ export default function GameSettings(props) {
     }
   );
 
+  const [currentCategories, setCurrentCategories] = useState([])
+
   const buttonText = "Start the Game"
 
   return (
@@ -37,7 +39,7 @@ export default function GameSettings(props) {
         <div className="settings-header">
           <h2>Game Settings</h2>
         </div>
-        <CategoriesBox categories={props.categories} />
+        <CategoriesBox categories={props.categories} currentCategories={currentCategories} setCurrentCategories={setCurrentCategories}/>
         <OptionsBox settings={settings} setSettings={setSettings}/>
       </Box>
       <Box
