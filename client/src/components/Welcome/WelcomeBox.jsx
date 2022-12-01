@@ -47,7 +47,9 @@ export default function WelcomeBox(props) {
       .then(() => {
         navigate(`/${url}`)
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.log(url)
+        console.error("Posting to games or users", err.message)});
 
   }
 
