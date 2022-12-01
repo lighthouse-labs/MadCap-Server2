@@ -9,7 +9,7 @@ export default function StartButton(props) {
         sx={{
           width: '93%',
           height: 65,
-          fontSize: 30
+          fontSize: '22px'
         }}
       >{props.message}</Button>
     </Fragment>

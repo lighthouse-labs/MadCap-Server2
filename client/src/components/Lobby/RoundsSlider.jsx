@@ -158,7 +158,7 @@ export default function TimerSlider() {
     return `${value}s`;
   }
   return (
-      <Box sx={{ width: '93%', pl: '10px' }} className="select-timer">
+      <Box className="select-timer" sx={{ width: '93%', pb: '27px' }}>
         <header><h4>set rounds</h4></header>
         <StyledSlider
           min={0}

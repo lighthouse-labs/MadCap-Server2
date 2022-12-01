@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { useCookies } from 'react-cookie'
+import { useCookies } from 'react-cookie';
 
 import axios from 'axios';
 
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
-import Game from "./Game"
+import Game from "./Game";
 import useVisualMode from "../hooks/useVisualMode";
 import { generateRandomString } from '../helpers/helpers';
 
@@ -15,15 +15,15 @@ import './App.css';
 
 
 export default function App(props) {
-  
+
   const { full_url, url_path } = useLoaderData();
-  
+
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
-  const [cookies, setCookie] = useCookies(['host']);
-  
+  const [hostCookies, setHostCookie] = useCookies(['host']);
+
   const url = useRef(generateRandomString()).current;
-  
+
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
   const GAME = "GAME";
@@ -41,8 +41,14 @@ export default function App(props) {
   // })
 
   useEffect(() => {
-    transition(cookies.host ? props.mode : WELCOME)
-  }, [cookies.host, props.mode])
+    transition(hostCookies.host ? props.mode : WELCOME);
+  }, [hostCookies.host, props.mode]);
+
+  const [currentUserCookies, setCurrentUserCookie] = useCookies(['user']);
+
+  console.log("loader_url:", full_url);
+  console.log("url_path:", url_path);
+
 
   const { mode, transition } = useVisualMode(WELCOME);
 
@@ -51,18 +57,11 @@ export default function App(props) {
   };
 
   const setHost = () => {
-    setCookie('host', true, { path: '/' });
+    setHostCookie('host', true, { path: '/' });
   }
 
-
-
-  function handleJoin(id, name, color) {
-    axios.post(`/api/games/${url_path}/users`, {
-      name: 'shelly',
-      color: 'purple'
-    })
-      .then(() => transition(LOBBY))
-      .catch(err => console.log(err));
+  const setCurrentUser = (id) => {
+    setCurrentUserCookie('user', id, { path: '/' })
   }
 
   function handleStart() {
@@ -85,8 +84,9 @@ export default function App(props) {
           url_path={url_path}
           url={url}
           name={name}
-          host={cookies.host}
+          host={hostCookies.host}
           // avatar={avatar}
+          setCurrentUser={setCurrentUser}
           handleName={handleName}
           setHost={setHost}
         />
@@ -97,16 +97,17 @@ export default function App(props) {
           url={full_url}
           url_path={url_path}
           handleStart={handleStart}
+          currentUser={Number(currentUserCookies.user)}
           gameData={gameData}
           setGameData={setGameData}
         />)}
-         
+
       {mode === "GAME" && <Game
-      gameData = {gameData}
-       />}
-      
+        gameData={gameData} currentUser={Number(currentUserCookies.user)}
+      />}
+
     </div>
 
-    
+
   );
 }

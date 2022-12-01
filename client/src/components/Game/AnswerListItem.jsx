@@ -49,7 +49,7 @@ export default function AnswerListItem(props) {
               backgroundColor:
                 !buttonMode ? `rgba(255,0,0,${buttonsColour})` : "#313e4454",
               fontSize: "14px",
-              textDecoration: !buttonMode ? "none" : "line-through",
+              textDecoration: !buttonMode ? "none" : "line-through"
             }}
           >
             {props.answer}

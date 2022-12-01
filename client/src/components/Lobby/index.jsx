@@ -50,6 +50,7 @@ export default function Lobby(props) {
           width: '100%'
         }}>
         <PlayersList
+          currentUser={props.currentUser}
           name={props.name}
           players={players}
           setGameData={props.setGameData}

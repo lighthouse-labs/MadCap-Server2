@@ -15,10 +15,10 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 export default function PlayersList(props) {
 
-
+  const host = props.players.find(player => player.host);
   //extract 
   const PlayerListItem = props.players.map((player) =>
-  (
+  !player.host && (
     <ListItem key={player.id}
       style={{ padding: 0 }}
       sx={{
@@ -28,7 +28,7 @@ export default function PlayersList(props) {
       }}>
       <ListItemAvatar
         sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Avatar src={player.imgPath} alt={player.label} sx={{ maxWidth: '30%', height: 'auto' }}>
+        <Avatar src={player.avatar_url} alt={player.label} sx={{ maxWidth: '30%', height: 'auto' }}>
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
         <Typography sx={{ fontSize: "10px", pl: 1 }}>
@@ -37,6 +37,7 @@ export default function PlayersList(props) {
       </ListItemAvatar>
       <ListItemText primary={player.name}
         sx={{ '.MuiTypography-root': { fontSize: "12px", pl: 1 } }} />
+      {props.currentPlayerID === player.id ? "Current Player" : ""}
     </ListItem>
   ));
 
@@ -48,9 +49,9 @@ export default function PlayersList(props) {
   return (
     <Fragment>
       <Box className="players-box"
-        sx={{ 
-          height: 'fit-content', width: '34%', pl: '4px', pb: '4px' }}>
-        <Paper style={{ maxHeight: '315px', width: '100%', paddingRight: '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px', }}>
+        sx={{ height: '100%', width: '34%', pl: '4px', pb: '4px' }}>
+        <Paper className="player-box-inner" 
+        style={{ height: '100%', width: '100%', paddingRight: '10px', overflow: 'auto' }} elevation={3} sx={{ pl: '8px', }}>
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,
@@ -71,13 +72,15 @@ export default function PlayersList(props) {
                     p: 0
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar sx={{ maxWidth: '40%', height: 'auto' }}>
+                      <Avatar src={host && host.avatar_url} alt={host && host.label} sx={{ maxWidth: '40%', height: 'auto' }}>
                       </Avatar>
+                      <CircleIcon sx={{ pl: 1, color: host && host.color }} />
                       <Typography sx={{ fontSize: "12px", pl: 1 }}>
-                        Host
+                        Host <br/>
+                        {host && host.score} 
                       </Typography>
                     </ListItemAvatar>
-                    <ListItemText primary={props.name} />
+                    <ListItemText primary={host && host.name} />
                   </ListItem>
                 </List>
                 <List>
