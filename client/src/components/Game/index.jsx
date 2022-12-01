@@ -309,11 +309,13 @@ export default function Game(props) {
 
   const setVote = (vote, gameState) => {
     //sets the details of the letter in game
+    let votecount = 0
     const answers = gameState.answers.map((answer) => {
       if (answer.letter === vote) {
         console.log(answer.votesAgainst)
         
         let newVotesAgainst = answer.votesAgainst + 1
+        votecount = newVotesAgainst
         return {
           ...answer,
           votesAgainst: newVotesAgainst
@@ -321,7 +323,7 @@ export default function Game(props) {
       }
       return answer;
     });
-    return answers;
+    return [answers, votecount];
   };
 
   const stateRef = useRef(state);
@@ -385,12 +387,20 @@ export default function Game(props) {
     });
 
     socket.on("vote", (vote) => {
+      console.log(vote)
+      
       const voteAnswersSet = setVote(vote, stateRef.current)
+
+      //2 is dummy value
+      if (voteAnswersSet > 2){
+
+      }
       setState((prev) => ({
         ...prev,
-        answers: voteAnswersSet
+        answers: voteAnswersSet[0]
       }));
       console.log(stateRef.current)
+      // let playerSet = setPlayerScore(message.user, stateRef.current, 10)
 
     });
     
@@ -459,6 +469,7 @@ export default function Game(props) {
     }
     socket.emit("send-vote", voteObject);
   };
+
   if (!state.checkIn) {
     sendMessage("has connected", "results")
     socket.emit("set-room", "dummyroom");

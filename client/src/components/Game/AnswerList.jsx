@@ -17,9 +17,11 @@ export default function AnswerList(props) {
         letter={answer.letter}
         captureColour={answer.captureColour}
         answer={answer.answer}
+        capturedBy = {answer.capturedBy}
         votesAgainst = {answer.votesAgainst}
         phase={props.phase}
         sendVote={props.sendVote}
+
       />
     );
   });
@@ -30,6 +32,7 @@ export default function AnswerList(props) {
         id={answer.id}
         letter={answer.letter}
         captureColour={answer.captureColour}
+        capturedBy = {answer.capturedBy}
         votesAgainst = {answer.votesAgainst}
         answer={answer.answer}
         phase={props.phase}
