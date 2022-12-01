@@ -25,7 +25,7 @@ export default function PlayersList(props) {
   const host = props.players && props.players.find(player => player.host === true)
   //extract players player item list.
   const PlayerListItem = props.players && props.players.map((player) =>
-  (
+  !player.host && (
     <ListItem key={player.id}
       sx={{
         display: 'flex',
@@ -71,8 +71,9 @@ export default function PlayersList(props) {
                     alignItems: 'flex-start'
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
-                      <Avatar sx={{}}>
+                      <Avatar src={host && host.avatar_url}sx={{}}>
                       </Avatar>
+                      <CircleIcon sx={{ pl: 1, color: host && host.color }} />
                       <Typography sx={{ fontSize: "12px", pl: 1 }}>
                         Host
                       </Typography>
