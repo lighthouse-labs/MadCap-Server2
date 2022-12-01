@@ -4,7 +4,8 @@ import classNames from "classnames";
 export default function AnswerListItem(props) {
   const [voted, setVoted] = useState(false);
   const [buttonMode, setButtonState] = useState(false);
-  const playerCount = 6;
+  const [disableButton, setDisabled] = useState(false)
+  // const playerCount = 6;
   // console.log(props.letter)
   // console.log(props.id)
 
@@ -32,11 +33,15 @@ export default function AnswerListItem(props) {
     setVoted(true);
   };
 
-  let buttonsColour = props.votesAgainst * 0.05 * playerCount;
+  let buttonsColour = props.votesAgainst * (0.25 * (12 - props.playerCount));
   // setButtonState(buttonClick < (playerCount / 2) - 1 ? false : true)
-  if (props.votesAgainst > (playerCount - 1) / 2 && !buttonMode) {
+  if (props.playercount > 1 && props.votesAgainst >= (props.playerCount - 1) / 2 && !buttonMode) {
     console.log("here");
     setButtonState(true);
+  }
+  if ((voted || buttonMode) && !disableButton){
+    console.log("breaker")
+    setDisabled(true)
   }
 
   return (
@@ -46,7 +51,7 @@ export default function AnswerListItem(props) {
         <h2>
           <button
             onClick={handleClick}
-            disabled={voted}
+            disabled={disableButton}
             style={{
               backgroundColor: !buttonMode
                 ? `rgba(255,0,0,${buttonsColour})`

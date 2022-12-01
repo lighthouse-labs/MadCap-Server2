@@ -295,7 +295,6 @@ export default function Game(props) {
   const setPlayerScore = (id, gameState, change) => {
     const players = gameState.players.map((player) => {
       if (player.id === id) {
-        console.log("insetplayerscore")
         let newScore = player.score + change;
         return {
           ...player,
@@ -387,6 +386,7 @@ export default function Game(props) {
       // console.log(stateRef.current)
     });
 
+
     socket.on("vote", (vote) => {
       console.log(vote);
 
@@ -394,8 +394,8 @@ export default function Game(props) {
       let playerSet = stateRef.current.players
       //2 is dummy value
       console.log(voteAnswersSet)
-      if (voteAnswersSet[1] > 0) {
-        console.log("here")
+      // if (props.votesAgainst > (playerCount - 1) / 2
+      if (voteAnswersSet[1] >= (stateRef.current.players.length -1)/2) {
         playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -20);
       }
       console.log()
@@ -407,6 +407,7 @@ export default function Game(props) {
       console.log(stateRef.current);
       // let playerSet = setPlayerScore(message.user, stateRef.current, 10)
     });
+
 
     //can be used to update from host
 
@@ -505,6 +506,7 @@ export default function Game(props) {
           lastMessage={state.lastMessage}
           phase={state.phase}
           sendVote={sendVote}
+          playerCount = {state.players.length}
           // counter={counter}
         />
         <StatusBox

@@ -21,6 +21,7 @@ export default function AnswerList(props) {
         votesAgainst={answer.votesAgainst}
         phase={props.phase}
         sendVote={props.sendVote}
+        playerCount = {props.playerCount}
       />
     );
   });
@@ -36,6 +37,7 @@ export default function AnswerList(props) {
         votesAgainst={answer.votesAgainst}
         phase={props.phase}
         sendVote={props.sendVote}
+        playerCount = {props.playerCount}
       />
     );
   });

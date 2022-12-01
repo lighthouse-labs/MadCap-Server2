@@ -16,6 +16,7 @@ export default function GameBoard(props) {
           lastMessage={props.lastMessage}
           phase={props.phase}
           sendVote={props.sendVote}
+          playerCount={props.playerCount}
           // counter={props.counter}
         />
         :
