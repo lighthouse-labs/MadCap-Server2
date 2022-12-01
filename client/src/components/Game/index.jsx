@@ -27,8 +27,8 @@ const romanAlpha = [
   {
     id: 1,
     letter: "A",
-    answer: "",
-    captureColour: "",
+    answer: "art",
+    captureColour: "red",
     votesAgainst: 0
   },
   {
@@ -36,96 +36,112 @@ const romanAlpha = [
     letter: "B",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 3,
     letter: "C",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 4,
     letter: "D",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 5,
     letter: "E",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 6,
     letter: "F",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 7,
     letter: "G",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 8,
     letter: "H",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 9,
     letter: "I",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 10,
     letter: "J",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 11,
     letter: "K",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 12,
     letter: "L",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 13,
     letter: "M",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 14,
     letter: "N",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 15,
     letter: "O",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 16,
     letter: "P",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
   {
     id: 17,
     letter: "Q",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -133,6 +149,7 @@ const romanAlpha = [
     letter: "R",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -140,6 +157,7 @@ const romanAlpha = [
     letter: "S",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -147,6 +165,7 @@ const romanAlpha = [
     letter: "T",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -154,6 +173,7 @@ const romanAlpha = [
     letter: "U",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -161,6 +181,7 @@ const romanAlpha = [
     letter: "V",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -168,6 +189,7 @@ const romanAlpha = [
     letter: "W",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -175,6 +197,7 @@ const romanAlpha = [
     letter: "X",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -182,6 +205,7 @@ const romanAlpha = [
     letter: "Y",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 
   {
@@ -189,6 +213,7 @@ const romanAlpha = [
     letter: "Z",
     answer: "",
     captureColour: "",
+    votesAgainst: 0
   },
 ];
 const dummychat = [
@@ -230,7 +255,7 @@ export default function Game(props) {
     isConnected: socket.connected,
     lastMessage: null,
     //phase : game, results & podium
-    phase: "game",
+    phase: "results",
     players: props.gameData.users,
     //needs to be set to player
     player: props.gameData.users[0]
@@ -281,10 +306,13 @@ export default function Game(props) {
   const setVote = (vote, gameState) => {
     //sets the details of the letter in game
     const answers = gameState.answers.map((answer) => {
-      if (answer.letter === message.letter) {
+      if (answer.letter === vote) {
+        console.log(answer.votesAgainst)
+        
+        let newVotesAgainst = answer.votesAgainst + 1
         return {
           ...answer,
-          votesAgainst: (answer.votes + 1),
+          votesAgainst: newVotesAgainst
         };
       }
       return answer;
@@ -354,11 +382,12 @@ export default function Game(props) {
     });
 
     socket.on("vote", (vote) => {
-      voteAnswersSet = setVote(vote, stateRef.current)
+      const voteAnswersSet = setVote(vote, stateRef.current)
       setState((prev) => ({
         ...prev,
         answers: voteAnswersSet
       }));
+      console.log(stateRef.current)
 
     });
     
@@ -420,6 +449,15 @@ export default function Game(props) {
     // console.log(socket);
     socket.emit("send-message", messageObject);
   };
+  const sendVote = (vote) => {
+    console.log(vote)
+    socket.emit("set-room", "dummyroom");
+    const voteObject = {
+      vote: vote,
+      room: "dummyroom"
+    }
+    socket.emit("send-vote", voteObject);
+  };
 
   return (
     <div className="game-main">
@@ -442,6 +480,7 @@ export default function Game(props) {
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
           phase={state.phase}
+          sendVote = {sendVote}
           // counter={counter}
         />
         <StatusBox

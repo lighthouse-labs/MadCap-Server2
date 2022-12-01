@@ -16,6 +16,7 @@ export default function GameBoard(props) {
           lastMessage={props.lastMessage}
           phase={props.phase}
           counter={props.counter}
+          sendVote={props.sendVote}
         />
         :
         props.phase === "podium" && <Podium /> }

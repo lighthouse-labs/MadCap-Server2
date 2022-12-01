@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classNames from "classnames";
 
 export default function AnswerListItem(props) {
-  const [buttonClick, setButtonClick] = useState(0);
+  const [buttonClick, setButtonClick] = useState(props.votesAgainst);
   const [buttonColour, setButtonColor] = useState(0);
   const [buttonMode, setButtonState] = useState(false);
   const playerCount = 6;
@@ -19,14 +19,23 @@ export default function AnswerListItem(props) {
     {}
   );
   const voteAgainst = () => {
-
+    props.sendVote(props.letter)
   }
 
   const handleClick = () => {
-    setButtonClick(buttonClick + 1);
-    setButtonState(buttonClick < (playerCount / 2) - 1 ? false : true);
-    setButtonColor(buttonColour < 1 ? buttonColour + 0.1 * playerCount : 0);
+    voteAgainst()
+    
   };
+  
+  let buttonsColour = ((props.votesAgainst * 0.05) * playerCount)
+  // setButtonState(buttonClick < (playerCount / 2) - 1 ? false : true)
+  if (props.votesAgainst > ((playerCount-1)/2) && !buttonMode){
+    console.log("here")
+    setButtonState(true)
+  }
+  
+
+
 
   return (
     <li className={alphaRows}>
@@ -37,7 +46,7 @@ export default function AnswerListItem(props) {
           <button onClick={handleClick} disabled={buttonMode}
             style={{
               backgroundColor:
-                !buttonMode ? `rgba(255,0,0,${buttonColour})` : "#313e4454",
+                !buttonMode ? `rgba(255,0,0,${buttonsColour})` : "#313e4454",
               fontSize: "14px",
               textDecoration: !buttonMode ? "none" : "line-through",
             }}
