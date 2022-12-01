@@ -3,13 +3,15 @@ import Box from '@mui/material/Box';
 
 
 export default function Round (props) {
-  const [gameTimer, setGameTimer] = useState(3);
+  const [gameTimer, setGameTimer] = useState(4);
+
+  // setInterval to setTimeout... clearInterval to clearTimeout
 
   useEffect(() => {
     const timer =
-      gameTimer > 0 && setInterval(() => setGameTimer(prev => (prev - 1)), 1000);
+      gameTimer > 0 && setTimeout(() => setGameTimer(prev => (prev - 1)), 1000);
     if (gameTimer === 0) props.setStatePhase("game");
-    return () => clearInterval(timer);
+    return () => clearTimeout(timer);
   }, [gameTimer]);
 
   return (

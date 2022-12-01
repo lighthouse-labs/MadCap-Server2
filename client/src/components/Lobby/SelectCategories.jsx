@@ -46,8 +46,7 @@ export default function SelectCategories(props) {
   };
 
   return (
-    <FormControl sx={{ m: 1, width: '100%' }}
-      className="select-categories">
+    <FormControl className="select-categories" sx={{ m: 1, width: '100%' }}>
       <InputLabel id="multiple-chip-label">
         Categories
       </InputLabel>
@@ -58,20 +57,29 @@ export default function SelectCategories(props) {
         value={categoryName}
         onChange={handleChange}
         input={<OutlinedInput id="select-multiple-chip" label="Chip"
+        sx={{}}
         />}
         renderValue={(selected) => (
-          <Box sx={{
-            display: 'flex', flexWrap: 'wrap',
-            gap: 0, '& .MuiChip-root': { fontSize: '12px' }
-          }}
+          <Box
+            sx={{
+              display: 'flex', flexWrap: 'wrap', 
+              maxHeight: '76px', 
+              overflow: "scroll", 
+              py: "2px",
+              gap: 0.2,
+              '&.MuiSelect-select' : {height: '76px', 
+              overflow: "scroll", }
+            }}
           >
             {selected.map((value) => (
               <Chip key={value} label={value}
+                sx={{'&.MuiChip-root': { fontSize: '12px' } }}
               />
             ))}
           </Box>
         )}
         MenuProps={MenuProps}
+
       >
         {categories && categories.map((cat) => (
           <MenuItem

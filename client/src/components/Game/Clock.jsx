@@ -5,11 +5,12 @@ export default function Clock(props) {
   const seconds = 5;
   const [gameTimer, setGameTimer] = useState(seconds);
 
+  // setInterval to setTimeout... clearInterval to clearTimeout
   useEffect(() => {
     const timer =
-      gameTimer > 0 && setInterval(() => setGameTimer(prev => (prev - 1)), 1000);
+      gameTimer > 0 && setTimeout(() => setGameTimer(prev => (prev - 1)), 1000);
     if (gameTimer === 0) props.setStatePhase("results");
-    return () => clearInterval(timer);
+    return () => clearTimeout(timer);
   }, [gameTimer]);
 
   return (
