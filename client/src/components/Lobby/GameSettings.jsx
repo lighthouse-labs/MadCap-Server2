@@ -22,7 +22,6 @@ export default function GameSettings(props) {
   );
 
   const [currentCategories, setCurrentCategories] = useState([])
-
   const buttonText = "Start the Game"
 
   return (
