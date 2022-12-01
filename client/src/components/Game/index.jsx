@@ -16,13 +16,13 @@ const socket = io(SERVER, {
 });
 //
   //  dummy memory!
-  const dummyPlayers = [
-    { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
-    { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
-    { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
-    { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
-    { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
-  ];
+  // const dummyPlayers = [
+  //   { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
+  //   { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
+  //   { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
+  //   { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
+  //   { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
+  // ];
 const romanAlpha = [
   {
     id: 1,
@@ -203,14 +203,14 @@ const dummychat = [
   //   message: "A",
   // },
 ];
-const dummyuser = {
-  name: "Dummy",
-  url: "madcap.com/322klj4",
-  colour: "Green",
-  avatar: 1,
-  score: 10,
-  admin: true
-};
+// const dummyuser = {
+//   name: "Dummy",
+//   url: "madcap.com/322klj4",
+//   colour: "Green",
+//   avatar: 1,
+//   score: 10,
+//   admin: true
+// };
 
 export default function Game(props) {
   //extract code eventually
@@ -233,7 +233,7 @@ export default function Game(props) {
     phase: "game",
     players: props.gameData.users,
     //needs to be set to player
-    player: props.gameData.users[0]
+    player: props.gameData && props.gameData.users[0]
   });
 
   const setAnswer = (message, store) => {

@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import { useCookies } from 'react-cookie'
+import { useCookies } from 'react-cookie';
 
 import axios from 'axios';
 
 import Welcome from "./Welcome";
 import Lobby from "./Lobby";
-import Game from "./Game"
+import Game from "./Game";
 import useVisualMode from "../hooks/useVisualMode";
 import { generateRandomString } from '../helpers/helpers';
 
@@ -15,15 +15,15 @@ import './App.css';
 
 
 export default function App(props) {
-  
+
   const { full_url, url_path } = useLoaderData();
-  
+
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
   const [cookies, setCookie] = useCookies(['host']);
-  
+
   const url = useRef(generateRandomString()).current;
-  
+
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
   const GAME = "GAME";
@@ -41,8 +41,12 @@ export default function App(props) {
   // })
 
   useEffect(() => {
-    transition(cookies.host ? props.mode : WELCOME)
-  }, [cookies.host, props.mode])
+    transition(cookies.host ? props.mode : WELCOME);
+  }, [cookies.host, props.mode]);
+
+  console.log("loader_url:", full_url);
+  console.log("url_path:", url_path);
+
 
   const { mode, transition } = useVisualMode(WELCOME);
 
@@ -89,13 +93,13 @@ export default function App(props) {
           gameData={gameData}
           setGameData={setGameData}
         />)}
-         
+
       {mode === "GAME" && <Game
-      gameData = {gameData}
-       />}
-      
+        gameData={gameData}
+      />}
+
     </div>
 
-    
+
   );
 }
