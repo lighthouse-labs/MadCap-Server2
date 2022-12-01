@@ -31,7 +31,7 @@ export default function Entry(props) {
   /// if event.target ==
 
   return (
-    <Box className="entry-box" sx={{ width: '100%' }}>
+    <Box className="entry-box" sx={{ width: '99%', mr: '2px' }}>
       {/* <p>Connected: {"" + props.isConnected}</p>
       <p>last message:{props.lastMessage || "-"}</p> */}
       <div className="messages-input"
