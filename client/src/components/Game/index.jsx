@@ -15,133 +15,133 @@ const socket = io(SERVER, {
   transports: ["websocket"],
 });
 //
-  //  dummy memory!
-  // const dummyPlayers = [
-  //   { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
-  //   { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
-  //   { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
-  //   { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
-  //   { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
-  // ];
+//  dummy memory!
+// const dummyPlayers = [
+//   { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
+//   { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
+//   { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
+//   { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
+//   { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
+// ];
 const romanAlpha = [
   {
     id: 1,
     letter: "A",
     answer: "art",
     captureColour: "red",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 2,
     letter: "B",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 3,
     letter: "C",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 4,
     letter: "D",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 5,
     letter: "E",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 6,
     letter: "F",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 7,
     letter: "G",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 8,
     letter: "H",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 9,
     letter: "I",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 10,
     letter: "J",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 11,
     letter: "K",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 12,
     letter: "L",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 13,
     letter: "M",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 14,
     letter: "N",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 15,
     letter: "O",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 16,
     letter: "P",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
   {
     id: 17,
     letter: "Q",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -149,7 +149,7 @@ const romanAlpha = [
     letter: "R",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -157,7 +157,7 @@ const romanAlpha = [
     letter: "S",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -165,7 +165,7 @@ const romanAlpha = [
     letter: "T",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -173,7 +173,7 @@ const romanAlpha = [
     letter: "U",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -181,7 +181,7 @@ const romanAlpha = [
     letter: "V",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -189,7 +189,7 @@ const romanAlpha = [
     letter: "W",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -197,7 +197,7 @@ const romanAlpha = [
     letter: "X",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -205,7 +205,7 @@ const romanAlpha = [
     letter: "Y",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 
   {
@@ -213,7 +213,7 @@ const romanAlpha = [
     letter: "Z",
     answer: "",
     captureColour: "",
-    votesAgainst: 0
+    votesAgainst: 0,
   },
 ];
 const dummychat = [
@@ -238,16 +238,8 @@ const dummychat = [
 // };
 
 export default function Game(props) {
-  //extract code eventually
-  // const seconds = 60 //dummy number
-  // const [counter, setCounter] = useState(seconds);
 
-  // useEffect(() => {
-  //   const timer =
-  //     counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-  //   return () => clearInterval(timer);
-  // }, [counter]);
-
+  // extract all logic eventually...
 
   const [state, setState] = useState({
     answers: romanAlpha,
@@ -258,12 +250,19 @@ export default function Game(props) {
     phase: "game",
     players: props.gameData.users,
     //needs to be set to player
-    player: props.gameData && props.gameData.users.find((player) => player.id === props.currentUser),
+    player:
+      props.gameData &&
+      props.gameData.users.find((player) => player.id === props.currentUser),
     checkIn: false,
-
   });
   
-
+  // fn setphase to results
+  // in timer pass down props.phase result
+  const setStatePhase = (phase) => {
+    setState(prev => (
+      { ...prev, phase: phase }
+    ));
+  };
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -273,6 +272,7 @@ export default function Game(props) {
           ...answer,
           answer: message.message,
           captureColour: message.colour,
+          userId: message.userId,
         };
       }
       return answer;
@@ -291,37 +291,40 @@ export default function Game(props) {
   };
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
 
-  const setPlayerScore = (name, gameState, change) => {
+  const setPlayerScore = (id, gameState, change) => {
     const players = gameState.players.map((player) => {
-      if (player.name === name) {
-        let newScore = player.score + change
+      if (player.id === id) {
+        let newScore = player.score + change;
         return {
           ...player,
-          score : newScore
+          score: newScore,
         };
       }
       return player;
     });
     return players;
-  }
+  };
 
   const setVote = (vote, gameState) => {
     //sets the details of the letter in game
+
+    let votecount = 0;
     const answers = gameState.answers.map((answer) => {
       if (answer.letter === vote) {
-        console.log(answer.votesAgainst)
-        
-        let newVotesAgainst = answer.votesAgainst + 1
+        console.log(answer.votesAgainst);
+
+        let newVotesAgainst = answer.votesAgainst + 1;
+        votecount = newVotesAgainst;
         return {
           ...answer,
-          votesAgainst: newVotesAgainst
+          votesAgainst: newVotesAgainst,
         };
       }
       return answer;
     });
-    return answers;
+    return [answers, votecount];
   };
 
   const stateRef = useRef(state);
@@ -349,14 +352,14 @@ export default function Game(props) {
     });
 
     socket.on("message", (message) => {
-      console.log(stateRef.current)
+      console.log(stateRef.current);
       if (
         message.type === "capture" &&
         !confirmUsed(message, stateRef.current)
       ) {
-        let playerSet = setPlayerScore(message.user, stateRef.current, 10)
-        console.log(playerSet)
-        
+        let playerSet = setPlayerScore(message.userId, stateRef.current, 10);
+        console.log(playerSet);
+
         let answerSet = setAnswer(message, stateRef.current);
         let chatSet = [
           ...stateRef.current.chats,
@@ -367,7 +370,7 @@ export default function Game(props) {
           answers: answerSet,
           chats: chatSet,
           lastMessage: message.message,
-          players: playerSet
+          players: playerSet,
         }));
       }
       if (message.type === "chat") {
@@ -384,49 +387,62 @@ export default function Game(props) {
       // console.log(stateRef.current)
     });
 
+
     socket.on("vote", (vote) => {
-      const voteAnswersSet = setVote(vote, stateRef.current)
+      console.log(vote);
+
+      const voteAnswersSet = setVote(vote.vote, stateRef.current);
+      let playerSet = stateRef.current.players
+      //2 is dummy value
+      console.log(voteAnswersSet)
+      // if (props.votesAgainst > (playerCount - 1) / 2
+      if (voteAnswersSet[1] >= (stateRef.current.players.length -1)/2) {
+        playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -20);
+      }
+      console.log()
       setState((prev) => ({
         ...prev,
-        answers: voteAnswersSet
+        players: playerSet,
+        answers: voteAnswersSet[0],
       }));
-      console.log(stateRef.current)
-
+      console.log(stateRef.current);
+      // let playerSet = setPlayerScore(message.user, stateRef.current, 10)
     });
-    
+
+
     //can be used to update from host
 
     socket.on("request-state", (message) => {
-      console.log("state requested")
+      console.log("state requested");
       if (stateRef.current.player.admin) {
-        console.log("got here")
+        console.log("got here");
         let currentState = {
           answers: stateRef.current.answers,
-          chats:stateRef.current.chats,
-          room: stateRef.current.player.url
-        }
-        console.log(currentState)
-        socket.emit("send-state", currentState)
+          chats: stateRef.current.chats,
+          room: stateRef.current.player.url,
+        };
+        console.log(currentState);
+        socket.emit("send-state", currentState);
       }
-    })
+    });
 
     socket.on("sync-state", (message) => {
-      console.log ("state syncing")
+      console.log("state syncing");
       setState((prev) => ({
         ...prev,
         message: message.answers,
         chats: message.chats,
       }));
 
-    })
+    });
 
     return () => {
       socket.off("connect");
       socket.off("disconnect");
       socket.off("message");
-      socket.off("vote")
-      socket.off("request-state")
-      socket.off("sync-state")
+      socket.off("vote");
+      socket.off("request-state");
+      socket.off("sync-state");
     };
   }, []);
 
@@ -445,6 +461,7 @@ export default function Game(props) {
       room: "dummyroom",
       colour: state.player.color,
       user: state.player.name,
+      userId: state.player.id,
       type: messagetype,
     };
     // console.log(messageObject);
@@ -452,19 +469,20 @@ export default function Game(props) {
     socket.emit("send-message", messageObject);
   };
   const sendVote = (vote) => {
-    console.log(vote)
     const voteObject = {
-      vote: vote,
-      room: "dummyroom"
-    }
+      vote: vote.letter,
+      answerPlayerId: vote.userId,
+      room: "dummyroom",
+    };
     socket.emit("send-vote", voteObject);
   };
+
   if (!state.checkIn) {
-    sendMessage("has connected", "results")
+    sendMessage("has connected", "results");
     socket.emit("set-room", "dummyroom");
     setState((prev) => ({
       ...prev,
-      checkIn: true
+      checkIn: true,
     }));
   }
 
@@ -489,7 +507,11 @@ export default function Game(props) {
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
           phase={state.phase}
-          sendVote = {sendVote}
+          sendVote={sendVote}
+          playerCount = {state.players.length}
+          setStatePhase={setStatePhase}
+        // gameTimer={gameTimer}
+        // voteTimer={voteTimer}
           // counter={counter}
         />
         <StatusBox
@@ -497,7 +519,7 @@ export default function Game(props) {
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
           chats={state.chats}
-          players = {state.players}
+          players={state.players}
           currentPlayer={state.player}
         />
       </Box>

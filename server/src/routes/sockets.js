@@ -16,7 +16,7 @@ module.exports = (app) => {
     });
     socket.on("send-vote", (vote) => {
       console.log(vote);
-      app.io.in(vote.room).emit("vote", vote.vote);
+      app.io.in(vote.room).emit("vote", vote);
     });
     socket.on("disconnect", () => {
       console.log("A user disconnected");

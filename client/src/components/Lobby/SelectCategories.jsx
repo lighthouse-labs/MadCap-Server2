@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -20,12 +20,12 @@ export default function SelectCategories(props) {
       fontWeight:
         categoryName.indexOf(name) === -1
           ? theme.typography.fontWeightRegular
-          : theme.typography.fontWeightMedium,
+          : theme.typography.fontWeightMedium
     };
   };
 
   const handleChange = (event) => {
-    console.log(event)
+    console.log(event);
     const {
       target: { value },
     } = event;
@@ -52,8 +52,7 @@ export default function SelectCategories(props) {
   const CategoryIDToValue = ((cat_id) => categories.find((category) => category.id === cat_id).title);
 
   return (
-    <FormControl sx={{ m: 1, width: '100%' }}
-      className="select-categories">
+    <FormControl className="select-categories" sx={{ m: 1, width: '100%' }}>
       <InputLabel id="multiple-chip-label">
         Categories
       </InputLabel>
@@ -64,21 +63,31 @@ export default function SelectCategories(props) {
         value={currentCategories}
         onChange={handleChange}
         input={<OutlinedInput id="select-multiple-chip" label="Chip"
+          sx={{}}
         />}
         renderValue={(selected) => (
-          <Box sx={{
-            display: 'flex', flexWrap: 'wrap',
-            gap: 0, '& .MuiChip-root':
-              { fontSize: '12px' }
-          }}
+          <Box
+            sx={{
+              display: 'flex', flexWrap: 'wrap',
+              maxHeight: '76px',
+              overflow: "scroll",
+              py: "2px",
+              gap: 0.2,
+              '&.MuiSelect-select': {
+                height: '76px',
+                overflow: "scroll",
+              }
+            }}
           >
             {selected.map((value) => (
               <Chip key={value} label={CategoryIDToValue(value)}
+                sx={{ '&.MuiChip-root': { fontSize: '12px' } }}
               />
             ))}
           </Box>
         )}
         MenuProps={MenuProps}
+
       >
         {categories && categories.map((cat) => (
           <MenuItem
@@ -91,7 +100,6 @@ export default function SelectCategories(props) {
           </MenuItem>
         ))}
       </Select>
-
     </FormControl>
   );
 }
