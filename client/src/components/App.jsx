@@ -27,7 +27,6 @@ export default function App(props) {
 
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
-  const [checkIn, setCheckIn] = useState(false)
   const [hostCookies, setHostCookie] = useCookies(['host']);
  
 
@@ -75,7 +74,7 @@ export default function App(props) {
   }
 
   function handleStart() {
-    socket.emit("host-start-game", "dummyroom")
+    socket.emit("host-start-game", url_path)
     transition(GAME);
   }
 
@@ -105,12 +104,10 @@ export default function App(props) {
 
     };
   }, []);
-
-  if (!checkIn) {
-    console.log("checkin")
-    socket.emit("set-room", "dummyroom");
-    setCheckIn("true")
+  const checkedIn = () => {
+    socket.emit("set-room", url_path); 
   }
+
 
   return (
     <div className="App">
@@ -126,6 +123,7 @@ export default function App(props) {
           setCurrentUser={setCurrentUser}
           handleName={handleName}
           setHost={setHost}
+          checkedIn = {checkedIn}
         />
       )}
       
@@ -138,10 +136,11 @@ export default function App(props) {
           currentUser={Number(currentUserCookies.user)}
           gameData={gameData}
           setGameData={setGameData}
+          checkedIn = {checkedIn}
         />)}
 
       {mode === "GAME" && <Game
-        gameData={gameData} currentUser={Number(currentUserCookies.user)}
+        gameData={gameData} currentUser={Number(currentUserCookies.user)} url_path={url_path}
       />}
 
     </div>

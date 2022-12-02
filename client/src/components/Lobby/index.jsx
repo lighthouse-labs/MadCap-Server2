@@ -12,6 +12,7 @@ export default function Lobby(props) {
 
 
   const [categories, setCategories] = useState(null);
+  const [checkIn, setCheckIn] = useState(false)
   const players = props.gameData.users;
 
   useEffect(() => {
@@ -27,6 +28,12 @@ export default function Lobby(props) {
       console.error(err.message);
     });
   }, []);
+
+  if (!checkIn) {
+    console.log("lobbycheckin")
+    props.checkedIn()
+    setCheckIn(true)
+  }
 
 
   

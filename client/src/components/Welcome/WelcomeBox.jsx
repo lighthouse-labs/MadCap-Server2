@@ -65,6 +65,7 @@ export default function WelcomeBox(props) {
       })
       .then(() => {
         props.transition("LOBBY")
+        props.checkedIn()
       })
     .catch((err) => console.error(err));
   }
