@@ -80,6 +80,17 @@ export default function WelcomeBox(props) {
     .catch((err) => console.error(err));
   }
 
+  const enterWatchMake = (e) => {
+    if (e.key === "Enter") {
+      makeGame()
+    }
+  }
+  const enterWatchJoin = (e) => {
+    if (e.key === "Enter") {
+      joinGame()
+    }
+  }
+
   return (
     <Fragment>
       <Box
@@ -107,10 +118,12 @@ export default function WelcomeBox(props) {
         {btnState === MAKE && <ActionButton
           message="Make New Game"
           onClick={makeGame} 
+          onKeyPress={enterWatchMake}
         />}
         {btnState === JOIN && <ActionButton
           message="Join the Game!"
           onClick={joinGame}
+          onKeyPress={enterWatchJoin}
         />}
       </Box>
     </Fragment>

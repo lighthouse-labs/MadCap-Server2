@@ -5,7 +5,7 @@ export default function ActionButton(props) {
 
   return (
     <Fragment>
-      <Button onClick={props.onClick} variant="contained" color="success" size="large"
+      <Button
         sx={{
           width: '100%',
           maxWidth: '350px',
@@ -13,6 +13,12 @@ export default function ActionButton(props) {
           fontSize: 30,
           mb: 3.5
         }}
+        type="submit"
+        onKeyPress={props.onKeyPress}
+        onClick={props.onClick}
+        variant="contained"
+        color="success"
+        size="large"
       >{props.message}</Button>
     </Fragment>
   );

@@ -10,9 +10,8 @@ import './styles.css';
 
 export default function Lobby(props) {
 
-
   const [categories, setCategories] = useState(null);
-  const [checkIn, setCheckIn] = useState(false)
+  const [checkIn, setCheckIn] = useState(false);
   const players = props.gameData.users;
 
   useEffect(() => {
@@ -20,23 +19,21 @@ export default function Lobby(props) {
       axios.get("/api/categories"),
       axios.get(`/api/games/${props.url_path}`)
     ])
-    .then(([categoriesResponse, gameResponse]) => {
-      setCategories(categoriesResponse.data);
-      props.setGameData(gameResponse.data);
-    })
-    .catch(err => {
-      console.error(err.message);
-    });
+      .then(([categoriesResponse, gameResponse]) => {
+        setCategories(categoriesResponse.data);
+        props.setGameData(gameResponse.data);
+      })
+      .catch(err => {
+        console.error(err.message);
+      });
   }, []);
 
   if (!checkIn) {
-    console.log("lobbycheckin")
-    props.checkedIn()
-    setCheckIn(true)
+    console.log("lobbycheckin");
+    props.checkedIn();
+    setCheckIn(true);
   }
 
-
-  
 
   return (
     <div className="lobby-main">

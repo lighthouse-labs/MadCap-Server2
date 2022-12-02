@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 
 
-export default function Round (props) {
+export default function RoundClock (props) {
   const [gameTimer, setGameTimer] = useState(4);
 
   // setInterval to setTimeout... clearInterval to clearTimeout

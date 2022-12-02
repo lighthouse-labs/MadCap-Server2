@@ -28,7 +28,6 @@ export default function App(props) {
   const [name, setName] = useState("");
   const [hostCookies, setHostCookie] = useCookies(['host']);
  
-
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
   const GAME = "GAME";
@@ -44,6 +43,7 @@ export default function App(props) {
   console.log("loader_url:", full_url);
   console.log("url_path:", url_path);
 
+  console.log("gameData in App ~~~~~~~~~~~: ", gameData);
 
 
   const handleName = (e) => {
