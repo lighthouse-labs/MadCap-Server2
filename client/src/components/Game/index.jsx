@@ -276,13 +276,26 @@ export default function Game(props) {
   const nextRound = () => {
     if (state.round < props.gameData.rounds) {
       setState(prev => (
-        { ...prev, round: prev.round +1}
+        { ...prev, round: prev.round + 1 }
       ));
-    } 
+    }
   };
 
   //loop through subcategories for games
   // 
+
+  console.log("state.round in Game ~~~~~~~: ", )
+  // const nextSubcategory = () => {
+
+
+  //   setState(prev => (
+  //     {
+  //       ...prev,
+  //       category: "",
+  //       subcategory: "",
+  //     }
+  //   ));
+  // };
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game

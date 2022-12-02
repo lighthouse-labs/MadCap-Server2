@@ -51,7 +51,7 @@ export default function App(props) {
   console.log("loader_url:", full_url);
   console.log("url_path:", url_path);
 
-  console.log("gameData in App ~~~~~~~~~~~: ", gameData);
+  // console.log("gameData in App ~~~~~~~~~~~: ", gameData);
 
 
   const handleName = (e) => {

@@ -14,7 +14,7 @@ import CircleIcon from '@mui/icons-material/Circle';
 
 
 export default function PlayersList(props) {
-console.log("props.players~~~~~~~~~~~~ ",props.players)
+// console.log("props.players~~~~~~~~~~~~ ",props.players)
   const host = props.players.find(player => player.host);
   //extract 
   const PlayerListItem = props.players.map((player) =>
