@@ -70,7 +70,7 @@ export default function AnswerList(props) {
         <Vote setStatePhase={props.setStatePhase}/>
       }
       {props.phase === "round" &&
-        <Round setStatePhase={props.setStatePhase}/>
+        <Round setStatePhase={props.setStatePhase} clearBoard = {props.clearBoard}/>
       }
       <ul className={`alpha-row alpha2 ${rowPhase}`}>{answers2}</ul>
     </div>

@@ -492,6 +492,12 @@ export default function Game(props) {
       checkIn: true,
     }));
   }
+  const clearBoard = () => {
+    setState((prev) => ({
+      ...prev,
+      answers: romanAlpha,
+    }));
+  }
 
   if (!state.checkIn) {
     checkedIn()
@@ -524,6 +530,7 @@ export default function Game(props) {
           playerCount = {state.players.length}
           setStatePhase={setStatePhase}
           players = {state.players}
+          clearBoard = {clearBoard}
         />
         <StatusBox
           isConnected={state.isConnected}
