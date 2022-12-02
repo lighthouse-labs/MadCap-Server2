@@ -272,6 +272,11 @@ export default function Game(props) {
     })
   }, [])
 
+  console.log()
+
+//loop through subcategories for games
+// 
+
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
     const answers = store.answers.map((answer) => {
@@ -405,7 +410,7 @@ export default function Game(props) {
       console.log(voteAnswersSet)
       // if (props.votesAgainst > (playerCount - 1) / 2
       if (voteAnswersSet[1] >= (stateRef.current.players.length -1)/2) {
-        playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -100);
+        playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -150);
       }
       // console.log();
       setState((prev) => ({
@@ -514,6 +519,7 @@ export default function Game(props) {
         }}
       >
         <GameBoard
+          gameData={props.gameData}
           category={state.category}
           subcategory={state.subcategory}
           answers={state.answers}

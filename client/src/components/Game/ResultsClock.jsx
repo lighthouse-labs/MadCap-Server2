@@ -11,7 +11,7 @@ export default function ResultsClock(props) {
       timer = voteTimer > 0 && setTimeout(() => setVoteTimer(prev => (prev - 1)), 1000);
     }
     if (voteTimer === 0) props.setStatePhase("round")
-     
+     //advance to next round in state (array)
     return () => clearTimeout(timer);
   }, [voteTimer]);
 
