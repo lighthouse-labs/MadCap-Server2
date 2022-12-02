@@ -107,8 +107,6 @@ export default function Podium(props) {
   }, []);
   // users as state variable, 
 
-
-
   const playerscores = players.map(player => (
     <div className="podium-list-withpoint" style={{ marginTop: '8px' }}>
       <Item className="podium-list-item" key={player.id}
@@ -118,21 +116,33 @@ export default function Podium(props) {
           height: '45px',
           transition: 'width 2.5s ease-out',
           overflow: 'hidden',
-          border: '1px solid black'
+          border: '1px solid black',
         }}
       >
-        <ListItemAvatar
-          sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-          <Avatar key={player.id} src={player.avatar_url} alt={player.label}
-            sx={{ maxWidth: '30%', height: 'auto' }}>
+        <ListItemAvatar key={player.id}
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            opacity: ease, transition: 'opacity 2s ease-in'
+          }}
+        >
+          <Avatar src={player.avatar_url} alt={player.label}
+            sx={{
+              maxWidth: '30%',
+              height: 'auto'
+            }}
+          >
           </Avatar>
         </ListItemAvatar>
-        {player.name}
+        <Typography >{player.name}</Typography>
       </Item>
       <Typography sx={{
         pl: '6px', fontSize: '13px',
-        opacity: ease, transition: 'opacity 4s ease-in'
-      }}>{player.score}
+        opacity: ease, transition: 'opacity 5s ease-in'
+      }}
+      >
+        {player.score}
       </Typography>
     </div>
 
