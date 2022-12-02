@@ -88,6 +88,8 @@ const dummyplayers = [
 
 export default function Podium(props) {
 
+  console.log(props.gameData)
+
   const [ease, setEase] = useState(0);
 
   const [players, setPlayers] = useState(

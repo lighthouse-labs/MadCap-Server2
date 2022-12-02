@@ -34,6 +34,7 @@ export default function GameBoard(props) {
           props.phase === "vote" ||
           props.phase === "round" ?
           <AnswerList
+            getNextSubcategory={props.getNextSubcategory}
             gameData={props.gameData}
             round={props.round}
             nextRound={props.nextRound}

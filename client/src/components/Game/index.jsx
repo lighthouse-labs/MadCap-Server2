@@ -230,8 +230,8 @@ const dummychat = [
 // };
 
 export default function Game(props) {
-
-  // extract all logic intouseApplicationData eventually...
+  // const { subCats } = props.gameData.subcategories;
+  // extract all logic into useApplicationData eventually...
 
   const [state, setState] = useState({
     answers: romanAlpha,
@@ -250,8 +250,6 @@ export default function Game(props) {
     round: 1
   });
 
-  console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData);
-  console.log("state.subcategories in Game ~~~~~~~~~~~: ", state.subcategories);
 
   useEffect(() => {
     axios.get(`/api/games/${props.url_path}/subcategories/1`)
@@ -281,21 +279,22 @@ export default function Game(props) {
     }
   };
 
-  //loop through subcategories for games
-  // 
+  // console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData);
+  
+  const getNextSubcategory = () => {
+    const random = Math.floor(Math.random() * props.gameData.subcategories.length);
+    setState(prev => (
+      { ...prev,
+        category: props.gameData.subcategories[random].category,
+        subcategory: props.gameData.subcategories[random].subcategory,
+      }
+    ));
+  };
 
-  console.log("state.round in Game ~~~~~~~: ", )
-  // const nextSubcategory = () => {
+  console.log("~~~~~~~~~~~~~~~~~~~ state.category: ", state.category);
+  console.log("~~~~~~~~~~~~~~~~~~~ state.subcategory: ", state.subcategory);
 
-
-  //   setState(prev => (
-  //     {
-  //       ...prev,
-  //       category: "",
-  //       subcategory: "",
-  //     }
-  //   ));
-  // };
+  // console.log("~~~~~~~~~~~~~~ ~~~~~~ : ", props.gameData.subcategories[4]);
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -548,6 +547,7 @@ export default function Game(props) {
           gameData={props.gameData}
           nextRound={nextRound}
           round={state.round}
+          getNextSubcategory={getNextSubcategory}
 
           setStatePhase={setStatePhase}
           phase={state.phase}
