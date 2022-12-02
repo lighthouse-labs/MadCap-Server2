@@ -24,20 +24,32 @@ export default function GameSettings(props) {
 
   const [currentCategories, setCurrentCategories] = useState([])
 
-  const gamesPutRequest =  axios.put(`api/games/${props.url_path}`, {
-    settings,
-    categories: currentCategories
-  });
+  const gamesPutRequest =  (settings, currentCategories) => (
+    axios.put(`api/games/${props.url_path}`, {
+      settings,
+      categories: currentCategories
+    })
+    .then((response) => {
+      console.log("New Game Data", response.data);
+      props.setGameData(response.data);
+    })
+  );
 
   const handleSet = () => {
-    gamesPutRequest
-    .catch((error) => console.error(error.message))
+    gamesPutRequest(settings, currentCategories)
+    .catch((error) => {
+      console.log("Settings", settings);
+      console.log("Categories", currentCategories);
+      console.error(error)})
   }
 
   const handleGameStart = () => {
-   gamesPutRequest
+   gamesPutRequest(settings, currentCategories)
     .then(() => props.handleStart())
-    .catch((error) => console.error(error.message))
+    .catch((error) => {
+      console.log("Settings", settings)
+      console.log("Categories", currentCategories)
+      console.error(error.message)})
   }
   const buttonText = "Start the Game"
 
