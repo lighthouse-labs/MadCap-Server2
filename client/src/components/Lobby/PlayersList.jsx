@@ -60,7 +60,7 @@ export default function PlayersList(props) {
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,
-            '& .MuiListItem-root': { px: 0 }
+            '& .MuiListItem-root': { px: 1 }
           }}
           >
             <Grid item xs={12} md={6}>
@@ -74,9 +74,9 @@ export default function PlayersList(props) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    backgroundColor: (host && host.id === props.currentUser) && 'rgba(0, 139, 139, 0.2)'
+                    backgroundColor: (host && host.id === props.currentUser) && 'rgba(0, 139, 139, 0.2)',
                   }}>
-                    <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
+                    <ListItemAvatar sx={{ display: 'flex', alignItems: 'center', justifyItems: 'space-around' }}>
                       <Avatar src={host && host.avatar_url}sx={{}}>
                       </Avatar>
                       <CircleIcon sx={{ pl: 1, color: host && host.color }} />            

@@ -60,7 +60,7 @@ export default function PlayersList(props) {
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,
-            '& .MuiListItem-root': { px: 0 }
+            '& .MuiListItem-root': { px: 1 }
           }}
           >
             <Grid item xs={12} md={6}>
