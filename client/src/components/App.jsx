@@ -52,8 +52,6 @@ export default function App(props) {
   console.log("loader_url:", full_url);
   console.log("url_path:", url_path);
 
-  // console.log("gameData in App ~~~~~~~~~~~: ", gameData);
-
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -71,9 +69,6 @@ export default function App(props) {
     socket.emit("host-start-game", url_path)
   }
 
-  // const handleMakeGame = () => {
-  //  transition(LOBBY)
-  // };
 
   const modeRef = useRef(mode);
   const hostCookieRef = useRef(cookies);
@@ -98,9 +93,6 @@ export default function App(props) {
       console.log("playerjoined")
       console.log(hostCookieRef.current.host)
       setReqUpdate(true)
-
-      
-
     });
 
     // Promise.all([

@@ -13,11 +13,11 @@ import Typography from '@mui/material/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 
 
-export default function PlayersList(props) {
+export default function GamePlayersList(props) {
 // console.log("props.players~~~~~~~~~~~~ ",props.players)
   const host = props.players.find(player => player.host);
   //extract 
-  const PlayerListItem = props.players.map((player) =>
+  const PlayerListItems = props.players.map((player) =>
   !player.host && (
     <ListItem key={player.id}
       style={{ padding: 0 }}
@@ -90,7 +90,7 @@ export default function PlayersList(props) {
                   </ListItem>
                 </List>
                 <List>
-                  {PlayerListItem}
+                  {PlayerListItems}
                 </List>
               </CustomStyle>
             </Grid>

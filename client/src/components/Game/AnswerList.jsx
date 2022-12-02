@@ -72,6 +72,7 @@ export default function AnswerList(props) {
       }
       {props.phase === "round" &&
         <Round
+          getNextSubcategory={props.getNextSubcategory}
           setStatePhase={props.setStatePhase}
           clearBoard={props.clearBoard}
           gameData={props.gameData}
