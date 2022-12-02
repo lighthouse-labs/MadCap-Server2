@@ -75,9 +75,8 @@ export default function PlayersList(props) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    border: host && host.id === props.currentUser 
-                      ? `5px solid chartreuse`
-                      : 'none'
+                    margin: '2px, rgba(180, 180, 180, 0.3)',
+                    backgroundColor: 'rgba(180, 180, 180, 0.3)'
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src={host && host.avatar_url}sx={{}}>
