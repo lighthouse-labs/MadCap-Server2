@@ -54,7 +54,6 @@ export default function Lobby(props) {
         }}>
         <PlayersList
           currentUser={props.currentUser}
-          name={props.name}
           players={players}
           setGameData={props.setGameData}
         />

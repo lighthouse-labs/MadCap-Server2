@@ -7,9 +7,12 @@ import Avatar from './Avatar';
 import UserName from './UserName';
 import ActionButton from "./ActionButton";
 import axios from "axios";
+import { generateRandomString } from "../../helpers/helpers";
 
 export default function WelcomeBox(props) {
-  const { url, name, handleName } = props;
+
+  const url = generateRandomString();
+  
   const MAKE = "MAKE";
   const JOIN = "JOIN";
 
@@ -24,6 +27,11 @@ export default function WelcomeBox(props) {
 
   const [avatar_url, setAvatar_url] = useState();
   const [color, setColor] = useState();
+  const [name, setName] = useState();
+
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
 
   const navigate = useNavigate();
 
@@ -50,7 +58,7 @@ export default function WelcomeBox(props) {
       })
       .catch((err) => {
         console.log(url)
-        console.error("Posting to games or users", err.message)});
+        console.error(err.message)});
 
   }
 
