@@ -26,7 +26,8 @@ export default function App(props) {
 
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
-  const [hostCookies, setHostCookie] = useCookies(['host']);
+  const [hostCookies, setHostCookie, removeHostCookie] = useCookies(['host']);
+  const [currentUserCookies, setCurrentUserCookie, removeCurrentUserCookie] = useCookies(['user']);
  
 
   const WELCOME = "WELCOME";
@@ -46,12 +47,18 @@ export default function App(props) {
   //   .catch((error) => console.error(error.message))
 
   // })
+  useEffect(() => {
+    console.log(url_path)
+    if(!url_path || url_path === '/') {
+      removeCurrentUserCookie('user', { path: '/'});
+      removeHostCookie('host', { path: '/'})
+    }
+  }, url_path)
 
   useEffect(() => {
     transition(hostCookies.host ? LOBBY : WELCOME);
   }, [hostCookies.host, props.mode]);
 
-  const [currentUserCookies, setCurrentUserCookie] = useCookies(['user']);
 
   console.log("loader_url:", full_url);
   console.log("url_path:", url_path);
