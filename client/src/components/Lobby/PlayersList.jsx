@@ -31,8 +31,9 @@ export default function PlayersList(props) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        border: player.id === props.currentUser ? `5px solid chartreuse` : 'none'
-
+        border: player.id === props.currentUser
+          ? `5px solid chartreuse`
+          : 'none'
       }}>
       <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <Avatar src={player.avatar_url} alt={player.color} sx={{
@@ -81,7 +82,7 @@ export default function PlayersList(props) {
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src={host && host.avatar_url}sx={{}}>
                       </Avatar>
-                      <CircleIcon sx={{ pl: 1, color: host && host.color }} />
+                      <CircleIcon sx={{ pl: 1, color: host && host.color }} />            
                       <Typography sx={{ fontSize: "12px", pl: 1 }}>
                         Host
                       </Typography>
