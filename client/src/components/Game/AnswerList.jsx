@@ -4,7 +4,8 @@ import Box from "@mui/material/Box";
 import AnswerListItem from "./AnswerListItem";
 import Clock from './Clock';
 import Notice from './Notice';
-import RoundClock from "./RoundClock";
+import Round from "./Round";
+import Vote from "./Vote"
 
 
 export default function AnswerList(props) {
@@ -65,9 +66,11 @@ export default function AnswerList(props) {
           <Notice lastMessage={props.lastMessage} />
         </div>
       )}
-
+      {props.phase === "vote" &&
+        <Vote setStatePhase={props.setStatePhase}/>
+      }
       {props.phase === "round" &&
-        <RoundClock setStatePhase={props.setStatePhase}/>
+        <Round setStatePhase={props.setStatePhase}/>
       }
       <ul className={`alpha-row alpha2 ${rowPhase}`}>{answers2}</ul>
     </div>

@@ -18,6 +18,7 @@ export default function GameBoard(props) {
       {
         props.phase === "game" ||
           props.phase === "results" ||
+          props.phase === "vote" ||
           props.phase === "round" ?
           <AnswerList
             answers={props.answers}

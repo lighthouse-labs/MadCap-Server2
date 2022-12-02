@@ -238,7 +238,7 @@ export default function Game(props) {
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
-    //phase : game, results & podium
+    //phase : game, vote, round, results & podium
     phase: "game",
     players: props.gameData.users,
     //needs to be set to player

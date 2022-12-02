@@ -9,7 +9,7 @@ export default function Clock(props) {
   useEffect(() => {
     const timer =
       gameTimer > 0 && setTimeout(() => setGameTimer(prev => (prev - 1)), 1000);
-    if (gameTimer === 0) props.setStatePhase("results");
+    if (gameTimer === 0) props.setStatePhase("vote");
     return () => clearTimeout(timer);
   }, [gameTimer]);
 
