@@ -28,6 +28,7 @@ export default function App(props) {
   const [name, setName] = useState("");
   const [hostCookies, setHostCookie, removeHostCookie] = useCookies(['host']);
   const [currentUserCookies, setCurrentUserCookie, removeCurrentUserCookie] = useCookies(['user']);
+  const [reqUpdate, setReqUpdate] = useState(false)
  
 
   const WELCOME = "WELCOME";
@@ -74,9 +75,11 @@ export default function App(props) {
   // };
 
   const modeRef = useRef(mode);
+  const hostCookieRef = useRef(hostCookies);
   useEffect(() => {
     //without this, state ref in sockets will be out of date (when they are connected)
     modeRef.current = mode;
+    hostCookieRef.current = hostCookies;
   });
 
   useEffect(() => {
@@ -89,14 +92,38 @@ export default function App(props) {
         transition(GAME);
       }
     });
+    
+    socket.on("update-players",  () => {
+      console.log("playerjoined")
+      console.log(hostCookieRef.current.host)
+      setReqUpdate(true)
+
+      
+
+    });
+
+    // Promise.all([
+    //   axios.get("/api/categories"),
+    //   axios.get(`/api/games/${props.url_path}`)
+    // ])
+    // .then(([categoriesResponse, gameResponse]) => {
+    //   setCategories(categoriesResponse.data);
+    //   props.setGameData(gameResponse.data);
+    // })
+    // .catch(err => {
+    //   console.error(err.message);
+    // });
 
     return () => {
     socket.off("start-game");
+    socket.off("update-players")
 
     };
   }, []);
   const checkedIn = () => {
-    socket.emit("set-room", url_path); 
+    socket.emit("set-room", url_path);
+    console.log("checked in", url_path)
+    socket.emit("joined-game", url_path) 
   }
 
 
@@ -126,6 +153,8 @@ export default function App(props) {
           gameData={gameData}
           setGameData={setGameData}
           checkedIn = {checkedIn}
+          reqUpdate = {reqUpdate}
+          setReqUpdate = {setReqUpdate}
         />)}
 
       {mode === "GAME" && <Game

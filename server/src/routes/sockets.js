@@ -25,6 +25,7 @@ module.exports = (app) => {
       console.log(socket.id, "joined room", room);
       socket.join(room);
       console.log(socket.rooms);
+      
     });
     socket.on("request-state-from-host", (room) => {
       console.log("state requested", room);
@@ -39,6 +40,10 @@ module.exports = (app) => {
       console.log("startinggame");
       console.log(room)
       app.io.in(room).emit("start-game");
+    });
+    socket.on("joined-game", (room) => {
+      console.log("joined game at ", room)
+      app.io.in(room).emit("update-players");
     });
   });
 };
