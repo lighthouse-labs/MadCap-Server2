@@ -26,21 +26,23 @@ const { createUser, setUserScore } = require ('../db/queries/users');
 
 router.get('/:game_url', (req, res) => {
   const { game_url } = req.params;
-  const { getMainGame, getGameUsers, getGameCategories } = gameQueries;
+  const { getMainGame, getGameUsers, getGameCategories, getRandomSubcategories } = gameQueries;
   const promiseList = 
     [
       getMainGame,
       getGameUsers,
-      getGameCategories
+      getGameCategories,
+      getRandomSubcategories
     ]
     .map((query) => query(game_url));
   
   Promise.all(promiseList)
-  .then(([mainGame, gameUsers, gameCategories]) => (
+  .then(([mainGame, users, categories, subcategories]) => (
     {
       ...mainGame,
-      users: gameUsers,
-      categories: gameCategories
+      users,
+      categories,
+      subcategories
     }
   ))
   .then((gameObject => res.json(gameObject)))
