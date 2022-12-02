@@ -5,7 +5,7 @@ import AnswerListItem from "./AnswerListItem";
 import Clock from './Clock';
 import Notice from './Notice';
 import Round from "./Round";
-import Vote from "./Vote"
+import Vote from "./Vote";
 
 
 export default function AnswerList(props) {
@@ -24,7 +24,7 @@ export default function AnswerList(props) {
         votesAgainst={answer.votesAgainst}
         phase={props.phase}
         sendVote={props.sendVote}
-        playerCount = {props.playerCount}
+        playerCount={props.playerCount}
       />
     );
   });
@@ -40,7 +40,7 @@ export default function AnswerList(props) {
         votesAgainst={answer.votesAgainst}
         phase={props.phase}
         sendVote={props.sendVote}
-        playerCount = {props.playerCount}
+        playerCount={props.playerCount}
       />
     );
   });
@@ -59,18 +59,26 @@ export default function AnswerList(props) {
         <div className="game-board-inner-center">
           <Box className="clock">
             <Clock
-              gameTimer={props.gameTimer}
               setStatePhase={props.setStatePhase}
+              gameData={props.gameData}
+              round={props.round}
             />
           </Box>
           <Notice lastMessage={props.lastMessage} />
         </div>
       )}
       {props.phase === "vote" &&
-        <Vote setStatePhase={props.setStatePhase}/>
+        <Vote setStatePhase={props.setStatePhase} />
       }
       {props.phase === "round" &&
-        <Round setStatePhase={props.setStatePhase} clearBoard = {props.clearBoard}/>
+        <Round
+          getNextSubcategory={props.getNextSubcategory}
+          setStatePhase={props.setStatePhase}
+          clearBoard={props.clearBoard}
+          gameData={props.gameData}
+          nextRound={props.nextRound}
+          round={props.round}
+        />
       }
       <ul className={`alpha-row alpha2 ${rowPhase}`}>{answers2}</ul>
     </div>

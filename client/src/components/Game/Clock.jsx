@@ -2,7 +2,7 @@ import { useState, useEffect, Fragment } from "react";
 
 export default function Clock(props) {
 
-  const seconds = 10;
+  const seconds = props.gameData.timer;
   const [gameTimer, setGameTimer] = useState(seconds);
 
   // setInterval to setTimeout... clearInterval to clearTimeout

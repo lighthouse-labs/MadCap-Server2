@@ -19,8 +19,8 @@ export default function WelcomeBox(props) {
   const [btnState, setBtnState] = useState("MAKE")
 
   useEffect(() => {
-    setBtnState(props.url_path ? "JOIN" : "MAKE")
-  }, [props.url_path])
+    setBtnState(props.btnState)
+  }, [])
 
   // if no link use MAKE (default state)
   // if there is a custom link use JOIN

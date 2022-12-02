@@ -22,13 +22,13 @@ const socket = io(SERVER, {
 
 export default function App(props) {
 
-  const { full_url, url_path } = useLoaderData();
+  const { full_url, url_path, btnState } = useLoaderData();
+  console.log("Button State", btnState)
 
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
-  const [hostCookies, setHostCookie, removeHostCookie] = useCookies(['host']);
-  const [currentUserCookies, setCurrentUserCookie, removeCurrentUserCookie] = useCookies(['user']);
-  const [reqUpdate, setReqUpdate] = useState(false)
+  const [cookies, setCookies, removeCookies] = useCookies(['host', 'user']);
+  const [reqUpdate, setReqUpdate] = useState(false);
  
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
@@ -37,21 +37,20 @@ export default function App(props) {
   const { mode, transition } = useVisualMode(WELCOME);
 
   useEffect(() => {
-    if(!url_path || url_path === '/') {
-      removeCurrentUserCookie('user', { path: '/'});
-      removeHostCookie('host', { path: '/'})
+    if(url_path === '/') {
+      console.log("URL path", url_path)
+      removeCookies('user', { path: '/'});
+      removeCookies('host', { path: '/'})
     }
   }, [url_path])
 
   useEffect(() => {
-    transition(hostCookies.host ? LOBBY : WELCOME);
-  }, [hostCookies.host, props.mode]);
+    transition(cookies.host ? LOBBY : WELCOME);
+  }, [cookies.host, props.mode]);
 
 
   console.log("loader_url:", full_url);
   console.log("url_path:", url_path);
-
-  console.log("gameData in App ~~~~~~~~~~~: ", gameData);
 
 
   const handleName = (e) => {
@@ -59,27 +58,24 @@ export default function App(props) {
   };
 
   const setHost = () => {
-    setHostCookie('host', true, { path: '/' });
+    setCookies('host', true, { path: '/' });
   }
 
   const setCurrentUser = (id) => {
-    setCurrentUserCookie('user', id, { path: '/' })
+    setCookies('user', id, { path: '/' })
   }
 
   function handleStart() {
     socket.emit("host-start-game", url_path)
   }
 
-  // const handleMakeGame = () => {
-  //  transition(LOBBY)
-  // };
 
   const modeRef = useRef(mode);
-  const hostCookieRef = useRef(hostCookies);
+  const hostCookieRef = useRef(cookies);
   useEffect(() => {
     //without this, state ref in sockets will be out of date (when they are connected)
     modeRef.current = mode;
-    hostCookieRef.current = hostCookies;
+    hostCookieRef.current = cookies;
   });
 
   useEffect(() => {
@@ -97,9 +93,6 @@ export default function App(props) {
       console.log("playerjoined")
       console.log(hostCookieRef.current.host)
       setReqUpdate(true)
-
-      
-
     });
 
     // Promise.all([
@@ -133,9 +126,11 @@ export default function App(props) {
       {mode === WELCOME && (
         <Welcome
           transition={transition}
-          url_path={url_path}
+          // remove slash from url path
+          url_path={url_path.substring(1)}
           name={name}
-          host={hostCookies.host}
+          host={cookies.host}
+          btnState={btnState}
           // avatar={avatar}
           setCurrentUser={setCurrentUser}
           handleName={handleName}
@@ -149,7 +144,7 @@ export default function App(props) {
           url={full_url}
           url_path={url_path}
           handleStart={handleStart}
-          currentUser={Number(currentUserCookies.user)}
+          currentUser={Number(cookies.user)}
           gameData={gameData}
           setGameData={setGameData}
           checkedIn = {checkedIn}
@@ -159,7 +154,7 @@ export default function App(props) {
 
       {mode === "GAME" && <Game
         gameData={gameData}
-        currentUser={Number(currentUserCookies.user)}
+        currentUser={Number(cookies.user)}
         url_path={url_path}
       />}
 
