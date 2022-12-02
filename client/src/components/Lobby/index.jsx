@@ -78,6 +78,7 @@ export default function Lobby(props) {
           setGameData={props.setGameData}
         />
         <GameSettings
+          setGameData={props.setGameData}
           categories={categories}
           handleStart={props.handleStart}
           url={props.url}
