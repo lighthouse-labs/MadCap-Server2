@@ -36,17 +36,6 @@ export default function App(props) {
 
   const { mode, transition } = useVisualMode(WELCOME);
 
-  // useEffect(() => {
-  //   axios.get(`api/games/${url_path}`)
-  //   .then((response) => {
-  //     setGameData((prev) => {
-  //       console.log(prev);
-  //       return response.data
-  //     }, []);
-  //   })
-  //   .catch((error) => console.error(error.message))
-
-  // })
   useEffect(() => {
     console.log(url_path)
     if(!url_path || url_path === '/') {

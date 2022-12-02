@@ -530,14 +530,12 @@ export default function Game(props) {
           sendVote={sendVote}
           playerCount = {state.players.length}
           setStatePhase={setStatePhase}
-        // gameTimer={gameTimer}
-        // voteTimer={voteTimer}
-          // counter={counter}
+          players = {state.players}
         />
         <StatusBox
-          sendMessage={sendMessage}
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
+          sendMessage={sendMessage}
           chats={state.chats}
           players={state.players}
           currentPlayer={state.player}

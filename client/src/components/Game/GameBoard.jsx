@@ -54,7 +54,10 @@ export default function GameBoard(props) {
             playerCount={props.playerCount}
           />
           :
-          props.phase === "podium" && <Podium />
+          props.phase === "podium" &&
+          <Podium setStatePhase={props.setStatePhase}
+            players={props.players}
+          />
       }
     </div>
   );
