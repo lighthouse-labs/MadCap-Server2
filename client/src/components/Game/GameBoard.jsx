@@ -5,27 +5,43 @@ import ResultsClock from './ResultsClock';
 
 export default function GameBoard(props) {
 
+  
   return (
     <div className="game-board-main">
       <div className="game-header">
-        <h2 className="category-header">{props.category}: {props.phase === "results" &&
-          <ResultsClock phase={props.phase}
-            setStatePhase={props.setStatePhase} />}
-        </h2>
-        <h1 className="subcategory-header" 
-        style={{fontSize: '28px', textAlign: 'end'}}>{props.subcategory}</h1>
+        { props.phase !== "round" && <h2 className="category-header">
+          {props.category}: {props.phase === "results" &&
+            <ResultsClock 
+            round={props.round}
+            gameData={props.gameData}
+            nextRound={props.nextRound}
+            phase={props.phase} 
+            setStatePhase={props.setStatePhase}
+            />
+          }
+        </h2>}
+        { props.phase !== "round" && <h1 className="subcategory-header"
+          style={{ fontSize: '28px', textAlign: 'end' }}>
+
+          {props.subcategory}
+        </h1>}
+
       </div>
+
       {
         props.phase === "game" ||
           props.phase === "results" ||
           props.phase === "vote" ||
           props.phase === "round" ?
           <AnswerList
+            gameData={props.gameData}
+            round={props.round}
+            nextRound={props.nextRound}
+
             answers={props.answers}
             lastMessage={props.lastMessage}
             phase={props.phase}
             setStatePhase={props.setStatePhase}
-            gameTimer={props.gameTimer}
             sendVote={props.sendVote}
             playerCount={props.playerCount}
             clearBoard = {props.clearBoard}
@@ -35,6 +51,7 @@ export default function GameBoard(props) {
           <Podium setStatePhase={props.setStatePhase}
             players={props.players}
           />
+
       }
     </div>
   );

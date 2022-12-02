@@ -232,26 +232,39 @@ const dummychat = [
 export default function Game(props) {
 
   // extract all logic intouseApplicationData eventually...
-  
+
   const [state, setState] = useState({
     answers: romanAlpha,
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
     //phase : game, vote, round, results & podium
-    phase: "game",
+    phase: "round",
     players: props.gameData.users,
     //needs to be set to player
-    player:
-    props.gameData &&
-    props.gameData.users.find((player) => player.id === props.currentUser),
+    player: props.gameData &&
+      props.gameData.users.find((player) => player.id === props.currentUser),
     checkIn: false,
-    category:"",
-    subcategory:""
+    category: "",
+    subcategory: "",
+    round: 1
   });
 
-  console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData)
-  
+  console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData);
+  console.log("state.subcategories in Game ~~~~~~~~~~~: ", state.subcategories);
+
+  useEffect(() => {
+    axios.get(`/api/games/${props.url_path}/subcategories/1`)
+      .then((response) => response.data)
+      .then(({ category, subcategory }) => {
+        setState((prev) => ({
+          ...prev,
+          category,
+          subcategory
+        }));
+      });
+  }, []);
+
   // fn setphase to results
   // in timer pass down props.phase result
   const setStatePhase = (phase) => {
@@ -260,17 +273,29 @@ export default function Game(props) {
     ));
   };
 
-  useEffect(() => {
-    axios.get(`/api/games/${props.url_path}/subcategories/1`)
-    .then((response) => response.data)
-    .then(({category, subcategory}) => {
-      setState((prev) => ({
-        ...prev,
-        category,
-        subcategory
-      }))
-    })
-  }, [])
+  const nextRound = () => {
+    if (state.round < props.gameData.rounds) {
+      setState(prev => (
+        { ...prev, round: prev.round + 1 }
+      ));
+    }
+  };
+
+  //loop through subcategories for games
+  // 
+
+  console.log("state.round in Game ~~~~~~~: ", )
+  // const nextSubcategory = () => {
+
+
+  //   setState(prev => (
+  //     {
+  //       ...prev,
+  //       category: "",
+  //       subcategory: "",
+  //     }
+  //   ));
+  // };
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -400,12 +425,12 @@ export default function Game(props) {
       console.log(vote);
 
       const voteAnswersSet = setVote(vote.vote, stateRef.current);
-      let playerSet = stateRef.current.players
+      let playerSet = stateRef.current.players;
       //2 is dummy value
-      console.log(voteAnswersSet)
+      console.log(voteAnswersSet);
       // if (props.votesAgainst > (playerCount - 1) / 2
-      if (voteAnswersSet[1] >= (stateRef.current.players.length -1)/2) {
-        playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -100);
+      if (voteAnswersSet[1] >= (stateRef.current.players.length - 1) / 2) {
+        playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -150);
       }
       // console.log();
       setState((prev) => ({
@@ -427,7 +452,7 @@ export default function Game(props) {
         let currentState = {
           answers: stateRef.current.answers,
           chats: stateRef.current.chats,
-          room:props.url_path
+          room: props.url_path
         };
         console.log(currentState);
         socket.emit("send-state", currentState);
@@ -491,16 +516,16 @@ export default function Game(props) {
       ...prev,
       checkIn: true,
     }));
-  }
+  };
   const clearBoard = () => {
     setState((prev) => ({
       ...prev,
       answers: romanAlpha,
     }));
-  }
+  };
 
   if (!state.checkIn) {
-    checkedIn()
+    checkedIn();
   }
 
   return (
@@ -520,17 +545,21 @@ export default function Game(props) {
         }}
       >
         <GameBoard
+          gameData={props.gameData}
+          nextRound={nextRound}
+          round={state.round}
+
+          setStatePhase={setStatePhase}
+          phase={state.phase}
+          isConnected={state.isConnected}
+          lastMessage={state.lastMessage}
           category={state.category}
           subcategory={state.subcategory}
           answers={state.answers}
-          isConnected={state.isConnected}
-          lastMessage={state.lastMessage}
-          phase={state.phase}
           sendVote={sendVote}
-          playerCount = {state.players.length}
-          setStatePhase={setStatePhase}
-          players = {state.players}
-          clearBoard = {clearBoard}
+          playerCount={state.players.length}
+          players={state.players}
+          clearBoard={clearBoard}
         />
         <StatusBox
           isConnected={state.isConnected}
