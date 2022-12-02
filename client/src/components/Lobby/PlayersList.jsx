@@ -30,15 +30,19 @@ export default function PlayersList(props) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        border: player.id === props.currentUser ? `5px solid chartreuse` : 'none'
+
       }}>
       <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Avatar src={player.avatar_url} alt={player.color} sx={{ maxWidth: '70%', height: 'auto' }}>
+        <Avatar src={player.avatar_url} alt={player.color} sx={{
+          maxWidth: '70%',
+          height: 'auto',
+      }}>
 
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
       </ListItemAvatar>
-      {player.id === props.currentUser && "Current Player"}
       <ListItemText primary={player.name}
         sx={{ '.MuiTypography-root': { fontSize: "12px" } }} />
     </ListItem>
@@ -69,7 +73,10 @@ export default function PlayersList(props) {
                   <ListItem sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'flex-start'
+                    alignItems: 'flex-start',
+                    border: host && host.id === props.currentUser 
+                      ? `5px solid chartreuse`
+                      : 'none'
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
                       <Avatar src={host && host.avatar_url}sx={{}}>
@@ -79,7 +86,6 @@ export default function PlayersList(props) {
                         Host
                       </Typography>
                     </ListItemAvatar>
-                    {host && host.id === props.currentUser && "Current Player"}
 
                     <ListItemText primary={host && host.name} />
                   </ListItem>
