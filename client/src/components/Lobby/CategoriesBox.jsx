@@ -7,7 +7,7 @@ export default function CategoriesBox(props) {
   const { categories } = props;
   return (
     <Fragment>
-      <Box className="cat-box" sx={{width: '93%'}}>
+      <Box className="cat-box" sx={{width: '93%', p: 0}}>
        <SelectCategories categories={categories} currentCategories={props.currentCategories} setCurrentCategories={props.setCurrentCategories}/>
       </Box>
     </Fragment>

@@ -5,44 +5,20 @@ import ResultsClock from './ResultsClock';
 
 export default function GameBoard(props) {
 
-
-  // const [voteTimer, setVoteTimer] = useState(0);
-
-  // useEffect(() => {
-  //   console.log("voteTimer", voteTimer);
-  //   let timer = 0
-  //   if (props.phase === "results") {
-  //     timer = voteTimer > 0 && setInterval(() => setVoteTimer(prev => (prev -1)), 1000);
-  //   }
-  //   if (voteTimer === 0) {
-  //     props.setStatePhase("round");
-  //     setVoteTimer(2);
-  //   }
-  //   return () => clearInterval(timer);
-  // }, [voteTimer]);
-
-
-  // const [voteTimer, setGameTimer] = useState(3);
-  // useEffect(() => {
-  //   const timer =
-  //     voteTimer > 0 && setInterval(() => setGameTimer(prev => (prev - 1)), 1000);
-  //   if (voteTimer === 0) props.setStatePhase("game");
-  //   return () => clearInterval(timer);
-  // }, [voteTimer]);
-
-
   return (
     <div className="game-board-main">
       <div className="game-header">
-        <h2>{props.category}: {props.phase === "results" &&
+        <h2 className="category-header">{props.category}: {props.phase === "results" &&
           <ResultsClock phase={props.phase}
             setStatePhase={props.setStatePhase} />}
         </h2>
-        <h1>{props.subcategory}</h1>
+        <h1 className="subcategory-header" 
+        style={{fontSize: '28px', textAlign: 'end'}}>{props.subcategory}</h1>
       </div>
       {
         props.phase === "game" ||
           props.phase === "results" ||
+          props.phase === "vote" ||
           props.phase === "round" ?
           <AnswerList
             answers={props.answers}

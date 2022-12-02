@@ -2,14 +2,14 @@ import { useState, useEffect, Fragment } from "react";
 
 export default function Clock(props) {
 
-  const seconds = 15;
+  const seconds = 1;
   const [gameTimer, setGameTimer] = useState(seconds);
 
   // setInterval to setTimeout... clearInterval to clearTimeout
   useEffect(() => {
     const timer =
       gameTimer > 0 && setTimeout(() => setGameTimer(prev => (prev - 1)), 1000);
-    if (gameTimer === 0) props.setStatePhase("results");
+    if (gameTimer === 0) props.setStatePhase("vote");
     return () => clearTimeout(timer);
   }, [gameTimer]);
 

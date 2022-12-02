@@ -134,7 +134,7 @@ export default function PlayersSlider(props) {
   //   return `${value}s`;
   // }
   return (
-    <Box sx={{ width: '93%' }} className="select-timer">
+    <Box sx={{ width: '93%', pr: '6px' }} className="select-timer">
       <header><h4>set max players</h4></header>
       <StyledSlider
         min={0}

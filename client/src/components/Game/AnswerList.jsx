@@ -5,6 +5,7 @@ import AnswerListItem from "./AnswerListItem";
 import Clock from './Clock';
 import Notice from './Notice';
 import Round from "./Round";
+import Vote from "./Vote"
 
 
 export default function AnswerList(props) {
@@ -65,7 +66,9 @@ export default function AnswerList(props) {
           <Notice lastMessage={props.lastMessage} />
         </div>
       )}
-
+      {props.phase === "vote" &&
+        <Vote setStatePhase={props.setStatePhase}/>
+      }
       {props.phase === "round" &&
         <Round setStatePhase={props.setStatePhase}/>
       }

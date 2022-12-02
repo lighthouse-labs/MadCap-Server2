@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 
-// import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
 import GameBoard from "./GameBoard";
@@ -15,15 +14,7 @@ const SERVER = "http://127.0.0.1:8001";
 const socket = io(SERVER, {
   transports: ["websocket"],
 });
-//
-//  dummy memory!
-// const dummyPlayers = [
-//   { id: 8, color: 'blue', label: '8', imgPath: './avatars/avatar-temp-8.png', name: 'propplayer', url: "madcap.com/322klj4" },
-//   { id: 7, color: 'green', label: '7', imgPath: './avatars/avatar-temp-7.png', name: 'doongle', url: "madcap.com/322klj4" },
-//   { id: 6, color: 'yellow', label: '6', imgPath: './avatars/avatar-temp-6.png', name: 'finglebat', url: "madcap.com/322klj4" },
-//   { id: 5, color: 'orange', label: '5', imgPath: './avatars/avatar-temp-5.png', name: 'pricklebash', url: "madcap.com/322klj4" },
-//   { id: 4, color: 'red', label: '4', imgPath: './avatars/avatar-temp-4.png', name: 'dumbsqwad Jr.', url: "madcap.com/322klj4" }
-// ];
+
 const romanAlpha = [
   {
     id: 1,
@@ -240,24 +231,26 @@ const dummychat = [
 
 export default function Game(props) {
 
-  // extract all logic eventually...
-
+  // extract all logic intouseApplicationData eventually...
+  
   const [state, setState] = useState({
     answers: romanAlpha,
     chats: dummychat,
     isConnected: socket.connected,
     lastMessage: null,
-    //phase : game, results & podium
+    //phase : game, vote, round, results & podium
     phase: "game",
     players: props.gameData.users,
     //needs to be set to player
     player:
-      props.gameData &&
-      props.gameData.users.find((player) => player.id === props.currentUser),
+    props.gameData &&
+    props.gameData.users.find((player) => player.id === props.currentUser),
     checkIn: false,
     category:"",
     subcategory:""
   });
+
+  console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData)
   
   // fn setphase to results
   // in timer pass down props.phase result
@@ -372,7 +365,7 @@ export default function Game(props) {
         message.type === "capture" &&
         !confirmUsed(message, stateRef.current)
       ) {
-        let playerSet = setPlayerScore(message.userId, stateRef.current, 10);
+        let playerSet = setPlayerScore(message.userId, stateRef.current, 100);
         console.log(playerSet);
 
         let answerSet = setAnswer(message, stateRef.current);
@@ -412,9 +405,9 @@ export default function Game(props) {
       console.log(voteAnswersSet)
       // if (props.votesAgainst > (playerCount - 1) / 2
       if (voteAnswersSet[1] >= (stateRef.current.players.length -1)/2) {
-        playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -20);
+        playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -100);
       }
-      console.log()
+      // console.log();
       setState((prev) => ({
         ...prev,
         players: playerSet,

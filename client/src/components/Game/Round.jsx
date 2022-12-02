@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 
 export default function Round (props) {
-  const [gameTimer, setGameTimer] = useState(4);
+  const [gameTimer, setGameTimer] = useState(94);
 
   // setInterval to setTimeout... clearInterval to clearTimeout
 
@@ -15,8 +15,9 @@ export default function Round (props) {
   }, [gameTimer]);
 
   return (
-    <Box>
-      <h1>Round #/#!</h1>
+    <Box className="round-box">
+      <h1>Round</h1>
+      <h1>#/#!</h1>
     </Box>
   )
 }

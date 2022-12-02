@@ -9,18 +9,19 @@ import axios from 'axios';
 
 export default function GameSettings(props) {
 
-  // const playerCount = num;
-  // const waitToStart = () => {
-  //   // if "waiting..."
-  // }
-
   const [settings, setSettings] = useState(
     {
       timer: 60,
       maxPlayers: 5,
       rounds: 3
     }
-  );
+    );
+    
+    console.log("settings in Game ~~~~~~~~~~: ", settings)
+    // const playerCount = num;
+    // const waitToStart = () => {
+    //   // if "waiting..."
+    // }
 
   const [currentCategories, setCurrentCategories] = useState([])
 
