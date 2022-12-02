@@ -3,6 +3,12 @@ import TextField from '@mui/material/TextField';
 
 export default function UserName(props) {
 
+  const enterWatch = (e) => {
+    if(e.key === "Enter") {
+      props.handleSubmit();
+    }
+  }
+
   const UserTextField = styled(TextField)({
     '& label.Mui-focused': {
       color: 'green',
@@ -29,6 +35,7 @@ export default function UserName(props) {
       id="enter-username"
       autoComplete="off"
       onChange={props.handleName}
+      onKeyPress={enterWatch}
       value={props.name}
       autoFocus={true}
       sx={{

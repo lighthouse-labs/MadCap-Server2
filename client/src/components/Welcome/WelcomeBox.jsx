@@ -80,6 +80,12 @@ export default function WelcomeBox(props) {
     .catch((err) => console.error(err));
   }
 
+  const handleSubmit = () => {
+    (btnState === MAKE)
+    ? makeGame()
+    : joinGame()
+  }
+
   return (
     <Fragment>
       <Box
@@ -103,10 +109,12 @@ export default function WelcomeBox(props) {
         />
         <UserName
           handleName={handleName}
-          name={name} />
+          handleSubmit={handleSubmit}
+          name={name} 
+        />
         {btnState === MAKE && <ActionButton
           message="Make New Game"
-          onClick={makeGame} 
+          onClick={makeGame}
         />}
         {btnState === JOIN && <ActionButton
           message="Join the Game!"
