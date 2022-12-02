@@ -230,9 +230,8 @@ const dummychat = [
 // };
 
 export default function Game(props) {
-
   // extract all logic intouseApplicationData eventually...
-  
+
   const [state, setState] = useState({
     answers: romanAlpha,
     chats: dummychat,
@@ -243,34 +242,33 @@ export default function Game(props) {
     players: props.gameData.users,
     //needs to be set to player
     player:
-    props.gameData &&
-    props.gameData.users.find((player) => player.id === props.currentUser),
+      props.gameData &&
+      props.gameData.users.find((player) => player.id === props.currentUser),
     checkIn: false,
-    category:"",
-    subcategory:""
+    category: "",
+    subcategory: "",
   });
 
-  console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData)
-  
+  console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData);
+
   // fn setphase to results
   // in timer pass down props.phase result
   const setStatePhase = (phase) => {
-    setState(prev => (
-      { ...prev, phase: phase }
-    ));
+    setState((prev) => ({ ...prev, phase: phase }));
   };
 
   useEffect(() => {
-    axios.get(`/api/games/${props.url_path}/subcategories/1`)
-    .then((response) => response.data)
-    .then(({category, subcategory}) => {
-      setState((prev) => ({
-        ...prev,
-        category,
-        subcategory
-      }))
-    })
-  }, [])
+    axios
+      .get(`/api/games/${props.url_path}/subcategories/1`)
+      .then((response) => response.data)
+      .then(({ category, subcategory }) => {
+        setState((prev) => ({
+          ...prev,
+          category,
+          subcategory,
+        }));
+      });
+  }, []);
 
   const setAnswer = (message, store) => {
     //sets the details of the letter in game
@@ -389,33 +387,32 @@ export default function Game(props) {
         setState((prev) => ({
           ...prev,
           chats: chatSet,
-          lastMessage: message.message,
         }));
       }
       if (message.type === "status") {
+        console.log("VOTE MESSAGE ", message);
+        let statusMessage = "Vote Against Letter: " + message.message.vote + "(" + message.message.votes + "/" + message.message.votesToEliminate + ")"
         let chatSet = [
           ...stateRef.current.chats,
-          { type: "status",  message: message.message },
+          { type: "status", message: statusMessage},
         ];
         setState((prev) => ({
           ...prev,
           chats: chatSet,
-          lastMessage: message.message,
         }));
       }
       // console.log(stateRef.current)
     });
 
-
     socket.on("vote", (vote) => {
       console.log(vote);
 
       const voteAnswersSet = setVote(vote.vote, stateRef.current);
-      let playerSet = stateRef.current.players
+      let playerSet = stateRef.current.players;
       //2 is dummy value
-      console.log(voteAnswersSet)
+      console.log(voteAnswersSet);
       // if (props.votesAgainst > (playerCount - 1) / 2
-      if (voteAnswersSet[1] >= (stateRef.current.players.length -1)/2) {
+      if (voteAnswersSet[1] >= (stateRef.current.players.length - 1) / 2) {
         playerSet = setPlayerScore(vote.answerPlayerId, stateRef.current, -100);
       }
       // console.log();
@@ -428,7 +425,6 @@ export default function Game(props) {
       // let playerSet = setPlayerScore(message.user, stateRef.current, 10)
     });
 
-
     //can be used to update from host
 
     socket.on("request-state", (message) => {
@@ -438,7 +434,7 @@ export default function Game(props) {
         let currentState = {
           answers: stateRef.current.answers,
           chats: stateRef.current.chats,
-          room:props.url_path
+          room: props.url_path,
         };
         console.log(currentState);
         socket.emit("send-state", currentState);
@@ -452,7 +448,6 @@ export default function Game(props) {
         message: message.answers,
         chats: message.chats,
       }));
-
     });
 
     return () => {
@@ -470,19 +465,26 @@ export default function Game(props) {
     //less backend setting if just have a state "inroom"
 
     //needs url set to user
-    let messagetype = "chat";
+    console.log(message)
+    let messageType = "chat";
+    let messageUpper = message
     if (gamePhase === "game") {
-      messagetype = "capture";
+      messageType = "capture";
+      messageUpper = capitalizeFirstLetter(message);
     }
-    let messageUpper = capitalizeFirstLetter(message);
+    if (gamePhase === "status"){
+      messageType = "status"
+    }
+    console.log(gamePhase)
     const messageObject = {
       message: messageUpper,
       room: props.url_path,
       colour: state.player.color,
       user: state.player.name,
       userId: state.player.id,
-      type: messagetype,
+      type: messageType,
     };
+    console.log(messageObject)
     // console.log(messageObject);
     // console.log(socket);
     socket.emit("send-message", messageObject);
@@ -492,8 +494,11 @@ export default function Game(props) {
       vote: vote.letter,
       answerPlayerId: vote.userId,
       room: props.url_path,
+      votes: vote.votes,
+      votesToEliminate: vote.votesToEliminate,
+
     };
-    sendMessage(voteObject, "status")
+    sendMessage(voteObject, "status");
     socket.emit("send-vote", voteObject);
   };
   const checkedIn = () => {
@@ -503,16 +508,16 @@ export default function Game(props) {
       ...prev,
       checkIn: true,
     }));
-  }
+  };
   const clearBoard = () => {
     setState((prev) => ({
       ...prev,
       answers: romanAlpha,
     }));
-  }
+  };
 
   if (!state.checkIn) {
-    checkedIn()
+    checkedIn();
   }
 
   return (
@@ -539,10 +544,10 @@ export default function Game(props) {
           lastMessage={state.lastMessage}
           phase={state.phase}
           sendVote={sendVote}
-          playerCount = {state.players.length}
+          playerCount={state.players.length}
           setStatePhase={setStatePhase}
-          players = {state.players}
-          clearBoard = {clearBoard}
+          players={state.players}
+          clearBoard={clearBoard}
         />
         <StatusBox
           isConnected={state.isConnected}
