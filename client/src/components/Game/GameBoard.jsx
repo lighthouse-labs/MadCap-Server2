@@ -29,11 +29,14 @@ export default function GameBoard(props) {
           props.phase === "vote" ||
           props.phase === "round" ?
           <AnswerList
+            gameData={props.gameData}
+            nextRound={props.nextRound}
+            round={props.round}
+
             answers={props.answers}
             lastMessage={props.lastMessage}
             phase={props.phase}
             setStatePhase={props.setStatePhase}
-            gameTimer={props.gameTimer}
             sendVote={props.sendVote}
             playerCount={props.playerCount}
             clearBoard = {props.clearBoard}

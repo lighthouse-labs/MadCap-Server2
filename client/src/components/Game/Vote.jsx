@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 
 export default function Vote (props) {
-  const [voteTimer, setVoteTimer] = useState(3);
+  const [voteTimer, setVoteTimer] = useState(2);
 
   // setInterval to setTimeout... clearInterval to clearTimeout
 
