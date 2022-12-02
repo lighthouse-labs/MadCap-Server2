@@ -36,6 +36,7 @@ export default function GameBoard(props) {
             gameTimer={props.gameTimer}
             sendVote={props.sendVote}
             playerCount={props.playerCount}
+            clearBoard = {props.clearBoard}
           />
           :
           props.phase === "podium" &&

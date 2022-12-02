@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
+import { useState, useEffect } from "react";
+import Box from "@mui/material/Box";
 
 
 export default function Round (props) {
@@ -9,8 +9,11 @@ export default function Round (props) {
 
   useEffect(() => {
     const timer =
-      gameTimer > 0 && setTimeout(() => setGameTimer(prev => (prev - 1)), 1000);
-    if (gameTimer === 0) props.setStatePhase("game");
+      gameTimer > 0 && setTimeout(() => setGameTimer((prev) => prev - 1), 1000);
+    if (gameTimer === 0) {
+      props.clearBoard();
+      props.setStatePhase("game");
+    }
     return () => clearTimeout(timer);
   }, [gameTimer]);
 
@@ -19,5 +22,5 @@ export default function Round (props) {
       <h1>Round</h1>
       <h1>#/#!</h1>
     </Box>
-  )
+  );
 }
