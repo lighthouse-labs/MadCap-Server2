@@ -24,9 +24,25 @@ export default function GameSettings(props) {
 
   const [currentCategories, setCurrentCategories] = useState([])
 
+  const gamesPutRequest =  axios.put(`api/games/${props.url_path}`, {
+    settings,
+    categories: currentCategories
+  });
+
   const handleSet = () => {
-    console.log("Props Url", props.url_path)
-    axios.put(`api/games/${props.url_path}`, { settings, categories: currentCategories})
+    axios.put(`api/games/${props.url_path}`, {
+      settings,
+      categories: currentCategories
+    })
+    .catch((error) => console.error(error.message))
+  }
+
+  const handleGameStart = () => {
+    axios.put(`api/games/${props.url_path}`, {
+      settings,
+      categories: currentCategories
+    })
+    .then(() => props.handleStart())
     .catch((error) => console.error(error.message))
   }
   const buttonText = "Start the Game"
@@ -60,7 +76,7 @@ export default function GameSettings(props) {
         }}>
         <LinkBox url={props.url}/>
 
-        <StartButton handleStart={props.handleStart}
+        <StartButton handleStart={handleGameStart}
           message={buttonText}
         />
       </Box>

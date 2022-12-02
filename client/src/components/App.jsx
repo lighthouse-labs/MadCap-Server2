@@ -30,8 +30,6 @@ export default function App(props) {
   const [hostCookies, setHostCookie] = useCookies(['host']);
  
 
-  const url = useRef(generateRandomString()).current;
-
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
   const GAME = "GAME";
@@ -116,7 +114,6 @@ export default function App(props) {
         <Welcome
           transition={transition}
           url_path={url_path}
-          url={url}
           name={name}
           host={hostCookies.host}
           // avatar={avatar}
@@ -129,7 +126,6 @@ export default function App(props) {
       
       {mode === LOBBY && (
         <Lobby
-          name={name}
           url={full_url}
           url_path={url_path}
           handleStart={handleStart}
@@ -140,7 +136,9 @@ export default function App(props) {
         />)}
 
       {mode === "GAME" && <Game
-        gameData={gameData} currentUser={Number(currentUserCookies.user)} url_path={url_path}
+        gameData={gameData}
+        currentUser={Number(currentUserCookies.user)}
+        url_path={url_path}
       />}
 
     </div>

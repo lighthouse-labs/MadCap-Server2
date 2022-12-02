@@ -34,11 +34,11 @@ export default function GameBoard(props) {
   return (
     <div className="game-board-main">
       <div className="game-header">
-        <h2>Animal Kingdom: {props.phase === "results" &&
+        <h2>{props.category}: {props.phase === "results" &&
           <ResultsClock phase={props.phase}
             setStatePhase={props.setStatePhase} />}
         </h2>
-        <h1>Ocean</h1>
+        <h1>{props.subcategory}</h1>
       </div>
       {
         props.phase === "game" ||

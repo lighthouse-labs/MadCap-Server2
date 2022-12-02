@@ -11,10 +11,10 @@ const generateAddGameCategoriesQuery = (category_ids, game_id) => {
   INSERT INTO categories_sets (game_id, category_id)
   VALUES`;
   const categoriesList = [game_id];
-
+  // Return a list of values from category_ids (ex ($1, $2), ($1, $3))
   for (let index in category_ids) {
     const intIndex = parseInt(index);
-    const id = category_ids[index];
+    const id = category_ids[intIndex];
     categoriesQuery += `
     ($1, $${intIndex + 2})`;
      if (intIndex < (category_ids.length - 1)) {

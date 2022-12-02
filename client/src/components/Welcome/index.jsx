@@ -10,7 +10,6 @@ export default function Welcome(props) {
       <h1 className="main-title">MadCap</h1>
       <WelcomeBox
         host={props.host}
-        url={props.url}
         url_path={props.url_path}
         name={props.name}
         setCurrentUser={props.setCurrentUser}
