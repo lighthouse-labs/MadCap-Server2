@@ -30,18 +30,12 @@ export default function GameSettings(props) {
   });
 
   const handleSet = () => {
-    axios.put(`api/games/${props.url_path}`, {
-      settings,
-      categories: currentCategories
-    })
+    gamesPutRequest
     .catch((error) => console.error(error.message))
   }
 
   const handleGameStart = () => {
-    axios.put(`api/games/${props.url_path}`, {
-      settings,
-      categories: currentCategories
-    })
+   gamesPutRequest
     .then(() => props.handleStart())
     .catch((error) => console.error(error.message))
   }

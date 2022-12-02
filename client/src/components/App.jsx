@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 // import axios from 'axios';
@@ -7,7 +7,6 @@ import Lobby from "./Lobby";
 import Game from "./Game";
 
 import useVisualMode from "../hooks/useVisualMode";
-import { generateRandomString } from '../helpers/helpers';
 
 
 import './App.css';
@@ -40,7 +39,7 @@ export default function App(props) {
   // })
 
   useEffect(() => {
-    transition(hostCookies.host ? props.mode : WELCOME);
+    transition(hostCookies.host ? LOBBY : WELCOME);
   }, [hostCookies.host, props.mode]);
 
   const [currentUserCookies, setCurrentUserCookie] = useCookies(['user']);
