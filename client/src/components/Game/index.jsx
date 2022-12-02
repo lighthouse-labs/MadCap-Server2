@@ -266,9 +266,7 @@ export default function Game(props) {
   // fn setphase to results
   // in timer pass down props.phase result
   const setStatePhase = (phase) => {
-    setState(prev => (
-      { ...prev, phase: phase }
-    ));
+    setState((prev) => ({ ...prev, phase: phase }));
   };
 
   const nextRound = () => {
@@ -282,11 +280,11 @@ export default function Game(props) {
   // console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData);
   
   const getNextSubcategory = () => {
-    const random = Math.floor(Math.random() * props.gameData.subcategories.length);
+    // const random = Math.floor(Math.random() * props.gameData.subcategories.length);
     setState(prev => (
       { ...prev,
-        category: props.gameData.subcategories[random].category,
-        subcategory: props.gameData.subcategories[random].subcategory,
+        category: props.gameData.subcategories[state.round].category,
+        subcategory: props.gameData.subcategories[state.round].subcategory,
       }
     ));
   };
@@ -413,12 +411,22 @@ export default function Game(props) {
         setState((prev) => ({
           ...prev,
           chats: chatSet,
-          lastMessage: message.message,
+        }));
+      }
+      if (message.type === "status") {
+        console.log("VOTE MESSAGE ", message);
+        let statusMessage = "Vote Against Letter: " + message.message.vote + "(" + message.message.votes + "/" + message.message.votesToEliminate + ")"
+        let chatSet = [
+          ...stateRef.current.chats,
+          { type: "status", message: statusMessage},
+        ];
+        setState((prev) => ({
+          ...prev,
+          chats: chatSet,
         }));
       }
       // console.log(stateRef.current)
     });
-
 
     socket.on("vote", (vote) => {
       console.log(vote);
@@ -440,7 +448,6 @@ export default function Game(props) {
       console.log(stateRef.current);
       // let playerSet = setPlayerScore(message.user, stateRef.current, 10)
     });
-
 
     //can be used to update from host
 
@@ -465,7 +472,6 @@ export default function Game(props) {
         message: message.answers,
         chats: message.chats,
       }));
-
     });
 
     return () => {
@@ -483,19 +489,26 @@ export default function Game(props) {
     //less backend setting if just have a state "inroom"
 
     //needs url set to user
-    let messagetype = "chat";
+    console.log(message)
+    let messageType = "chat";
+    let messageUpper = message
     if (gamePhase === "game") {
-      messagetype = "capture";
+      messageType = "capture";
+      messageUpper = capitalizeFirstLetter(message);
     }
-    let messageUpper = capitalizeFirstLetter(message);
+    if (gamePhase === "status"){
+      messageType = "status"
+    }
+    console.log(gamePhase)
     const messageObject = {
       message: messageUpper,
       room: props.url_path,
       colour: state.player.color,
       user: state.player.name,
       userId: state.player.id,
-      type: messagetype,
+      type: messageType,
     };
+    console.log(messageObject)
     // console.log(messageObject);
     // console.log(socket);
     socket.emit("send-message", messageObject);
@@ -505,7 +518,11 @@ export default function Game(props) {
       vote: vote.letter,
       answerPlayerId: vote.userId,
       room: props.url_path,
+      votes: vote.votes,
+      votesToEliminate: vote.votesToEliminate,
+
     };
+    sendMessage(voteObject, "status");
     socket.emit("send-vote", voteObject);
   };
   const checkedIn = () => {

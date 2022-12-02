@@ -19,11 +19,13 @@ export default function AnswerListItem(props) {
     {}
   );
   const voteAgainst = () => {
-    console.log(props)
     let voteObject = {
       letter: props.letter,
-      userId: props.userId
+      userId: props.userId,
+      votesToEliminate: votesToEliminate,
+      votes: (props.votesAgainst+1)
     }
+    console.log(voteObject)
     props.sendVote(voteObject);
   };
 
@@ -33,9 +35,23 @@ export default function AnswerListItem(props) {
     setVoted(true);
   };
 
-  let buttonsColour = props.votesAgainst * (0.25 * (12 - props.playerCount));
+  let votesToEliminate = 1
+  if (props.playerCount > 2) {
+    votesToEliminate = Math.floor((props.playerCount-1)/2)
+  }
+
+  //undo vote on reset
+  if(disableButton && props.votesAgainst === 0){
+    console.log("RESET BUTTON")
+    setVoted(false)
+    setDisabled(false)
+    setButtonState(false)
+  }
+
+
+  let buttonsColour = props.votesAgainst * (1/votesToEliminate)
   // setButtonState(buttonClick < (playerCount / 2) - 1 ? false : true)
-  if (props.playercount > 1 && props.votesAgainst >= (props.playerCount - 1) / 2 && !buttonMode) {
+  if (props.votesAgainst >= votesToEliminate && !buttonMode) {
     console.log("here");
     setButtonState(true);
   }
