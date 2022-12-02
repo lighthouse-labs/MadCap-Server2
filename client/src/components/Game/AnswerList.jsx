@@ -59,8 +59,9 @@ export default function AnswerList(props) {
         <div className="game-board-inner-center">
           <Box className="clock">
             <Clock
-              gameData={props.gameData}
               setStatePhase={props.setStatePhase}
+              gameData={props.gameData}
+              round={props.round}
             />
           </Box>
           <Notice lastMessage={props.lastMessage} />

@@ -17,7 +17,7 @@ export default function GameSettings(props) {
     }
     );
     
-    console.log("settings in Lobby ~~~~~~~~~~: ", settings)
+    // console.log("settings in Lobby ~~~~~~~~~~: ", settings)
     // const playerCount = num;
     // const waitToStart = () => {
     //   // if "waiting..."

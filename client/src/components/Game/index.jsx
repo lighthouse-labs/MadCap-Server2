@@ -274,11 +274,11 @@ export default function Game(props) {
   };
 
   const nextRound = () => {
-    if (state.round <= props.gameData.rounds) {
+    if (state.round < props.gameData.rounds) {
       setState(prev => (
         { ...prev, round: prev.round +1}
       ));
-    }
+    } 
   };
 
   //loop through subcategories for games
@@ -532,7 +532,6 @@ export default function Game(props) {
         }}
       >
         <GameBoard
-
           gameData={props.gameData}
           nextRound={nextRound}
           round={state.round}

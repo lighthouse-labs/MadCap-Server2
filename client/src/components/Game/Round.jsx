@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 export default function Round (props) {
   // const [round, setRound] = useState(1);
   const [roundTimer, setRoundTimer] = useState(4);
+
+  // console.log("props.round in Round ~~~~~~~~~: ", props.round);
   
   useEffect(() => {
     const timer =
@@ -12,7 +14,6 @@ export default function Round (props) {
       if (roundTimer === 0) {
       props.clearBoard();
       props.setStatePhase("game");
-      props.nextRound();
     }
     return () => clearTimeout(timer);
   }, [roundTimer]);

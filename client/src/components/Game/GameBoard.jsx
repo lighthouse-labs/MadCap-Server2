@@ -11,7 +11,12 @@ export default function GameBoard(props) {
       <div className="game-header">
         { props.phase !== "round" && <h2 className="category-header">
           {props.category}: {props.phase === "results" &&
-            <ResultsClock phase={props.phase} setStatePhase={props.setStatePhase}
+            <ResultsClock 
+            round={props.round}
+            gameData={props.gameData}
+            nextRound={props.nextRound}
+            phase={props.phase} 
+            setStatePhase={props.setStatePhase}
             />
           }
         </h2>}
@@ -30,8 +35,8 @@ export default function GameBoard(props) {
           props.phase === "round" ?
           <AnswerList
             gameData={props.gameData}
-            nextRound={props.nextRound}
             round={props.round}
+            nextRound={props.nextRound}
 
             answers={props.answers}
             lastMessage={props.lastMessage}
