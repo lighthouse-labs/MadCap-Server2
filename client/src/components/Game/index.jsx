@@ -280,11 +280,11 @@ export default function Game(props) {
   // console.log("gameData in Game ~~~~~~~~~~~: ", props.gameData);
   
   const getNextSubcategory = () => {
-    const random = Math.floor(Math.random() * props.gameData.subcategories.length);
+    // const random = Math.floor(Math.random() * props.gameData.subcategories.length);
     setState(prev => (
       { ...prev,
-        category: props.gameData.subcategories[random].category,
-        subcategory: props.gameData.subcategories[random].subcategory,
+        category: props.gameData.subcategories[state.round].category,
+        subcategory: props.gameData.subcategories[state.round].subcategory,
       }
     ));
   };
@@ -575,7 +575,6 @@ export default function Game(props) {
           answers={state.answers}
           sendVote={sendVote}
           playerCount={state.players.length}
-          setStatePhase={setStatePhase}
           players={state.players}
           clearBoard={clearBoard}
         />
