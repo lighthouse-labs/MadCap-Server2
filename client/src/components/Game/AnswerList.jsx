@@ -19,9 +19,11 @@ export default function AnswerList(props) {
         letter={answer.letter}
         captureColour={answer.captureColour}
         answer={answer.answer}
-        votesAgainst = {answer.votesAgainst}
+        userId={answer.userId}
+        votesAgainst={answer.votesAgainst}
         phase={props.phase}
         sendVote={props.sendVote}
+        playerCount = {props.playerCount}
       />
     );
   });
@@ -32,10 +34,12 @@ export default function AnswerList(props) {
         id={answer.id}
         letter={answer.letter}
         captureColour={answer.captureColour}
-        votesAgainst = {answer.votesAgainst}
         answer={answer.answer}
+        userId={answer.userId}
+        votesAgainst={answer.votesAgainst}
         phase={props.phase}
         sendVote={props.sendVote}
+        playerCount = {props.playerCount}
       />
     );
   });

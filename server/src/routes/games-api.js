@@ -65,7 +65,7 @@ router.get('/:game_url/subcategories/:subcategory_number', (req, res) => {
   gameQueries.getRandomSubcategories(game_url)
   // Subtract 1 so that the first subcategory is number 1
   .then(subcategories => res.json(subcategories[subcategory_number - 1]))
-  .catch(error => res.json({ error }))
+  .catch(error => res.status(500).json({ error }))
 });
 
 /**
@@ -91,6 +91,7 @@ router.post('/', (req, res) => {
  *  name: Fred
  *  color: blue
  *  avatar_url: './avatars/avatar-temp-4.png'
+ *  host: true,
  * }
  * 
  * returns the new user object
@@ -124,11 +125,17 @@ router.post('/:game_url/users', (req, res) => {
 router.put('/:game_url', (req, res) => {
   const { game_url } = req.params;
   const { categories, settings } = req.body;
-  gameQueries.updateGameDetails(game_url, categories, settings)
-  .then (() => res.send('Success!'))
+  const queries = [];
+  queries.push(gameQueries.updateGameSettings(game_url, settings))
+  categories[0] && queries.push(gameQueries.updateGameCategories(game_url, categories))
+  Promise.all(queries)
+  .then (([settings]) => res.json({
+    ...settings,
+    categories: req.body.categories || []
+  }))
   .catch(error => {
     console.error(error);
-    res.json({ error });
+    res.status(500).json({ error });
   });
 });
 
@@ -149,7 +156,7 @@ router.patch('/:game_url/users/:user_id', (req, res) => {
   .then((user) => res.json(user))
   .catch((error) => {
     console.error(error);
-    res.json({ error });
+    res.status(500).json({ error });
   });
 });
 
@@ -159,7 +166,7 @@ router.delete('/:game_url', (req, res) => {
   .then((game) => res.json(game))
   .catch(error => {
     console.error(error);
-    res.json({ error });
+    res.status(500).json({ error });
   });
 });
 

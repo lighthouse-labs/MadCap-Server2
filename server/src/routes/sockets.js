@@ -16,7 +16,7 @@ module.exports = (app) => {
     });
     socket.on("send-vote", (vote) => {
       console.log(vote);
-      app.io.in(vote.room).emit("vote", vote.vote);
+      app.io.in(vote.room).emit("vote", vote);
     });
     socket.on("disconnect", () => {
       console.log("A user disconnected");
@@ -34,6 +34,11 @@ module.exports = (app) => {
       console.log("sending state");
       console.log(state)
       app.io.in(state.room).emit("sync-state", state);
+    });
+    socket.on("host-start-game", (room) => {
+      console.log("startinggame");
+      console.log(room)
+      app.io.in(room).emit("start-game");
     });
   });
 };

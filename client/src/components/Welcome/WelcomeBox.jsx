@@ -7,9 +7,12 @@ import Avatar from './Avatar';
 import UserName from './UserName';
 import ActionButton from "./ActionButton";
 import axios from "axios";
+import { generateRandomString } from "../../helpers/helpers";
 
 export default function WelcomeBox(props) {
-  const { url, name, handleName } = props;
+
+  const url = generateRandomString();
+  
   const MAKE = "MAKE";
   const JOIN = "JOIN";
 
@@ -24,6 +27,11 @@ export default function WelcomeBox(props) {
 
   const [avatar_url, setAvatar_url] = useState();
   const [color, setColor] = useState();
+  const [name, setName] = useState();
+
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
 
   const navigate = useNavigate();
 
@@ -48,7 +56,9 @@ export default function WelcomeBox(props) {
       .then(() => {
         navigate(`/${url}`)
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.log(url)
+        console.error(err.message)});
 
   }
 
@@ -65,6 +75,7 @@ export default function WelcomeBox(props) {
       })
       .then(() => {
         props.transition("LOBBY")
+        props.checkedIn()
       })
     .catch((err) => console.error(err));
   }

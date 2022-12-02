@@ -46,7 +46,7 @@ export default function LinkBox(props) {
         />
       </Box>
       <Snackbar
-        message="Copied to clibboard"
+        message="Copied to clipboard"
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         autoHideDuration={1600}
         onChange={() => setOpen(false)}

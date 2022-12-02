@@ -66,7 +66,7 @@ const createNewGame = (url) => {
  * }} settings
  * @returns 
  */
-const updateGameDetails = (game_url, category_ids, settings) => {
+const updateGameSettings = (game_url, settings) => {
   const {timer, maxPlayers, rounds} = settings
   return db.query(`
   UPDATE games
@@ -76,7 +76,23 @@ const updateGameDetails = (game_url, category_ids, settings) => {
   WHERE url = $1
   RETURNING *
   `, [game_url, timer, maxPlayers, rounds])
+  .then((data) => data.rows[0])
+};
+
+  const updateGameCategories = (game_url, category_ids) => {
+    return db.query(`
+    SELECT id 
+    FROM games
+    WHERE url = $1
+    `, [game_url])
   .then((data) => data.rows[0].id)
+  .then((game_id) => {
+    db.query(`
+      DELETE FROM categories_sets
+      WHERE game_id = $1
+    `, [game_id])
+    return game_id
+  })
   .then((game_id) => {
     const {categoriesQuery, categoriesList} = generateAddGameCategoriesQuery(category_ids, game_id)
     db.query(categoriesQuery, categoriesList)
@@ -96,4 +112,4 @@ const deleteGame = (game_url) => {
   .then((data) => data.rows[0])
 }
 
-module.exports = { getMainGame, getGameUsers, getGameCategories, getRandomSubcategories, createNewGame, updateGameDetails, deleteGame }
+module.exports = { getMainGame, getGameUsers, getGameCategories, getRandomSubcategories, createNewGame, updateGameSettings, updateGameCategories, deleteGame }

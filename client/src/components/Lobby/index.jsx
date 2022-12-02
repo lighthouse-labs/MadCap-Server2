@@ -7,10 +7,12 @@ import PlayersList from './PlayersList';
 
 import './styles.css';
 
+
 export default function Lobby(props) {
 
 
   const [categories, setCategories] = useState(null);
+  const [checkIn, setCheckIn] = useState(false)
   const players = props.gameData.users;
 
   useEffect(() => {
@@ -26,6 +28,13 @@ export default function Lobby(props) {
       console.error(err.message);
     });
   }, []);
+
+  if (!checkIn) {
+    console.log("lobbycheckin")
+    props.checkedIn()
+    setCheckIn(true)
+  }
+
 
   
 
@@ -54,7 +63,6 @@ export default function Lobby(props) {
         }}>
         <PlayersList
           currentUser={props.currentUser}
-          name={props.name}
           players={players}
           setGameData={props.setGameData}
         />

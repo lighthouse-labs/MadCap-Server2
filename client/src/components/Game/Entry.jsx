@@ -11,7 +11,12 @@ export default function Entry(props) {
   // };
 
   const send = () => {
-    props.sendMessage(message);
+    if (message[0] === "/") {
+      props.sendMessage(message.slice(1), "results")
+    } else {
+      props.sendMessage(message);
+    }
+
     setMessage("")
     // console.log(message);
   };
