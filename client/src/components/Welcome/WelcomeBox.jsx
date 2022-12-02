@@ -51,10 +51,10 @@ export default function WelcomeBox(props) {
         props.setCurrentUser(response.data.id)
       })
       .then(() => {
-        props.setHost();
+        navigate(`/${url}`)
       })
       .then(() => {
-        navigate(`/${url}`)
+        props.setHost();
       })
       .catch((err) => {
         console.log(url)

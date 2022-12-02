@@ -37,12 +37,11 @@ export default function App(props) {
   const { mode, transition } = useVisualMode(WELCOME);
 
   useEffect(() => {
-    console.log(url_path)
     if(!url_path || url_path === '/') {
       removeCurrentUserCookie('user', { path: '/'});
       removeHostCookie('host', { path: '/'})
     }
-  }, url_path)
+  }, [url_path])
 
   useEffect(() => {
     transition(hostCookies.host ? LOBBY : WELCOME);
