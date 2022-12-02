@@ -67,7 +67,6 @@ export default function App(props) {
 
   function handleStart() {
     socket.emit("host-start-game", url_path)
-    transition(GAME);
   }
 
   // const handleMakeGame = () => {
