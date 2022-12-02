@@ -23,8 +23,8 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     loader: (({ request }) => {
-      const url = new URL(request.url)
-      return { url };
+      const url_path = new URL(request.url).pathname;
+      return { url_path, btnState:"MAKE" };
     })
   },
   {
@@ -32,9 +32,9 @@ const router = createBrowserRouter([
     element: <App />,
     loader: (({ request }) => {
       const url = new URL(request.url);
-      const url_path = url.pathname.substring(1);
+      const url_path = url.pathname;
       const full_url = url.href;
-      return { full_url, url_path };
+      return { url_path, full_url, btnState:"JOIN" };
     })
   }
 ])

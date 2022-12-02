@@ -22,7 +22,8 @@ const socket = io(SERVER, {
 
 export default function App(props) {
 
-  const { full_url, url_path } = useLoaderData();
+  const { full_url, url_path, btnState } = useLoaderData();
+  console.log("Button State", btnState)
 
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
@@ -36,7 +37,8 @@ export default function App(props) {
   const { mode, transition } = useVisualMode(WELCOME);
 
   useEffect(() => {
-    if(!url_path || url_path === '/') {
+    if(url_path === '/') {
+      console.log("URL path", url_path)
       removeCookies('user', { path: '/'});
       removeCookies('host', { path: '/'})
     }
@@ -124,9 +126,11 @@ export default function App(props) {
       {mode === WELCOME && (
         <Welcome
           transition={transition}
-          url_path={url_path}
+          // remove slash from url path
+          url_path={url_path.substring(1)}
           name={name}
           host={cookies.host}
+          btnState={btnState}
           // avatar={avatar}
           setCurrentUser={setCurrentUser}
           handleName={handleName}
