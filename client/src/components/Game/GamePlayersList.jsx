@@ -24,10 +24,16 @@ export default function PlayersList(props) {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        backgroundColor: (player.id === props.currentPlayerID) && 'rgba(0, 139, 139, 0.2)'
+
       }}>
       <ListItemAvatar
-        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+      }}>
         <Avatar src={player.avatar_url} alt={player.label} sx={{ maxWidth: '30%', height: 'auto' }}>
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
@@ -37,7 +43,6 @@ export default function PlayersList(props) {
       </ListItemAvatar>
       <ListItemText primary={player.name}
         sx={{ '.MuiTypography-root': { fontSize: "12px", pl: 1 } }} />
-      {props.currentPlayerID === player.id ? "Current Player" : ""}
     </ListItem>
   ));
 
@@ -69,6 +74,7 @@ export default function PlayersList(props) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
+                    backgroundColor: (host && host.id === props.currentPlayerID) && 'rgba(0, 139, 139, 0.2)',
                     p: 0
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
