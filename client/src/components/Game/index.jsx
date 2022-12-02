@@ -392,6 +392,17 @@ export default function Game(props) {
           lastMessage: message.message,
         }));
       }
+      if (message.type === "status") {
+        let chatSet = [
+          ...stateRef.current.chats,
+          { type: "status",  message: message.message },
+        ];
+        setState((prev) => ({
+          ...prev,
+          chats: chatSet,
+          lastMessage: message.message,
+        }));
+      }
       // console.log(stateRef.current)
     });
 
@@ -482,6 +493,7 @@ export default function Game(props) {
       answerPlayerId: vote.userId,
       room: props.url_path,
     };
+    sendMessage(voteObject, "status")
     socket.emit("send-vote", voteObject);
   };
   const checkedIn = () => {

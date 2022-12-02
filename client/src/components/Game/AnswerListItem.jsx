@@ -19,11 +19,13 @@ export default function AnswerListItem(props) {
     {}
   );
   const voteAgainst = () => {
-    console.log(props)
     let voteObject = {
       letter: props.letter,
-      userId: props.userId
+      userId: props.userId,
+      votesToEliminate: votesToEliminate,
+      votes: (props.votesAgainst+1)
     }
+    console.log(voteObject)
     props.sendVote(voteObject);
   };
 
