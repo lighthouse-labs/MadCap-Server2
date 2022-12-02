@@ -18,6 +18,7 @@ export default function Welcome(props) {
         onClick={props.onClick}
         setHost={props.setHost}
         transition={props.transition}
+        checkedIn = {props.checkedIn}
       />
       <HowToPlay />
     </div>

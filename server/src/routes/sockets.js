@@ -35,5 +35,10 @@ module.exports = (app) => {
       console.log(state)
       app.io.in(state.room).emit("sync-state", state);
     });
+    socket.on("host-start-game", (room) => {
+      console.log("startinggame");
+      console.log(room)
+      app.io.in(room).emit("start-game");
+    });
   });
 };

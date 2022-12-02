@@ -434,7 +434,7 @@ export default function Game(props) {
         let currentState = {
           answers: stateRef.current.answers,
           chats: stateRef.current.chats,
-          room: stateRef.current.player.url,
+          room:props.url_path
         };
         console.log(currentState);
         socket.emit("send-state", currentState);
@@ -473,7 +473,7 @@ export default function Game(props) {
     let messageUpper = capitalizeFirstLetter(message);
     const messageObject = {
       message: messageUpper,
-      room: "dummyroom",
+      room: props.url_path,
       colour: state.player.color,
       user: state.player.name,
       userId: state.player.id,
@@ -487,18 +487,21 @@ export default function Game(props) {
     const voteObject = {
       vote: vote.letter,
       answerPlayerId: vote.userId,
-      room: "dummyroom",
+      room: props.url_path,
     };
     socket.emit("send-vote", voteObject);
   };
-
-  if (!state.checkIn) {
+  const checkedIn = () => {
     sendMessage("has connected", "results");
-    socket.emit("set-room", "dummyroom");
+    socket.emit("set-room", props.url_path);
     setState((prev) => ({
       ...prev,
       checkIn: true,
     }));
+  }
+
+  if (!state.checkIn) {
+    checkedIn()
   }
 
   return (
