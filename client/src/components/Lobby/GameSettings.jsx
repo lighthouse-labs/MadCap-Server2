@@ -29,9 +29,9 @@ export default function GameSettings(props) {
       settings,
       categories: currentCategories
     })
-    .then((response) => {
-      console.log("New Game Data", response.data);
-      props.setGameData(response.data);
+    .then(() => {
+      axios.get(`api/games/${props.url_path}`)
+      .then(({ data }) => props.setGameData(data))
     })
   );
 

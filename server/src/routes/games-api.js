@@ -129,7 +129,10 @@ router.put('/:game_url', (req, res) => {
   queries.push(gameQueries.updateGameSettings(game_url, settings))
   categories[0] && queries.push(gameQueries.updateGameCategories(game_url, categories))
   Promise.all(queries)
-  .then (() => res.redirect(`/api/games/${game_url}`))
+  .then (([settings]) => res.json({
+    ...settings,
+    categories: req.body.categories || []
+  }))
   .catch(error => {
     console.error(error);
     res.status(500).json({ error });
