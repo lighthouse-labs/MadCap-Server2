@@ -14,7 +14,6 @@ export default function ActionButton(props) {
           mb: 3.5
         }}
         type="submit"
-        onKeyPress={props.onKeyPress}
         onClick={props.onClick}
         variant="contained"
         color="success"

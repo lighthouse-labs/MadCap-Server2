@@ -26,9 +26,8 @@ export default function App(props) {
 
   const [gameData, setGameData] = useState([]);
   const [name, setName] = useState("");
-  const [hostCookies, setHostCookie, removeHostCookie] = useCookies(['host']);
-  const [currentUserCookies, setCurrentUserCookie, removeCurrentUserCookie] = useCookies(['user']);
-  const [reqUpdate, setReqUpdate] = useState(false)
+  const [cookies, setCookies, removeCookies] = useCookies(['host', 'user']);
+  const [reqUpdate, setReqUpdate] = useState(false);
  
   const WELCOME = "WELCOME";
   const LOBBY = "LOBBY";
@@ -38,14 +37,14 @@ export default function App(props) {
 
   useEffect(() => {
     if(!url_path || url_path === '/') {
-      removeCurrentUserCookie('user', { path: '/'});
-      removeHostCookie('host', { path: '/'})
+      removeCookies('user', { path: '/'});
+      removeCookies('host', { path: '/'})
     }
   }, [url_path])
 
   useEffect(() => {
-    transition(hostCookies.host ? LOBBY : WELCOME);
-  }, [hostCookies.host, props.mode]);
+    transition(cookies.host ? LOBBY : WELCOME);
+  }, [cookies.host, props.mode]);
 
 
   console.log("loader_url:", full_url);
@@ -59,11 +58,11 @@ export default function App(props) {
   };
 
   const setHost = () => {
-    setHostCookie('host', true, { path: '/' });
+    setCookies('host', true, { path: '/' });
   }
 
   const setCurrentUser = (id) => {
-    setCurrentUserCookie('user', id, { path: '/' })
+    setCookies('user', id, { path: '/' })
   }
 
   function handleStart() {
@@ -75,11 +74,11 @@ export default function App(props) {
   // };
 
   const modeRef = useRef(mode);
-  const hostCookieRef = useRef(hostCookies);
+  const hostCookieRef = useRef(cookies);
   useEffect(() => {
     //without this, state ref in sockets will be out of date (when they are connected)
     modeRef.current = mode;
-    hostCookieRef.current = hostCookies;
+    hostCookieRef.current = cookies;
   });
 
   useEffect(() => {
@@ -135,7 +134,7 @@ export default function App(props) {
           transition={transition}
           url_path={url_path}
           name={name}
-          host={hostCookies.host}
+          host={cookies.host}
           // avatar={avatar}
           setCurrentUser={setCurrentUser}
           handleName={handleName}
@@ -149,7 +148,7 @@ export default function App(props) {
           url={full_url}
           url_path={url_path}
           handleStart={handleStart}
-          currentUser={Number(currentUserCookies.user)}
+          currentUser={Number(cookies.user)}
           gameData={gameData}
           setGameData={setGameData}
           checkedIn = {checkedIn}
@@ -159,7 +158,7 @@ export default function App(props) {
 
       {mode === "GAME" && <Game
         gameData={gameData}
-        currentUser={Number(currentUserCookies.user)}
+        currentUser={Number(cookies.user)}
         url_path={url_path}
       />}
 
