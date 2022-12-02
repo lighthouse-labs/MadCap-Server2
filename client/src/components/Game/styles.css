@@ -6,7 +6,6 @@
   align-items: center;
 }
 
-
 .game-board-main {
   /* background-color: #f0f2ff; */
   width: 100%;
@@ -111,6 +110,22 @@
   height: 100%;
 }
 
+.podium-list-item {
+  border: '1px solid black';
+  overflow: 'hidden'; 
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  
+
+}
+.podium-list-withpoint {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
 .red {
   color: red;
 }
@@ -124,5 +139,5 @@
   color: yellow;
 }
 .orange {
-  color: orange
+  color: orange;
 }

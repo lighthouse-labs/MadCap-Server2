@@ -482,20 +482,18 @@ export default function Game(props) {
         }}
       >
         <GameBoard
-          answers={state.answers}
-          isConnected={state.isConnected}
-          lastMessage={state.lastMessage}
           phase={state.phase}
           setStatePhase={setStatePhase}
-        // gameTimer={gameTimer}
-        // voteTimer={voteTimer}
-          sendVote = {sendVote}
-          // counter={counter}
-        />
-        <StatusBox
-          sendMessage={sendMessage}
           isConnected={state.isConnected}
           lastMessage={state.lastMessage}
+          answers={state.answers}
+          sendVote = {sendVote}
+          players = {state.players}
+        />
+        <StatusBox
+          isConnected={state.isConnected}
+          lastMessage={state.lastMessage}
+          sendMessage={sendMessage}
           chats={state.chats}
           players = {state.players}
           currentPlayer={state.player}

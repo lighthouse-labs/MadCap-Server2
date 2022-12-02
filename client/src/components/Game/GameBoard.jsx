@@ -52,7 +52,10 @@ export default function GameBoard(props) {
             gameTimer={props.gameTimer}
           />
           :
-          props.phase === "podium" && <Podium />
+          props.phase === "podium" &&
+          <Podium setStatePhase={props.setStatePhase}
+            players={props.players}
+          />
       }
     </div>
   );

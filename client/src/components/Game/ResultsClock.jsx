@@ -1,12 +1,11 @@
 import { useState, useEffect, Fragment } from "react";
 
 export default function ResultsClock(props) {
-  const [voteTimer, setVoteTimer] = useState(6);
+  const [voteTimer, setVoteTimer] = useState(15);
 
   // setInterval to setTimeout... clearInterval to clearTimeout
 
   useEffect(() => {
-    console.log("voteTimer", voteTimer);
     let timer = 0;
     if (props.phase === "results") {
       timer = voteTimer > 0 && setTimeout(() => setVoteTimer(prev => (prev - 1)), 1000);
