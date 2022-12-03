@@ -45,7 +45,9 @@ router.get('/:game_url', (req, res) => {
       subcategories
     }
   ))
-  .then((gameObject => res.json(gameObject)))
+  .then((gameObject => {
+    console.log(gameObject)
+    res.json(gameObject)}))
   .catch((error) => {
     console.error(error);
     res.status(500).json({ error })
