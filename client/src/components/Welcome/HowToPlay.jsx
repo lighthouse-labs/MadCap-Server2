@@ -27,7 +27,7 @@ export default function HowToPlay() {
           <h2>How To Play</h2>
 
         </div>
-        <Paper elevation={3} sx={{ p: 1 }}>
+        <Paper elevation={3} sx={{ p: 1, width: '59%'}}>
           <p>how .........to play...the game.........</p>
           <p>visual ...............examples..........</p>
           <p>will................go.. here.....coool.</p>
