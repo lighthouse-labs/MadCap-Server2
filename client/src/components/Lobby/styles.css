@@ -33,3 +33,27 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.MuiSelect-select{
+  height: 100% !important;
+  padding: 5px !important;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 20px !important;
+  color: #393939 !important;
+  background-color: #cce2ff;
+  height: 30px;
+  width: 115px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 14px !important;
+  background-color: #e4effe;
+  height: 20px;
+  width: 80px;
+  text-align: center;
+  border-radius: 20px;
+}
