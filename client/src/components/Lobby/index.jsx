@@ -4,10 +4,12 @@ import axios from "axios";
 import { Box } from "@mui/material";
 import GameSettings from "./GameSettings";
 import PlayersList from "./PlayersList";
+import PlayerView from "./PlayerView";
 
 import "./styles.css";
 
 export default function Lobby(props) {
+  const [view, setView] = useState("PLAYER")
   const [categories, setCategories] = useState(null);
   const [checkIn, setCheckIn] = useState(false);
   const players = props.gameData.users;
@@ -24,6 +26,10 @@ export default function Lobby(props) {
       .catch((err) => {
         console.error(err.message);
       });
+  }, []);
+
+  useEffect(() => {
+   setView(props.host ? "HOST" : "PLAYER")
   }, []);
 
   if (!checkIn) {
@@ -54,7 +60,7 @@ export default function Lobby(props) {
           px: 1,
           display: "flex",
           justifyContent: "space-between",
-          maxWidth: 435,
+          maxWidth: '490px',
           height: "fit-content",
           width: "100%",
         }}
@@ -64,6 +70,7 @@ export default function Lobby(props) {
           players={players}
           setGameData={props.setGameData}
         />
+        {view === "HOST" &&
         <GameSettings
           setGameData={props.setGameData}
           categories={categories}
@@ -71,7 +78,9 @@ export default function Lobby(props) {
           url={props.url}
           url_path={props.url_path}
           updatePlayer = {props.updatePlayer}
-        />
+        />}
+
+        {view === "PLAYER" && <PlayerView/>}
       </Box>
     </div>
   );

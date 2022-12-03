@@ -7,10 +7,7 @@
 }
 
 .lobby-header {
-  margin-top: 1em;
-  /* min-width: 406px; */
-  /* min-width: 437px;
-  max-width: 750px; */
+  margin-top: 0.1em;
   width: 70%;
 }
 
@@ -25,6 +22,15 @@
   padding-top: 12px;
 }
 
+.player-view-header h2 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 12px;
+  word-wrap: normal;
+  text-align: center;
+}
+
 .game-settings-main {
   height: 600px;
   width: 67%;
@@ -32,4 +38,61 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+
+/* for the Select button in Game Setings */
+.MuiSelect-select{
+  height: 100% !important;
+  padding: 5px !important;
+}
+
+/* for the Categories in Game Setings */
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 20px !important;
+  color: #393939 !important;
+  background-color: #cce2ff;
+  height: 30px;
+  width: 115px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+/* for the Select tiny Categories in Game Setings */
+.css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 14px !important;
+  background-color: #e4effe;
+  height: 20px;
+  width: 80px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+/* for the Select dropdown */
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+      max-height: 404px !important;
+      width: 60% !important;
+      min-width: 16px !important;
+      top: 245px !important;
+      left: 151px !important;
+}
+/* inner category width */
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  width: 96% !important;
+}
+
+/* copy link banner */
+.css-1eqdgzv-MuiPaper-root-MuiSnackbarContent-root {
+background-color: rgb(50 50 50 / 67%) !important;
+height: 53px !important;
+}
+
+.player-view-main {
+  height: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f0f5ff;
+
 }

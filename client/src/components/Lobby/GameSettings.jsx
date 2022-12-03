@@ -74,7 +74,7 @@ export default function GameSettings(props) {
         <CategoriesBox categories={props.categories} currentCategories={currentCategories} setCurrentCategories={setCurrentCategories}/>
         <OptionsBox settings={settings} setSettings={setSettings} handleSet={handleSet}/>
       </Box>
-      <Box
+      <Box className="game-settings-bottom-box"
         sx={{
           backgroundColor: '#f0f5ff',
           display: 'flex',
@@ -82,9 +82,9 @@ export default function GameSettings(props) {
           alignItems: 'center',
           width: '100%',
           height: 'fit-content',
-          mt: '30px', ml: '6px', pb: '10px'
+          mt: '23px', ml: '6px', pb: '10px'
         }}>
-        <LinkBox url={props.url}/>
+        <LinkBox url={props.url} />
 
         <StartButton handleStart={handleGameStart}
           message={buttonText}

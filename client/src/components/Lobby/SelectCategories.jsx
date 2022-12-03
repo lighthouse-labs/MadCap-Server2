@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import OutlinedInput from '@mui/material/OutlinedInput';
+// import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -53,7 +53,7 @@ export default function SelectCategories(props) {
 
   return (
     <FormControl className="select-categories" sx={{ m: 1, width: '100%' }}>
-      <InputLabel id="multiple-chip-label">
+      <InputLabel id="multiple-chip-label" >
         Categories
       </InputLabel>
       <Select
@@ -62,20 +62,33 @@ export default function SelectCategories(props) {
         multiple
         value={currentCategories}
         onChange={handleChange}
-        input={<OutlinedInput id="select-multiple-chip" label="Chip"
-          sx={{}}
-        />}
+        sx=
+        {{
+          display: 'flex',
+          flexDirection: 'column',
+          '&.MuiInputBase-root': { height: "84px"},
+        }}
+        // input=
+        // {<OutlinedInput className="the-outline-input-class" id="select-multiple-chip" label="Chip"
+        //   sx={{":root": {height: "117px"},
+        //     height: "117px",
+        //     px: 0,
+        //     py: 0,
+        //     '&.MuiInputBase-root': {height: "117px" },
+        //     '&.MuiSelect-select.MuiInputBase-input.MuiOutlinedInput-input': {p: 0 }
+        //   }}
+        // />}
         renderValue={(selected) => (
           <Box className="select-inner-scroll"
             sx={{
               display: 'flex', flexWrap: 'wrap',
               maxHeight: '76px',
               overflow: "scroll",
-              py: "2px",
+              overflowAnchor: 'auto',
               gap: 0.2,
-              '&.MuiSelect-select': {
-                height: '76px',
-                overflow: "scroll",
+              '&.MuiInputBase-input': {
+                p: '0',
+                height: '100%',
               }
             }}
           >
