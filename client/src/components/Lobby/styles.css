@@ -22,14 +22,6 @@
   padding-top: 12px;
 }
 
-.player-view-header h2 {
-  margin-top: 5px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  padding-top: 12px;
-  word-wrap: normal;
-  text-align: center;
-}
 
 .game-settings-main {
   height: 600px;
@@ -84,15 +76,4 @@
 .css-1eqdgzv-MuiPaper-root-MuiSnackbarContent-root {
 background-color: rgb(50 50 50 / 67%) !important;
 height: 53px !important;
-}
-
-.player-view-main {
-  height: 600px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #f0f5ff;
-
 }
