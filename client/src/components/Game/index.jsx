@@ -251,17 +251,17 @@ export default function Game(props) {
   });
 
 
-  useEffect(() => {
-    axios.get(`/api/games/${props.url_path}/subcategories/1`)
-      .then((response) => response.data)
-      .then(({ category, subcategory }) => {
-        setState((prev) => ({
-          ...prev,
-          category,
-          subcategory
-        }));
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get(`/api/games/${props.url_path}/subcategories/1`)
+  //     .then((response) => response.data)
+  //     .then(({ category, subcategory }) => {
+  //       setState((prev) => ({
+  //         ...prev,
+  //         category,
+  //         subcategory
+  //       }));
+  //     });
+  // }, []);
 
   // fn setphase to results
   // in timer pass down props.phase result

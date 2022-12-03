@@ -32,20 +32,7 @@ export default function Lobby(props) {
     setCheckIn(true);
   }
 
-  useEffect(() => {
-    if (props.reqUpdate === true) {
-      console.log("update requested");
-      props.setReqUpdate(false);
-      axios
-        .get(`/api/games/${props.url_path}`)
-        .then((gameResponse) => {
-          props.setGameData(gameResponse.data);
-        })
-        .catch((err) => {
-          console.error(err.message);
-        });
-    }
-  }, [props.reqUpdate]);
+
 
   return (
     <div className="lobby-main">
@@ -83,6 +70,7 @@ export default function Lobby(props) {
           handleStart={props.handleStart}
           url={props.url}
           url_path={props.url_path}
+          updatePlayer = {props.updatePlayer}
         />
       </Box>
     </div>
