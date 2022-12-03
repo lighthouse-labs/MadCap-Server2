@@ -30,7 +30,9 @@ export default function WelcomeBox(props) {
   const [name, setName] = useState();
 
   const handleName = (e) => {
-    setName(e.target.value);
+    if (e.target.value.length < 16) {
+      setName(e.target.value);
+    }
   };
 
   const navigate = useNavigate();
@@ -99,7 +101,7 @@ export default function WelcomeBox(props) {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          maxWidth: '435px',
+          maxWidth: '397px',
           height: 340,
           width: '97%'
         }}>

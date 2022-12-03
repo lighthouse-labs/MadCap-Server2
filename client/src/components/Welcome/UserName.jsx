@@ -18,7 +18,7 @@ export default function UserName(props) {
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'firebrick',
+        borderColor: 'lightblue',
       },
       '&:hover fieldset': {
         borderColor: 'orange',
