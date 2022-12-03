@@ -26,12 +26,12 @@ export default function GameSettings(props) {
   const [currentCategories, setCurrentCategories] = useState([])
 
   const gamesPutRequest =  (settings, currentCategories) => (
-    axios.put(`http://localhost:8001/api/games/${props.url_path}`, {
+    axios.put(`http://localhost:8001/api/games${props.url_path}`, {
       settings,
       categories: currentCategories
     })
     .then(() => {
-      axios.get(`http://localhost:8001/api/games/${props.url_path}`)
+      axios.get(`http://localhost:8001/api/games${props.url_path}`)
       .then(({ data }) => props.setGameData(data))
     })
   );

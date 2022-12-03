@@ -66,7 +66,7 @@ export default function WelcomeBox(props) {
 
   const joinGame = () => {
      
-      axios.post(`http://localhost:8001/api/games/${props.url_path}/users`, {
+      axios.post(`http://localhost:8001/api/games${props.url_path}/users`, {
         name,
         color,
         avatar_url,
