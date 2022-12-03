@@ -20,17 +20,16 @@ export default function StatusBox(props) {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          pr: 0, pl: '4px', pb: '4px',
+          pr: 0, pl: '4px', pb: '3px',
           m: 0,
           width: '71.5%',
-          height: '100%',
+          maxHeight: '308px'
         }}>
         <Box className="chat-box"
           sx={{
             backgroundColor: '#bec5dc',
             height: '100%',
             width: '99%',
-            maxHeight: '100%',
             overflow: 'auto', mr: '2px'
           }}>
         <ChatList chats={props.chats} />

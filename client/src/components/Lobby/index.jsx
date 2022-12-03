@@ -67,7 +67,7 @@ export default function Lobby(props) {
           px: 1,
           display: "flex",
           justifyContent: "space-between",
-          maxWidth: 435,
+          maxWidth: '490px',
           height: "fit-content",
           width: "100%",
         }}

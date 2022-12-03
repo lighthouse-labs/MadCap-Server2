@@ -556,7 +556,7 @@ export default function Game(props) {
           maxWidth: 435,
           height: "100%",
           width: "100%",
-          px: 0,
+          px: 0, my: '24px',
           backgroundColor: "#f0f2ff",
         }}
       >

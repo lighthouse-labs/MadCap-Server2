@@ -81,7 +81,7 @@ export default function GameSettings(props) {
           height: 'fit-content',
           mt: '23px', ml: '6px', pb: '10px'
         }}>
-        <LinkBox url={props.url}/>
+        <LinkBox url={props.url} />
 
         <StartButton handleStart={handleGameStart}
           message={buttonText}
