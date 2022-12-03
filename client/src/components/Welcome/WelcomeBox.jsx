@@ -41,7 +41,7 @@ export default function WelcomeBox(props) {
    
       axios.post("http://localhost:8001/api/games", { url })
       .then(() => (
-        axios.post(`/api/games/${url}/users`, {
+        axios.post(`http://localhost:8001/api/games/${url}/users`, {
           name,
           color,
           avatar_url,

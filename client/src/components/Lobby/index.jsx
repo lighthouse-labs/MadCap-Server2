@@ -17,8 +17,8 @@ export default function Lobby(props) {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/api/categories"),
-      axios.get(`/api/games/${props.url_path}`),
+      axios.get("http://localhost:8001/api/categories"),
+      axios.get(`http://localhost:8001/api/games/${props.url_path}`),
     ])
       .then(([categoriesResponse, gameResponse]) => {
         setCategories(categoriesResponse.data);
