@@ -31,7 +31,7 @@ export default function PlayersList(props) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        backgroundColor: (player.id === props.currentUser) && 'rgba(0, 139, 139, 0.2)'
+        backgroundColor: (player.id === props.currentUser) && '#f0f5ff'
 
       }}>
       <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
@@ -74,7 +74,7 @@ export default function PlayersList(props) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
-                    backgroundColor: (host && host.id === props.currentUser) && 'rgba(0, 139, 139, 0.2)',
+                    backgroundColor: (host && host.id === props.currentUser) && '#e0e5ef',
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center', justifyItems: 'space-around' }}>
                       <Avatar src={host && host.avatar_url}sx={{}}>
