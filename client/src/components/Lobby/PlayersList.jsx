@@ -31,7 +31,7 @@ export default function PlayersList(props) {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'flex-start',
-        backgroundColor: (player.id === props.currentUser) && '#f0f5ff'
+        backgroundColor: (player.id === props.currentUser) && '#e0e5ef'
 
       }}>
       <ListItemAvatar sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
