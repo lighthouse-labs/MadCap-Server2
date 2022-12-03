@@ -7,10 +7,7 @@
 }
 
 .lobby-header {
-  margin-top: 1em;
-  /* min-width: 406px; */
-  /* min-width: 437px;
-  max-width: 750px; */
+  margin-top: 0.1em;
   width: 70%;
 }
 
@@ -56,4 +53,21 @@
   width: 80px;
   text-align: center;
   border-radius: 20px;
+}
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+      max-height: 404px !important;
+      width: 60% !important;
+      min-width: 16px !important;
+      top: 245px !important;
+      left: 151px !important;
+}
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  width: 96% !important;
+}
+
+.css-1eqdgzv-MuiPaper-root-MuiSnackbarContent-root {
+background-color: rgb(50 50 50 / 67%) !important;
+height: 53px !important;
 }
