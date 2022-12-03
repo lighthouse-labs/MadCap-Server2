@@ -55,6 +55,7 @@ export default function GameSettings(props) {
       console.error(error.message)})
   }
   const buttonText = "Start the Game"
+  console.log("Disabled", (!currentCategories)||(currentCategories.length === 0));
 
   return (
     <div className="game-settings-main">
@@ -87,6 +88,7 @@ export default function GameSettings(props) {
 
         <StartButton handleStart={handleGameStart}
           message={buttonText}
+          disabled={(!currentCategories)||(currentCategories.length === 0)}
         />
       </Box>
     </div>
