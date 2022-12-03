@@ -80,7 +80,7 @@ export default function App(props) {
       console.log("host start game");
       console.log(modeRef.current);
       axios
-        .get(`/api/games/${url_pathRef.current}`)
+        .get(`http://localhost:8001/api/games/${url_pathRef.current}`)
         .then((gameResponse) => {
           setGameData(gameResponse.data);
         })
@@ -96,7 +96,7 @@ export default function App(props) {
       console.log("playerjoined");
       // console.log(hostCookieRef.current.host)
       axios
-        .get(`/api/games/${url_pathRef.current}`)
+        .get(`http://localhost:8001/api/games/${url_pathRef.current}`)
         .then((gameResponse) => {
           setGameData(gameResponse.data);
         })
