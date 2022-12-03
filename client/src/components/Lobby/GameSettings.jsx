@@ -30,10 +30,10 @@ export default function GameSettings(props) {
       settings,
       categories: currentCategories
     })
-    .then(() => {
-      axios.get(`http://localhost:8001/api/games${props.url_path}`)
-      .then(({ data }) => props.setGameData(data))
-    })
+    // .then(() => {
+    //   axios.get(`http://localhost:8001/api/games${props.url_path}`)
+    //   .then(({ data }) => props.setGameData(data))
+    // })
   );
 
   const handleSet = () => {
