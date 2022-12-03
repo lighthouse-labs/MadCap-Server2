@@ -66,3 +66,7 @@ require("./routes/sockets")(app);
 //   console.log(`Example app listening on port ${PORT}`);
 
 // });
+
+app.get('/', (req, res) => {
+  res.redirect('/api/categories');
+});
