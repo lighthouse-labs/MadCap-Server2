@@ -13,21 +13,27 @@ import Typography from '@mui/material/Typography';
 import CircleIcon from '@mui/icons-material/Circle';
 
 
-export default function PlayersList(props) {
+export default function GamePlayersList(props) {
 // console.log("props.players~~~~~~~~~~~~ ",props.players)
   const host = props.players.find(player => player.host);
   //extract 
-  const PlayerListItem = props.players.map((player) =>
+  const PlayerListItems = props.players.map((player) =>
   !player.host && (
     <ListItem key={player.id}
       style={{ padding: 0 }}
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start'
+        alignItems: 'flex-start',
+        backgroundColor: (player.id === props.currentPlayerID) && 'rgba(0, 139, 139, 0.2)'
+
       }}>
       <ListItemAvatar
-        sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+      }}>
         <Avatar src={player.avatar_url} alt={player.label} sx={{ maxWidth: '30%', height: 'auto' }}>
         </Avatar>
         <CircleIcon sx={{ pl: 1, color: player.color }} />
@@ -37,7 +43,6 @@ export default function PlayersList(props) {
       </ListItemAvatar>
       <ListItemText primary={player.name}
         sx={{ '.MuiTypography-root': { fontSize: "12px", pl: 1 } }} />
-      {props.currentPlayerID === player.id ? "Current Player" : ""}
     </ListItem>
   ));
 
@@ -55,7 +60,7 @@ export default function PlayersList(props) {
           <Box sx={{
             flexGrow: 1,
             maxWidth: 752,
-            '& .MuiListItem-root': { px: 0 }
+            '& .MuiListItem-root': { px: 1 }
           }}
           >
             <Grid item xs={12} md={6}>
@@ -69,6 +74,7 @@ export default function PlayersList(props) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
+                    backgroundColor: (host && host.id === props.currentPlayerID) && 'rgba(0, 139, 139, 0.2)',
                     p: 0
                   }}>
                     <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
@@ -84,7 +90,7 @@ export default function PlayersList(props) {
                   </ListItem>
                 </List>
                 <List>
-                  {PlayerListItem}
+                  {PlayerListItems}
                 </List>
               </CustomStyle>
             </Grid>

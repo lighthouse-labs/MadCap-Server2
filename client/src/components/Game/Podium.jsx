@@ -93,7 +93,7 @@ export default function Podium(props) {
   const [ease, setEase] = useState(0);
 
   const [players, setPlayers] = useState(
-    dummyplayers.map(player => (
+    props.players.map(player => (
       { ...player, score: 0 }
     ))
   );
@@ -101,7 +101,7 @@ export default function Podium(props) {
   useEffect(() => {
     const timer =
       setTimeout(() => {
-        setPlayers(dummyplayers);
+        setPlayers(props.players);
         setEase(100);
       }, 0);
 
@@ -109,12 +109,13 @@ export default function Podium(props) {
   }, []);
   // users as state variable, 
 
-  const playerscores = players.map(player => (
+  const playerScoreItems = players.map(player => (
     <div className="podium-list-withpoint" style={{ marginTop: '8px' }}>
-      <Item className="podium-list-item" key={player.id}
+      <Item className="podium-list-item" 
+      key={player.id}
         sx={{
           backgroundColor: player.color,
-          width: `${player.score / 10}px`,
+          width: `${player.score / 5}px`,
           height: '45px',
           transition: 'width 2.5s ease-out',
           overflow: 'hidden',
@@ -154,7 +155,7 @@ export default function Podium(props) {
     <div className="game-board-inner">
       <Box className="podium-list" sx={{ width: '100%', }}>
         <Stack spacing={2}>
-          {playerscores}
+          {playerScoreItems}
         </Stack>
       </Box>
     </div>
