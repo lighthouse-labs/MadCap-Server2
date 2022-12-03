@@ -16,7 +16,7 @@ export default function StartButton(props) {
           height: 65,
           fontSize: '21px',
           '&.Mui-disabled': {
-           bgcolor: lightGreen[200],
+           bgcolor: lightGreen[100],
            color:lightGreen[700]
           }
         }}
